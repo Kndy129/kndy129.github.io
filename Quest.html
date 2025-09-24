@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Formulário - Consciência Ambiental</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="https://cdn-icons-png.flaticon.com/64/427/427735.png" type="image/png">
+
+  <style>
+    /* Reset e estilos base */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-image: url('https://images.unsplash.com/photo-1508780709619-79562169bc64');
+      background-size: cover;
+      background-position: center;
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #a8e6cf;
+      margin-bottom: 20px;
+      font-size: 2em;
+    }
+
+    form {
+      background-color: rgba(0, 0, 0, 0.75);
+      padding: 25px 30px;
+      border-radius: 12px;
+      width: 100%;
+      max-width: 600px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+    }
+
+    form p {
+      margin-bottom: 8px;
+      font-weight: bold;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border-radius: 6px;
+      border: none;
+      font-size: 1em;
+    }
+
+    input[type="radio"],
+    input[type="checkbox"] {
+      margin-right: 8px;
+      transform: scale(1.1);
+      cursor: pointer;
+    }
+
+    button {
+      background-color: #4caf50;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      font-size: 1.1em;
+      border-radius: 6px;
+      cursor: pointer;
+      width: 100%;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    /* Layout para checkboxes e radios inline em telas maiores */
+    .options-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-bottom: 15px;
+    }
+
+    .options-group label {
+      display: flex;
+      align-items: center;
+      background-color: rgba(255,255,255,0.1);
+      padding: 6px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.95em;
+      flex: 1 1 calc(50% - 10px);
+    }
+
+    /* Responsividade */
+    @media (max-width: 480px) {
+      h2 {
+        font-size: 1.5em;
+      }
+      form {
+        padding: 20px;
+      }
+      .options-group label {
+        flex: 1 1 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <form id="formulario">
+    <h2>🌱 Questionário sobre o Meio Ambiente 🌱</h2>
+
+    <p>1. Você costuma separar o lixo reciclável do orgânico?</p>
+    <div class="options-group">
+      <label><input type="radio" name="q1" value="Sim" required> Sim</label>
+      <label><input type="radio" name="q1" value="Não"> Não</label>
+      <label><input type="radio" name="q1" value="Às vezes"> Às vezes</label>
+    </div>
+
+    <p>2. Com que frequência você economiza água no dia a dia?</p>
+    <select name="q2" required>
+      <option value="">Selecione</option>
+      <option value="Sempre">Sempre</option>
+      <option value="Frequentemente">Frequentemente</option>
+      <option value="Raramente">Raramente</option>
+      <option value="Nunca">Nunca</option>
+    </select>
+
+    <p>3. Você utiliza transporte sustentável?</p>
+    <div class="options-group">
+      <label><input type="checkbox" name="q3" value="Bicicleta"> Bicicleta</label>
+      <label><input type="checkbox" name="q3" value="Caminhada"> Caminhada</label>
+      <label><input type="checkbox" name="q3" value="Ônibus"> Ônibus</label>
+      <label><input type="checkbox" name="q3" value="Carona"> Carona</label>
+      <label><input type="checkbox" name="q3" value="Não uso"> Não utilizo</label>
+    </div>
+
+    <p>4. Na sua opinião, qual é o maior desafio ambiental atualmente?</p>
+    <textarea name="q4" rows="3" required></textarea>
+
+    <p>5. Você participa ou já participou de campanhas ambientais?</p>
+    <div class="options-group">
+      <label><input type="radio" name="q5" value="Sim" required> Sim</label>
+      <label><input type="radio" name="q5" value="Não"> Não</label>
+    </div>
+
+    <p>6. O que você faz para reduzir o consumo de energia elétrica?</p>
+    <textarea name="q6" rows="3" required></textarea>
+
+    <p>7. Como podemos incentivar mais pessoas a cuidar do meio ambiente?</p>
+    <textarea name="q7" rows="3" required></textarea>
+
+    <p>Seu nome:</p>
+    <input type="text" name="nome" required>
+
+    <p>Seu e-mail:</p>
+    <input type="email" name="email" required>
+
+    <button type="submit">Enviar</button>
+  </form>
+
+  <!-- Firebase JS -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js";
+    import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyDxqC5U8pdLL-RqHYVVsVcjVxnu9n2wSPQ",
+      authDomain: "quest-ambiental-c75d5.firebaseapp.com",
+      projectId: "quest-ambiental-c75d5",
+      storageBucket: "quest-ambiental-c75d5.firebasestorage.app",
+      messagingSenderId: "1032722509219",
+      appId: "1:1032722509219:web:17599a88849d400bcfbe16"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    const form = document.getElementById("formulario");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const q3Values = Array.from(document.querySelectorAll('input[name="q3"]:checked'))
+                             .map(c => c.value);
+
+      const data = {
+        nome: form.nome.value,
+        email: form.email.value,
+        q1: form.q1.value,
+        q2: form.q2.value,
+        q3: q3Values,
+        q4: form.q4.value,
+        q5: form.q5.value,
+        q6: form.q6.value,
+        q7: form.q7.value
+      };
+
+      try {
+        await addDoc(collection(db, "respostasForm"), data);
+        alert("Resposta enviada com sucesso!");
+        form.reset();
+      } catch (error) {
+        console.error("Erro ao enviar resposta: ", error);
+        alert("Ocorreu um erro ao enviar a resposta.");
+      }
+    });
+  </script>
+</body>
+</html>
