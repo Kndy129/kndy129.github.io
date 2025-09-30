@@ -17,12 +17,13 @@
     .comment.show {display: block; opacity: 1;}
     button {margin: 5px; padding: 10px 15px; border: none; border-radius: 6px; cursor: pointer;}
     button:hover {opacity: 0.9;}
-    .btn-corrigir {background-color: #4CAF50; color: #fff;}
+    .btn-confirmar {background-color: #4CAF50; color: #fff;}
+    .btn-corrigir-todas {background-color: #FF9800; color: #fff;}
     .btn-gabarito {background-color: #2196F3; color: #fff;}
     .btn-limpar {background-color: #f44336; color: #fff;}
     .btn-nav {background-color: #555; color: #fff;}
     #result, #result2, #result3 {margin-top: 20px; font-size: 1.2em; font-weight: bold;}
-    .controls {margin-bottom: 12px;}
+    .controls {margin-bottom: 12px; display: flex; gap: 10px; flex-wrap: wrap;}
     
     /* Estilos para a notificação +1 */
     .plusOne {
@@ -60,16 +61,33 @@
       align-items: center;
       gap: 10px;
     }
+
+    /* Estilo para o placar global */
+    #placarGlobal {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #004080;
+      color: white;
+      padding: 15px;
+      border-radius: 8px;
+      font-weight: bold;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+      z-index: 1000;
+    }
   </style>
 </head>
 <body>
+  <div id="placarGlobal">Placar Total: 0/80</div>
+
   <h1>Simulado de Cibersegurança — 80 Questões</h1>
-  <p>Responda as questões. Cada parte possui sua correção independente; as explicações aparecem apenas nas questões respondidas após clicar em Corrigir.</p>
+  <p>Responda as questões. Use "Confirmar Resposta" para verificar individualmente ou "Corrigir Todas" para ver todas as respostas de uma vez.</p>
 
   <!-- PÁGINA 1 -->
   <div id="page1">
     <h2>Parte 1 - Questões 1 a 30</h2>
     <div class="controls">
+      <button class="btn-corrigir-todas" onclick="checkAllAnswers('quiz',questions)">Corrigir Todas (Página 1)</button>
       <button class="btn-gabarito" onclick="showAnswers('quiz',questions)">Mostrar Gabarito</button>
       <button class="btn-limpar" onclick="resetQuiz('quiz','result')">Limpar Respostas</button>
     </div>
@@ -82,6 +100,7 @@
   <div id="page2" style="display:none;">
     <h2>Parte 2 - Questões 31 a 60</h2>
     <div class="controls">
+      <button class="btn-corrigir-todas" onclick="checkAllAnswers('quiz2',questions2)">Corrigir Todas (Página 2)</button>
       <button class="btn-gabarito" onclick="showAnswers('quiz2',questions2)">Mostrar Gabarito</button>
       <button class="btn-limpar" onclick="resetQuiz('quiz2','result2')">Limpar Respostas</button>
     </div>
@@ -95,6 +114,7 @@
   <div id="page3" style="display:none;">
     <h2>Parte 3 - Questões 61 a 80</h2>
     <div class="controls">
+      <button class="btn-corrigir-todas" onclick="checkAllAnswers('quiz3',questions3)">Corrigir Todas (Página 3)</button>
       <button class="btn-gabarito" onclick="showAnswers('quiz3',questions3)">Mostrar Gabarito</button>
       <button class="btn-limpar" onclick="resetQuiz('quiz3','result3')">Limpar Respostas</button>
     </div>
@@ -103,9 +123,21 @@
     <button class="btn-nav" onclick="showPage(2)">Página Anterior</button>
   </div>
 
+  <!-- BOTÃO PARA CORRIGIR TODAS AS PÁGINAS -->
+  <div style="text-align: center; margin-top: 30px;">
+    <button class="btn-corrigir-todas" onclick="checkAllPages()" style="background-color: #9C27B0; font-size: 1.1em; padding: 12px 20px;">
+      Corrigir Todas as Questões (Páginas 1, 2 e 3)
+    </button>
+  </div>
+
   <script>
     // Variável global para controlar o placar
     let placarTotal = parseInt(localStorage.getItem("placarTotal")) || 0;
+
+    // Atualizar placar global
+    function updateGlobalPlacar() {
+      document.getElementById("placarGlobal").innerText = `Placar Total: ${placarTotal}/80`;
+    }
 
     // Renderização dinâmica + armazenamento local
     function renderQuiz(containerId, questions, storageKey, startNumber) {
@@ -124,7 +156,7 @@
               <p><strong>Questão ${startNumber + i}</strong> - ${q.q}</p>
             </div>
             <div class="question-actions">
-              <button class="btn-corrigir" onclick="checkSingleAnswer('${containerId}', ${i}, ${storageKey === 'quiz' ? 'questions' : storageKey === 'quiz2' ? 'questions2' : 'questions3'})">Corrigir</button>
+              <button class="btn-confirmar" onclick="checkSingleAnswer('${containerId}', ${i}, ${storageKey === 'quiz' ? 'questions' : storageKey === 'quiz2' ? 'questions2' : 'questions3'})">Confirmar Resposta</button>
               <span id="${containerId}_plus${i}" class="plusOne">+1</span>
             </div>
           </div>
@@ -182,7 +214,7 @@
 
       // Verificar se já foi respondida
       if (saved[index] === undefined) {
-        feedback.innerHTML = "Por favor, selecione uma resposta antes de corrigir.";
+        feedback.innerHTML = "Por favor, selecione uma resposta antes de confirmar.";
         feedback.className = "feedback incorrect";
         comment.classList.remove("show");
         return;
@@ -190,7 +222,7 @@
 
       // Verificar se já foi corrigida
       if (corrected[index]) {
-        feedback.innerHTML = "Esta questão já foi corrigida anteriormente.";
+        feedback.innerHTML = "Esta questão já foi confirmada anteriormente.";
         feedback.className = "feedback incorrect";
         return;
       }
@@ -208,6 +240,7 @@
         // Atualizar placar
         placarTotal++;
         localStorage.setItem("placarTotal", placarTotal);
+        updateGlobalPlacar();
       } else {
         feedback.innerHTML = "✘ Resposta incorreta!";
         feedback.className = "feedback incorrect";
@@ -221,6 +254,81 @@
       comment.classList.add("show");
 
       updateResult(containerId, questionsArray);
+    }
+
+    function checkAllAnswers(containerId, questionsArray) {
+      const saved = JSON.parse(localStorage.getItem(containerId)) || {};
+      const corrected = JSON.parse(localStorage.getItem(containerId + '_corrected')) || {};
+      let newPoints = 0;
+
+      questionsArray.forEach((q, i) => {
+        const feedback = document.getElementById(`${containerId}_feedback${i}`);
+        const comment = document.getElementById(`${containerId}_comment${i}`);
+        const plusOne = document.getElementById(`${containerId}_plus${i}`);
+
+        // Só processa se foi respondida e ainda não foi corrigida
+        if (saved[i] !== undefined && !corrected[i]) {
+          if (saved[i] == q.answer) {
+            feedback.innerHTML = "✔ Resposta correta!";
+            feedback.className = "feedback correct";
+            
+            // Mostrar notificação +1
+            plusOne.classList.add("show");
+            setTimeout(() => {
+              plusOne.classList.remove("show");
+            }, 1000);
+
+            newPoints++;
+          } else {
+            feedback.innerHTML = "✘ Resposta incorreta!";
+            feedback.className = "feedback incorrect";
+          }
+
+          // Marcar como corrigida
+          corrected[i] = true;
+          comment.innerHTML = q.comment;
+          comment.classList.add("show");
+        } else if (saved[i] === undefined) {
+          feedback.innerHTML = "✘ Questão não respondida";
+          feedback.className = "feedback incorrect";
+        }
+      });
+
+      // Atualizar placar
+      if (newPoints > 0) {
+        placarTotal += newPoints;
+        localStorage.setItem("placarTotal", placarTotal);
+        updateGlobalPlacar();
+      }
+
+      localStorage.setItem(containerId + '_corrected', JSON.stringify(corrected));
+      updateResult(containerId, questionsArray);
+    }
+
+    function checkAllPages() {
+      // Corrigir página 1
+      showPage(1);
+      setTimeout(() => {
+        checkAllAnswers('quiz', questions);
+        
+        // Corrigir página 2
+        setTimeout(() => {
+          showPage(2);
+          checkAllAnswers('quiz2', questions2);
+          
+          // Corrigir página 3
+          setTimeout(() => {
+            showPage(3);
+            checkAllAnswers('quiz3', questions3);
+            
+            // Voltar para página 1
+            setTimeout(() => {
+              showPage(1);
+              alert(`Todas as questões foram corrigidas! Seu placar total é: ${placarTotal}/80`);
+            }, 500);
+          }, 500);
+        }, 500);
+      }, 500);
     }
 
     function updateResult(containerId, questions) {
@@ -242,8 +350,7 @@
 
       document.getElementById(resultId).innerHTML = 
         `Progresso: ${answered}/${questions.length} questões respondidas | ` +
-        `Acertos: ${correct}/${questions.length} | ` +
-        `Placar Total: ${placarTotal}/80`;
+        `Acertos: ${correct}/${questions.length}`;
     }
 
     function showAnswers(containerId, questions) {
@@ -289,6 +396,7 @@
       });
       
       localStorage.setItem("placarTotal", placarTotal);
+      updateGlobalPlacar();
       
       // Recriar o quiz com os números corretos
       if (containerId === 'quiz') {
@@ -306,7 +414,7 @@
       document.getElementById("page" + pageNum).style.display = "block";
     }
 
-    // --- QUESTÕES CORRIGIDAS COM NUMERAÇÃO CORRETA ---
+    // --- QUESTÕES (mantidas as mesmas) ---
     const questions = [
       {q: "O que é um SIEM?", options: ["Sistema de Monitoramento de Energia", "Ferramenta de gestão de eventos e informações de segurança", "Firewall de próxima geração", "Sistema de gestão de identidades"], answer: 1, comment: "SIEM coleta, normaliza e correlaciona logs de múltiplas fontes para detectar incidentes e facilitar investigação."},
       {q: "Qual é o principal objetivo da ISO/IEC 27001?", options: ["Estabelecer políticas de backup", "Definir requisitos para um SGSI", "Criar firewalls", "Gerenciar vulnerabilidades de hardware"], answer: 1, comment: "A ISO/IEC 27001 especifica requisitos para implementar, manter e melhorar um Sistema de Gestão de Segurança da Informação (SGSI)."},
@@ -400,8 +508,9 @@
     renderQuiz("quiz", questions, "quiz", 1);
     renderQuiz("quiz2", questions2, "quiz2", 31);
     renderQuiz("quiz3", questions3, "quiz3", 61);
+    updateGlobalPlacar();
 
-    // Inicializar placar total
+    // Inicializar resultados
     document.addEventListener('DOMContentLoaded', function() {
       updateResult('quiz', questions);
       updateResult('quiz2', questions2);
