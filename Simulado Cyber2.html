@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simulado de Cibersegurança - 60 Questões</title>
+  <style>
+    body {font-family: Arial, sans-serif; margin: 20px; background: #f5f7fa; color: #333;}
+    h1, h2 {color: #004080;}
+    .question {margin-bottom: 20px; padding: 15px; border: 1px solid #ccc; border-radius: 8px; background: #fff;}
+    .options label {display: block; margin: 5px 0;}
+    .feedback {margin-top: 10px; font-weight: bold;}
+    .correct {color: green;}
+    .incorrect {color: red;}
+    .comment {margin-top: 5px; padding: 10px; border-left: 4px solid #004080; background: #eef5ff; display: none; transition: all 0.3s ease-in-out; opacity: 0;}
+    .comment.show {display: block; opacity: 1;}
+    button {margin: 10px 5px; padding: 10px 15px; border: none; border-radius: 6px; cursor: pointer;}
+    button:hover {opacity: 0.9;}
+    .btn-corrigir {background-color: #4CAF50; color: #fff;}
+    .btn-gabarito {background-color: #2196F3; color: #fff;}
+    .btn-limpar {background-color: #f44336; color: #fff;}
+    .btn-nav {background-color: #555; color: #fff;}
+    #result, #result2 {margin-top: 20px; font-size: 1.2em; font-weight: bold;}
+    .controls {margin-bottom: 12px}
+  </style>
+</head>
+<body>
+  <h1>Simulado de Cibersegurança — 60 Questões</h1>
+  <p>Responda as questões. Cada parte possui sua correção independente; as explicações aparecem apenas nas questões respondidas após clicar em <strong>Corrigir</strong>.</p>
+
+  <div id="page1">
+    <h2>Parte 1 - Questões 1 a 30</h2>
+    <div class="controls">
+      <button class="btn-corrigir" onclick="checkAnswers('quiz','result',questions)">Corrigir</button>
+      <button class="btn-gabarito" onclick="showAnswers('quiz',questions)">Mostrar Gabarito</button>
+      <button class="btn-limpar" onclick="resetQuiz('quiz','result')">Limpar Respostas</button>
+    </div>
+    <div id="quiz"></div>
+    <div id="result"></div>
+    <button class="btn-nav" onclick="showPage(2)">Próxima Página</button>
+  </div>
+
+  <div id="page2" style="display:none;">
+    <h2>Parte 2 - Questões 31 a 60</h2>
+    <div class="controls">
+      <button class="btn-corrigir" onclick="checkAnswers('quiz2','result2',questions2)">Corrigir</button>
+      <button class="btn-gabarito" onclick="showAnswers('quiz2',questions2)">Mostrar Gabarito</button>
+      <button class="btn-limpar" onclick="resetQuiz('quiz2','result2')">Limpar Respostas</button>
+    </div>
+    <div id="quiz2"></div>
+    <div id="result2"></div>
+    <button class="btn-nav" onclick="showPage(1)">Página Anterior</button>
+  </div>
+
+  <script>
+    // Parte 1 e Parte 2: suas 60 questões já preenchidas
+    const questions = [
+      {q: "1. O que é um SIEM?", options: ["Sistema de Monitoramento de Energia", "Ferramenta de gestão de eventos e informações de segurança", "Firewall de próxima geração", "Sistema de gestão de identidades"], answer: 1, comment: "SIEM coleta, normaliza e correlaciona logs de múltiplas fontes para detectar incidentes e facilitar investigação."},
+      {q: "2. Qual é o principal objetivo da ISO/IEC 27001?", options: ["Estabelecer políticas de backup", "Definir requisitos para um SGSI", "Criar firewalls", "Gerenciar vulnerabilidades de hardware"], answer: 1, comment: "A ISO/IEC 27001 especifica requisitos para implementar, manter e melhorar um Sistema de Gestão de Segurança da Informação (SGSI)."},
+      {q: "3. Na ISO/IEC 27001, o que é o Anexo A?", options: ["Lista de requisitos legais", "Controle de versão do documento", "Lista de objetivos e controles de segurança da informação", "Guia de implementação do SIEM"], answer: 2, comment: "O Anexo A fornece uma lista de objetivos e controles de segurança (boas práticas) que podem ser adotados pela organização."},
+      {q: "4. O que significa PDCA, método usado em ISO 27001?", options: ["Plan-Do-Check-Act", "Protect-Detect-Contain-Analyze", "Prepare-Deploy-Certify-Assess", "Plan-Design-Check-Agree"], answer: 0, comment: "PDCA é o ciclo de melhoria contínua (Planejar, Fazer, Verificar e Agir) usado para gerir e aprimorar o SGSI."},
+      {q: "5. Qual é um uso típico de correlação em um SIEM?", options: ["Compilar logs de nossos usuários", "Relacionar eventos para identificar padrões de ataque", "Armazenar backups em nuvem", "Gerar certificados digitais"], answer: 1, comment: "Regras de correlação combinam múltiplos eventos (por exemplo, falhas de login seguidas de acesso bem-sucedido) para identificar ataques que isoladamente seriam silenciosos."},
+      {q: "6. Qual métrica representa o tempo médio para remover uma ameaça detectada?", options: ["MTTI (Mean Time to Identify)", "MTTR (Mean Time to Respond/Recover)", "MTBF (Mean Time Between Failures)", "MTTA (Mean Time to Acknowledge)"], answer: 1, comment: "MTTR mede o tempo médio para responder/recuperar de um incidente; MTTD/M is similares para detecção/identificação."},
+      {q: "7. Qual controle do Anexo A está relacionado ao gerenciamento de acesso?", options: ["A.9 — Controle de acesso", "A.5 — Política de segurança", "A.12 — Operações de segurança", "A.14 — Segurança no desenvolvimento"], answer: 0, comment: "A seção A.9 do Anexo A trata especificamente do controle de acesso, incluindo responsabilidades, gestão de privilégios e autenticação."},
+      {q: "8. Qual é a finalidade principal de um runbook em um SOC?", options: ["Documentar procedimentos repetíveis para triagem e resposta a incidentes", "Mapa de rede", "Política de backup", "Manual do usuário do SIEM"], answer: 0, comment: "Runbooks padronizam procedimentos operacionais (triagem, escalonamento, contenção), reduzindo erros e acelerando resposta."},
+      {q: "9. O que é normalização de logs em um SIEM?", options: ["Alterar o fuso horário de eventos", "Transformar diferentes formatos de log para um formato comum", "Remover logs antigos automaticamente", "Criptografar logs em trânsito"], answer: 1, comment: "Normalização transforma campos heterogêneos (ex.: timestamps, níveis) em uma estrutura comum para que regras e correlações funcionem corretamente."},
+      {q: "10. Qual protocolo é frequentemente usado para envio de logs em tempo real?", options: ["SMTP", "Syslog", "FTP", "SNMPv1"], answer: 1, comment: "Syslog é o protocolo tradicional para envio de logs de dispositivos e servidores; variantes modernas incluem syslog-ng, rsyslog, e transporte via TLS."},
+      {q: "11. Uma violação de confidencialidade envolve:", options: ["Acesso não autorizado a dados sensíveis", "Perda de disponibilidade de um serviço", "Destruição física de um servidor", "Atualização de software mal sucedida"], answer: 0, comment: "Confidencialidade refere-se a proteger dados contra acesso ou divulgação não autorizada."},
+      {q: "12. Que documento é requisito central para a certificação ISO/IEC 27001?", options: ["Declaração de aplicabilidade (SoA)", "Relatório de pentest", "Plano de continuidade de negócios", "Contrato de terceirização"], answer: 0, comment: "A SOA (Statement of Applicability) descreve quais controles do Anexo A foram implementados, com justificativas para inclusões/exclusões."},
+      {q: "13. O que é threat intelligence?", options: ["Ferramenta de backup", "Informação processada sobre ameaças que ajuda a antecipar ataques", "Tipo de firewall", "Protocolo de rede"], answer: 1, comment: "Threat intelligence organiza dados sobre atores, TTPs e indicadores para orientar deteção e mitigação."},
+      {q: "14. Qual técnica ajuda a reduzir falsos positivos no SIEM?", options: ["Aumentar o volume de logs", "Ajustar e afinar regras de correlação e baseline", "Desligar alertas", "Duplicar regras"], answer: 1, comment: "Afinar regras, whitelists e thresholds, além de contextualização com inteligência de ameaças, reduz alertas incorretos."},
+      {q: "15. Na gestão de riscos (ISO 27001), avaliação de risco combina:", options: ["Probabilidade e impacto", "Custo e tempo", "Número de usuários e tamanho do servidor", "Versão do sistema operacional e fabricante"], answer: 0, comment: "Avaliação de risco normalmente considera a probabilidade de um evento e o impacto associado para priorizar ações."},
+      {q: "16. Qual atitude é parte da resposta a incidentes?", options: ["Ignorar até se repetir", "Conter, erradicar e recuperar", "Vender os ativos comprometidos", "Desativar todos os logs"], answer: 1, comment: "O workflow típico envolve identificação, contenção, erradicação, recuperação e lições aprendidas."},
+      {q: "17. Qual é um exemplo de log fonte crítica para SIEM no ambiente Windows?", options: ["Event Logs de segurança (Security Event Log)", "Logs de GPS", "Relatórios de impressora", "Logs de armazenamento em fita"], answer: 0, comment: "Event Logs de Segurança contêm eventos de autenticação, autorização e atividades sensíveis essenciais para investigação."},
+      {q: "18. O que é um playbook em segurança?", options: ["Coleção de scripts e passos práticos para tratar tipos específicos de incidentes", "Software antivírus", "Ferramenta de inventário", "Lista de senhas"], answer: 0, comment: "Playbooks são guias acionáveis (muitas vezes com scripts/automação) para tratar cenários específicos de incidentes."},
+      {q: "19. Qual conceito descreve o princípio do menor privilégio?", options: ["Todo usuário deve ter acesso completo por padrão", "Usuários recebem apenas os acessos estritamente necessários", "Administradores compartilham contas para agilidade", "Acesso é concedido sem revisão"], answer: 1, comment: "Menor privilégio minimiza privilégios concedidos, reduzindo risco de abuso e propagação de incidentes."},
+      {q: "20. O que é MITRE ATT&CK?", options: ["Um tipo de malware", "Uma base de conhecimento de táticas, técnicas e procedimentos (TTPs) de adversários", "Um padrão de certificação", "Um protocolo de rede"], answer: 1, comment: "MITRE ATT&CK é um framework amplamente usado para mapear comportamentos adversários e modelar detecções."},
+      {q: "21. Qual técnica detecta anomalias baseadas em comportamento no SIEM?", options: ["Regras estáticas apenas", "Detecção baseada em perfis e machine learning", "Somente coleta de logs", "Backup em fita"], answer: 1, comment: "Modelos de baseline e ML ajudam a encontrar desvios de comportamento que regras fixas não capturam."},
+      {q: "22. Na ISO 27001, 'escopo' refere-se a:", options: ["O tamanho do servidor", "O conjunto de ativos, localizações e processos cobertos pelo SGSI", "Modelo de risco financeiro", "Número de funcionários"], answer: 1, comment: "O escopo define as fronteiras do SGSI — quais ativos, sites e processos estão incluídos."},
+      {q: "23. Qual é a diferença entre IDS e IPS?", options: ["IDS previne ataques; IPS apenas monitora", "IDS monitora e detecta; IPS tem capacidade de bloquear/mitigar tráfego em tempo real", "Não existe diferença", "IDS é hardware; IPS é software"], answer: 1, comment: "IDS detecta; IPS pode bloquear ativamente tráfego malicioso (detecção vs prevenção)."},
+      {q: "24. O que é unificação (aggregation) em SIEM?", options: ["Somar métricas financeiras", "Concentrar e armazenar logs coletados de múltiplas fontes", "Eliminar logs redundantes sem armazenar", "Enviar alertas por e-mail"], answer: 1, comment: "Aggregation consolida eventos de pontos variados para análise e retenção centralizada."},
+      {q: "25. Qual requisito legal de proteção de dados exige notificação de violação em âmbito europeu?", options: ["LGPD", "GDPR — notificação de violação em até 72 horas em muitos casos", "HIPAA", "PCI-DSS"], answer: 1, comment: "O GDPR introduziu regras rigorosas de notificação de violação de dados no espaço econômico europeu."},
+      {q: "26. Qual prática é essencial para gestão de vulnerabilidades?", options: ["Ignorar resultados de scans", "Inventariar ativos, escanear, priorizar e remediar vulnerabilidades", "Atualizar apenas quando houver incidente", "Confiar apenas em varreduras pontuais"], answer: 1, comment: "Gestão eficaz exige inventário, varreduras regulares, priorização por risco e remediação contínua."},
+      {q: "27. O que é um falso negativo no contexto de detecção?", options: ["Alerta que não representa um incidente", "Incidente detectado corretamente", "Uma ameaça que não é detectada pelo sistema", "Alerta duplicado"], answer: 2, comment: "Falso negativo é quando uma ameaça real não é detectada, representando risco crítico."},
+      {q: "28. Qual é uma métrica operacional usual de SOC?", options: ["Número de cores da CPU", "MTTR, MTTD, número de incidentes tratados por período", "Versão do SO", "Velocidade de link de internet"], answer: 1, comment: "KPIs como MTTD (Mean Time to Detect) e MTTR são usados para medir desempenho do SOC."},
+      {q: "29. O que significa 'SoA' na ISO/IEC 27001 (Statement of Applicability)?", options: ["Statement of Applicability — declaração dos controles aplicáveis e justificativas", "Security of Assets", "Standard of Accreditation", "Sumário das Obrigações Administrativas"], answer: 0, comment: "A SoA documenta quais controles do Anexo A foram implementados e por quê."},
+      {q: "30. Qual tarefa é típica de um analista Tier 1 em SOC?", options: ["Desenvolver novas regras de correlação avançadas", "Triagem inicial de alertas e escalonamento segundo runbooks", "Redigir a política de segurança da empresa", "Realizar pentests complexos"], answer: 1, comment: "Analistas Tier 1 fazem a triagem inicial e seguem runbooks para decidir escalonamento."}
+];
+    const questions2 = [
+      {q: "31. O que significa SOC em cibersegurança?", options: ["Security Operations Center", "System Optimization Core", "Secure Open Cloud", "Service Oriented Computing"], answer: 0, comment: "SOC é o centro operacional responsável por monitorar e responder a incidentes de segurança."},
+      {q: "32. Qual destes é um objetivo do NIST Cybersecurity Framework?", options: ["Reduzir custos de TI", "Promover resiliência cibernética", "Aumentar o desempenho de rede", "Substituir normas ISO"], answer: 1, comment: "O NIST CSF visa aumentar a resiliência cibernética das organizações."},
+      {q: "33. Qual é a função principal de um honeypot?", options: ["Acelerar a rede", "Atrair atacantes para estudo", "Proteger senhas com criptografia", "Monitorar desempenho de CPU"], answer: 1, comment: "Honeypot é usado como armadilha para estudar comportamento de atacantes."},
+      {q: "34. Em gestão de riscos, qual etapa vem primeiro?", options: ["Análise de impacto", "Identificação de ativos", "Tratamento de riscos", "Monitoramento"], answer: 1, comment: "Primeiro identificamos os ativos para depois avaliar riscos associados."},
+      {q: "35. O que caracteriza um ataque DoS?", options: ["Roubo de credenciais", "Negação de serviço por sobrecarga", "Alteração de registros DNS", "Injeção de código malicioso"], answer: 1, comment: "Ataque DoS visa indisponibilizar um serviço sobrecarregando seus recursos."},
+      {q: "36. O que é hardening em segurança da informação?", options: ["Aumento de desempenho de hardware", "Configuração segura de sistemas", "Compactação de dados", "Atualização de antivírus"], answer: 1, comment: "Hardening consiste em reduzir a superfície de ataque aplicando configurações seguras."},
+      {q: "37. Qual é o papel de um playbook em um SOC?", options: ["Gerar relatórios financeiros", "Guiar resposta a incidentes", "Treinar novos colaboradores", "Substituir firewalls"], answer: 1, comment: "Playbooks descrevem passo a passo como responder a determinados incidentes."},
+      {q: "38. O que significa IDS?", options: ["Intrusion Detection System", "Information Data Service", "Internet Domain Security", "Integrated Defense Suite"], answer: 0, comment: "IDS é um sistema de detecção de intrusão."},
+      {q: "39. Qual padrão ISO foca na continuidade de negócios?", options: ["ISO 9001", "ISO 31000", "ISO 22301", "ISO/IEC 27002"], answer: 2, comment: "A ISO 22301 é voltada para gestão da continuidade de negócios."},
+      {q: "40. O que é um falso positivo em segurança?", options: ["Falha real detectada", "Alerta de ameaça inexistente", "Vulnerabilidade confirmada", "Exploit conhecido"], answer: 1, comment: "Falso positivo ocorre quando o sistema alerta sem existir uma ameaça real."},
+      {q: "41. Qual técnica garante integridade de dados?", options: ["Hashing", "Compressão", "Firewall", "VPN"], answer: 0, comment: "Hashing assegura que os dados não foram alterados, porque qualquer mudança altera o hash."},
+      {q: "42. O que significa GDPR?", options: ["General Data Protection Regulation", "Global Digital Privacy Rule", "General Device Protection Requirement", "Government Data Protection Regulation"], answer: 0, comment: "GDPR é o regulamento europeu de proteção de dados pessoais."},
+      {q: "43. Em resposta a incidentes, qual é a primeira fase?", options: ["Contenção", "Identificação", "Erradicação", "Recuperação"], answer: 1, comment: "Identificação (detectar e confirmar) é a fase inicial para entender o incidente."},
+      {q: "44. O que caracteriza phishing?", options: ["Roubo físico de dados", "Enganar usuários para obter informações", "Ataque de força bruta", "DoS distribuído"], answer: 1, comment: "Phishing usa engenharia social para enganar usuários e coletar credenciais ou dados sensíveis."},
+      {q: "45. Qual destes é exemplo de autenticação multifator?", options: ["Senha e token SMS", "Duas senhas", "Biometria e mesma senha", "Pergunta secreta"], answer: 0, comment: "MFA combina fatores diferentes: algo que você sabe (senha) e algo que você tem (token)."},
+      {q: "46. O que é patch management?", options: ["Monitorar rede", "Aplicar atualizações de software", "Gerenciar usuários", "Controle de senhas"], answer: 1, comment: "Patch management corrige vulnerabilidades conhecidas aplicando atualizações e patches."},
+      {q: "47. Qual protocolo é mais seguro para navegação web?", options: ["HTTP", "HTTPS", "FTP", "Telnet"], answer: 1, comment: "HTTPS protege comunicações web usando TLS, fornecendo confidencialidade e integridade."},
+      {q: "48. O que é SIEM correlation rule?", options: ["Um log de firewall", "Uma regra que relaciona eventos", "Um backup de sistema", "Política de senha"], answer: 1, comment: "Regra de correlação define padrões que, quando encontrados, disparam alertas por comportamento suspeito."},
+      {q: "49. Qual o objetivo de um pentest?", options: ["Validar segurança simulando ataques", "Substituir antivírus", "Gerenciar logs", "Criar firewalls"], answer: 0, comment: "Pentest simula ataques controlados para identificar e priorizar falhas exploráveis."},
+      {q: "50. Qual técnica é usada para proteger senhas em banco de dados?", options: ["Criptografia ou hashing", "Backup diário", "Compressão", "Antivírus"], answer: 0, comment: "Senhas devem ser armazenadas com hashing seguro (bcrypt, Argon2) e salting, não em texto claro."},
+      {q: "51. O que significa VPN?", options: ["Virtual Private Network", "Verified Protection Node", "Virtual Public Net", "Variable Protocol Network"], answer: 0, comment: "VPN cria um túnel criptografado entre cliente e servidor, protegendo tráfego em redes inseguras."},
+      {q: "52. Qual é o objetivo da ISO/IEC 27002?", options: ["Controles de segurança da informação", "Gestão de qualidade", "Gestão de continuidade de negócios", "Proteção de dados pessoais"], answer: 0, comment: "ISO/IEC 27002 fornece um conjunto de boas práticas e orientações para implementar controles de segurança."},
+      {q: "53. Qual ataque explora injeção em consultas SQL?", options: ["Cross-Site Scripting", "SQL Injection", "Man-in-the-Middle", "Phishing"], answer: 1, comment: "SQL Injection manipula entradas para alterar consultas ao banco e acessar dados indevidos."},
+      {q: "54. Qual é a função de um firewall?", options: ["Bloquear spam", "Filtrar tráfego de rede", "Proteger contra vírus", "Monitorar desempenho"], answer: 1, comment: "Firewalls controlam o tráfego entre redes com base em regras de segurança."},
+      {q: "55. O que caracteriza ransomware?", options: ["Espionagem de e-mails", "Sequestro e criptografia de dados", "Roubo de hardware", "Exploração de CPU"], answer: 1, comment: "Ransomware criptografa dados e exige pagamento para liberar o acesso."},
+      {q: "56. O que é zero-day?", options: ["Falha sem correção disponível", "Política de backup", "Senha temporária", "Ataque DDoS"], answer: 0, comment: "Zero-day é vulnerabilidade desconhecida pelo fornecedor; pode ser explorada antes de haver patch."},
+      {q: "57. O que significa DLP?", options: ["Data Loss Prevention", "Database Log Protection", "Dynamic Link Protocol", "Digital Layer Protection"], answer: 0, comment: "DLP engloba ferramentas e políticas para prevenir vazamento ou exposição indevida de dados sensíveis."},
+      {q: "58. O que é autenticação biométrica?", options: ["Verificação por algo que você é", "Uso de tokens", "Uso de senha", "Pergunta secreta"], answer: 0, comment: "Biometria usa características físicas/biológicas (impressão digital, face) para autenticar o usuário."},
+      {q: "59. Qual é a principal função de logs de auditoria?", options: ["Controlar backups", "Registrar atividades para rastreabilidade", "Gerenciar licenças", "Monitorar hardware"], answer: 1, comment: "Logs de auditoria fornecem rastreabilidade de ações para investigações e conformidade."},
+      {q: "60. Qual é o objetivo do princípio de menor privilégio?", options: ["Dar acesso ilimitado", "Restringir acessos ao mínimo necessário", "Evitar uso de criptografia", "Permitir múltiplas senhas"], answer: 1, comment: "O princípio limita acessos para reduzir riscos e impacto associado a contas comprometidas."}
+];
+
+    // Funções comuns
+    function loadQuiz(containerId, qList) {
+      const quizDiv = document.getElementById(containerId);
+      quizDiv.innerHTML = "";
+      qList.forEach((item, index) => {
+        const qDiv = document.createElement("div");
+        qDiv.className = "question";
+        qDiv.innerHTML = `<p><b>${item.q}</b></p>`;
+        const opts = document.createElement("div");
+        opts.className = "options";
+        item.options.forEach((opt, i) => {
+          opts.innerHTML += `<label><input type='radio' name='q${containerId}${index}' value='${i}'> ${opt}</label>`;
+        });
+        qDiv.appendChild(opts);
+        const feedback = document.createElement("div");
+        feedback.className = "feedback";
+        qDiv.appendChild(feedback);
+        const comment = document.createElement("div");
+        comment.className = "comment";
+        comment.innerText = item.comment;
+        qDiv.appendChild(comment);
+        quizDiv.appendChild(qDiv);
+      });
+    }
+
+function checkAnswers(containerId, resultId, qList) {
+  const quizDiv = document.getElementById(containerId);
+  const questionsEls = quizDiv.getElementsByClassName("question");
+  let score = 0;
+  qList.forEach((item, index) => {
+    const selected = quizDiv.querySelector(`input[name='q${containerId}${index}']:checked`);
+    const feedback = questionsEls[index].querySelector(".feedback");
+    const comment = questionsEls[index].querySelector(".comment");
+
+    if (selected) { // questão respondida
+      if (parseInt(selected.value) === item.answer) {
+        feedback.textContent = "Correto!";
+        feedback.className = "feedback correct";
+        score++;
+      } else {
+        feedback.textContent = "Incorreto.";
+        feedback.className = "feedback incorrect";
+      }
+      comment.classList.add("show"); // só mostra comentário se respondeu
+    } else { 
+      feedback.textContent = ""; // não exibe "Não respondida"
+      feedback.className = "feedback"; 
+      comment.classList.remove("show"); // garante que comentário fique oculto
+    }
+  });
+  document.getElementById(resultId).textContent = `Você acertou ${score} de ${qList.length} questões.`;
+}
+
+
+    function showAnswers(containerId, qList) {
+      const quizDiv = document.getElementById(containerId);
+      const questionsEls = quizDiv.getElementsByClassName("question");
+      qList.forEach((item, index) => {
+        const feedback = questionsEls[index].querySelector(".feedback");
+        feedback.textContent = `Resposta correta: ${item.options[item.answer]}`;
+        feedback.className = "feedback correct";
+        const comment = questionsEls[index].querySelector(".comment");
+        comment.classList.add("show");
+      });
+    }
+
+    function resetQuiz(containerId, resultId) {
+      loadQuiz(containerId, containerId === 'quiz' ? questions : questions2);
+      document.getElementById(resultId).textContent = "";
+    }
+
+    // Função de navegação entre páginas
+    function showPage(page) {
+      document.getElementById('page1').style.display = page === 1 ? 'block' : 'none';
+      document.getElementById('page2').style.display = page === 2 ? 'block' : 'none';
+    }
+
+    // Carregar quizzes na inicialização
+    loadQuiz("quiz", questions);
+    loadQuiz("quiz2", questions2);
+  </script>
+</body>
+</html>
