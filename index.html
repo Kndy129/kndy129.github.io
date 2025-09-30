@@ -53,7 +53,7 @@
   </div>
 
   <script>
-    // Parte 1 e Parte 2: suas 60 questões já preenchidas
+    // --- QUESTÕES (1 a 60) ---
     const questions = [
       {q: "1. O que é um SIEM?", options: ["Sistema de Monitoramento de Energia", "Ferramenta de gestão de eventos e informações de segurança", "Firewall de próxima geração", "Sistema de gestão de identidades"], answer: 1, comment: "SIEM coleta, normaliza e correlaciona logs de múltiplas fontes para detectar incidentes e facilitar investigação."},
       {q: "2. Qual é o principal objetivo da ISO/IEC 27001?", options: ["Estabelecer políticas de backup", "Definir requisitos para um SGSI", "Criar firewalls", "Gerenciar vulnerabilidades de hardware"], answer: 1, comment: "A ISO/IEC 27001 especifica requisitos para implementar, manter e melhorar um Sistema de Gestão de Segurança da Informação (SGSI)."},
@@ -85,6 +85,7 @@
       {q: "28. Qual é uma métrica operacional usual de SOC?", options: ["Número de cores da CPU", "MTTR, MTTD, número de incidentes tratados por período", "Versão do SO", "Velocidade de link de internet"], answer: 1, comment: "KPIs como MTTD (Mean Time to Detect) e MTTR são usados para medir desempenho do SOC."},
       {q: "29. O que significa 'SoA' na ISO/IEC 27001 (Statement of Applicability)?", options: ["Statement of Applicability — declaração dos controles aplicáveis e justificativas", "Security of Assets", "Standard of Accreditation", "Sumário das Obrigações Administrativas"], answer: 0, comment: "A SoA documenta quais controles do Anexo A foram implementados e por quê."},
       {q: "30. Qual tarefa é típica de um analista Tier 1 em SOC?", options: ["Desenvolver novas regras de correlação avançadas", "Triagem inicial de alertas e escalonamento segundo runbooks", "Redigir a política de segurança da empresa", "Realizar pentests complexos"], answer: 1, comment: "Analistas Tier 1 fazem a triagem inicial e seguem runbooks para decidir escalonamento."}
+
 ];
     const questions2 = [
       {q: "31. O que significa SOC em cibersegurança?", options: ["Security Operations Center", "System Optimization Core", "Secure Open Cloud", "Service Oriented Computing"], answer: 0, comment: "SOC é o centro operacional responsável por monitorar e responder a incidentes de segurança."},
@@ -119,7 +120,25 @@
       {q: "60. Qual é o objetivo do princípio de menor privilégio?", options: ["Dar acesso ilimitado", "Restringir acessos ao mínimo necessário", "Evitar uso de criptografia", "Permitir múltiplas senhas"], answer: 1, comment: "O princípio limita acessos para reduzir riscos e impacto associado a contas comprometidas."}
 ];
 
-    // Funções comuns
+    // --- FUNÇÕES DE SALVAMENTO ---
+    function saveAnswer(containerId, index, value) {
+      let saved = JSON.parse(localStorage.getItem(containerId)) || {};
+      saved[index] = value;
+      localStorage.setItem(containerId, JSON.stringify(saved));
+    }
+
+    function loadAnswers(containerId, qList) {
+      const saved = JSON.parse(localStorage.getItem(containerId)) || {};
+      qList.forEach((item, index) => {
+        const selectedValue = saved[index];
+        if (selectedValue !== undefined) {
+          const radio = document.querySelector(`input[name='q${containerId}${index}'][value='${selectedValue}']`);
+          if (radio) radio.checked = true;
+        }
+      });
+    }
+
+    // --- CARREGAR QUIZ ---
     function loadQuiz(containerId, qList) {
       const quizDiv = document.getElementById(containerId);
       quizDiv.innerHTML = "";
@@ -141,38 +160,47 @@
         comment.innerText = item.comment;
         qDiv.appendChild(comment);
         quizDiv.appendChild(qDiv);
+
+        // evento de salvar automaticamente
+        opts.querySelectorAll('input[type=radio]').forEach(radio => {
+          radio.addEventListener('change', () => saveAnswer(containerId, index, radio.value));
+        });
       });
+
+      // carregar respostas salvas
+      loadAnswers(containerId, qList);
     }
 
-function checkAnswers(containerId, resultId, qList) {
-  const quizDiv = document.getElementById(containerId);
-  const questionsEls = quizDiv.getElementsByClassName("question");
-  let score = 0;
-  qList.forEach((item, index) => {
-    const selected = quizDiv.querySelector(`input[name='q${containerId}${index}']:checked`);
-    const feedback = questionsEls[index].querySelector(".feedback");
-    const comment = questionsEls[index].querySelector(".comment");
+    // --- CORRIGIR ---
+    function checkAnswers(containerId, resultId, qList) {
+      const quizDiv = document.getElementById(containerId);
+      const questionsEls = quizDiv.getElementsByClassName("question");
+      let score = 0;
+      qList.forEach((item, index) => {
+        const selected = quizDiv.querySelector(`input[name='q${containerId}${index}']:checked`);
+        const feedback = questionsEls[index].querySelector(".feedback");
+        const comment = questionsEls[index].querySelector(".comment");
 
-    if (selected) { // questão respondida
-      if (parseInt(selected.value) === item.answer) {
-        feedback.textContent = "Correto!";
-        feedback.className = "feedback correct";
-        score++;
-      } else {
-        feedback.textContent = "Incorreto.";
-        feedback.className = "feedback incorrect";
-      }
-      comment.classList.add("show"); // só mostra comentário se respondeu
-    } else { 
-      feedback.textContent = ""; // não exibe "Não respondida"
-      feedback.className = "feedback"; 
-      comment.classList.remove("show"); // garante que comentário fique oculto
+        if (selected) { 
+          if (parseInt(selected.value) === item.answer) {
+            feedback.textContent = "Correto!";
+            feedback.className = "feedback correct";
+            score++;
+          } else {
+            feedback.textContent = "Incorreto.";
+            feedback.className = "feedback incorrect";
+          }
+          comment.classList.add("show"); 
+        } else { 
+          feedback.textContent = ""; 
+          feedback.className = "feedback"; 
+          comment.classList.remove("show");
+        }
+      });
+      document.getElementById(resultId).textContent = `Você acertou ${score} de ${qList.length} questões.`;
     }
-  });
-  document.getElementById(resultId).textContent = `Você acertou ${score} de ${qList.length} questões.`;
-}
 
-
+    // --- MOSTRAR GABARITO ---
     function showAnswers(containerId, qList) {
       const quizDiv = document.getElementById(containerId);
       const questionsEls = quizDiv.getElementsByClassName("question");
@@ -185,18 +213,20 @@ function checkAnswers(containerId, resultId, qList) {
       });
     }
 
+    // --- LIMPAR QUIZ ---
     function resetQuiz(containerId, resultId) {
+      localStorage.removeItem(containerId); // apaga respostas salvas
       loadQuiz(containerId, containerId === 'quiz' ? questions : questions2);
       document.getElementById(resultId).textContent = "";
     }
 
-    // Função de navegação entre páginas
+    // --- NAVEGAÇÃO ---
     function showPage(page) {
       document.getElementById('page1').style.display = page === 1 ? 'block' : 'none';
       document.getElementById('page2').style.display = page === 2 ? 'block' : 'none';
     }
 
-    // Carregar quizzes na inicialização
+    // --- INICIALIZAÇÃO ---
     loadQuiz("quiz", questions);
     loadQuiz("quiz2", questions2);
   </script>
