@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Simulado de Cibersegurança - 60 Questões</title>
-<link rel="icon" type="image/x-icon" href="favicon.ico">
+  <title>Simulado de Cibersegurança - 80 Questões</title>
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
   <style>
     body {font-family: Arial, sans-serif; margin: 20px; background: #f5f7fa; color: #333;}
     h1, h2 {color: #004080;}
@@ -15,20 +15,21 @@
     .incorrect {color: red;}
     .comment {margin-top: 5px; padding: 10px; border-left: 4px solid #004080; background: #eef5ff; display: none; transition: all 0.3s ease-in-out; opacity: 0;}
     .comment.show {display: block; opacity: 1;}
-    button {margin: 10px 5px; padding: 10px 15px; border: none; border-radius: 6px; cursor: pointer;}
+    button {margin: 5px; padding: 10px 15px; border: none; border-radius: 6px; cursor: pointer;}
     button:hover {opacity: 0.9;}
     .btn-corrigir {background-color: #4CAF50; color: #fff;}
     .btn-gabarito {background-color: #2196F3; color: #fff;}
     .btn-limpar {background-color: #f44336; color: #fff;}
     .btn-nav {background-color: #555; color: #fff;}
-    #result, #result2 {margin-top: 20px; font-size: 1.2em; font-weight: bold;}
-    .controls {margin-bottom: 12px}
+    #result, #result2, #result3 {margin-top: 20px; font-size: 1.2em; font-weight: bold;}
+    .controls {margin-bottom: 12px;}
   </style>
 </head>
 <body>
-  <h1>Simulado de Cibersegurança — 60 Questões</h1>
+  <h1>Simulado de Cibersegurança — 80 Questões</h1>
   <p>Responda as questões. Cada parte possui sua correção independente; as explicações aparecem apenas nas questões respondidas após clicar em <strong>Corrigir</strong>.</p>
 
+  <!-- PÁGINA 1 -->
   <div id="page1">
     <h2>Parte 1 - Questões 1 a 30</h2>
     <div class="controls">
@@ -38,9 +39,11 @@
     </div>
     <div id="quiz"></div>
     <div id="result"></div>
+    <button class="btn-nav" onclick="showPage(3)">Página Anterior</button>
     <button class="btn-nav" onclick="showPage(2)">Próxima Página</button>
   </div>
 
+  <!-- PÁGINA 2 -->
   <div id="page2" style="display:none;">
     <h2>Parte 2 - Questões 31 a 60</h2>
     <div class="controls">
@@ -51,10 +54,25 @@
     <div id="quiz2"></div>
     <div id="result2"></div>
     <button class="btn-nav" onclick="showPage(1)">Página Anterior</button>
+    <button class="btn-nav" onclick="showPage(3)">Próxima Página</button>
+  </div>
+
+  <!-- PÁGINA 3 -->
+  <div id="page3" style="display:none;">
+    <h2>Parte 3 - Questões 61 a 80</h2>
+    <div class="controls">
+      <button class="btn-corrigir" onclick="checkAnswers('quiz3','result3',questions3)">Corrigir</button>
+      <button class="btn-gabarito" onclick="showAnswers('quiz3',questions3)">Mostrar Gabarito</button>
+      <button class="btn-limpar" onclick="resetQuiz('quiz3','result3')">Limpar Respostas</button>
+    </div>
+    <div id="quiz3"></div>
+    <div id="result3"></div>
+    <button class="btn-nav" onclick="showPage(2)">Página Anterior</button>
+    <button class="btn-nav" onclick="showPage(1)">Próxima Página</button>
   </div>
 
   <script>
-    // --- QUESTÕES (1 a 60) ---
+    // --- EXEMPLO DE QUESTÕES (Substitua pelas suas) ---
     const questions = [
       {q: "1. O que é um SIEM?", options: ["Sistema de Monitoramento de Energia", "Ferramenta de gestão de eventos e informações de segurança", "Firewall de próxima geração", "Sistema de gestão de identidades"], answer: 1, comment: "SIEM coleta, normaliza e correlaciona logs de múltiplas fontes para detectar incidentes e facilitar investigação."},
       {q: "2. Qual é o principal objetivo da ISO/IEC 27001?", options: ["Estabelecer políticas de backup", "Definir requisitos para um SGSI", "Criar firewalls", "Gerenciar vulnerabilidades de hardware"], answer: 1, comment: "A ISO/IEC 27001 especifica requisitos para implementar, manter e melhorar um Sistema de Gestão de Segurança da Informação (SGSI)."},
@@ -120,8 +138,30 @@
       {q: "59. Qual é a principal função de logs de auditoria?", options: ["Controlar backups", "Registrar atividades para rastreabilidade", "Gerenciar licenças", "Monitorar hardware"], answer: 1, comment: "Logs de auditoria fornecem rastreabilidade de ações para investigações e conformidade."},
       {q: "60. Qual é o objetivo do princípio de menor privilégio?", options: ["Dar acesso ilimitado", "Restringir acessos ao mínimo necessário", "Evitar uso de criptografia", "Permitir múltiplas senhas"], answer: 1, comment: "O princípio limita acessos para reduzir riscos e impacto associado a contas comprometidas."}
 ];
+    const questions3 = [
+    {q: "61. Qual é a função principal de um SOAR?", options: ["Gerar relatórios financeiros", "Automatizar resposta a incidentes e orquestrar processos de segurança", "Monitorar temperatura do servidor", "Gerar backups automáticos"], answer: 1, comment: "SOAR integra alertas de segurança, automatiza tarefas e ajuda na resposta rápida a incidentes."},
+    {q: "62. O que significa XDR?", options: ["Extended Detection and Response", "eXtended Data Repository", "Cross Domain Routing", "Extreme Data Recovery"], answer: 0, comment: "XDR correlaciona dados de múltiplas camadas (endpoints, rede, nuvem) para detecção avançada de ameaças."},
+    {q: "63. Qual a principal diferença entre EDR e antivírus tradicional?", options: ["EDR não detecta malware", "EDR coleta e analisa eventos de endpoints em tempo real para respostas rápidas", "Antivírus não usa assinaturas", "Não há diferença"], answer: 1, comment: "EDR permite investigação e resposta a ameaças modernas, indo além da detecção por assinatura."},
+    {q: "64. Qual é o papel de um honeynet?", options: ["Rede de honeypots interligados para estudar ataques", "Firewall avançado", "Monitoramento de tráfego interno apenas", "Servidor de backup remoto"], answer: 0, comment: "Honeynet permite análise detalhada de ataques através de múltiplos honeypots conectados."},
+    {q: "65. O que diferencia IDS passivo de IPS ativo?", options: ["IDS bloqueia tráfego, IPS apenas alerta", "IDS apenas detecta e alerta, IPS pode bloquear tráfego malicioso", "Não há diferença", "IPS não monitora logs"], answer: 1, comment: "IDS alerta sobre eventos suspeitos; IPS pode interromper a comunicação maliciosa em tempo real."},
+    {q: "66. Qual vantagem de correlacionar eventos de múltiplos sensores?", options: ["Aumenta a confusão", "Melhora a detecção de padrões complexos de ataque", "Reduz logs armazenados", "Acelera CPU"], answer: 1, comment: "A correlação permite identificar ataques que isoladamente seriam imperceptíveis."},
+    {q: "67. Em SIEM, o que é enrichment?", options: ["Aumentar espaço em disco", "Adicionar contexto a eventos, como localização, usuário ou reputação IP", "Gerar relatórios financeiros", "Atualizar antivírus automaticamente"], answer: 1, comment: "Enrichment fornece contexto adicional para melhorar a análise e priorização de alertas."},
+    {q: "68. O que caracteriza um ataque lateral em endpoints?", options: ["Infiltração apenas no firewall", "Movimento dentro da rede de um host comprometido para outros sistemas", "Roteamento errado", "Backups corrompidos"], answer: 1, comment: "Ataque lateral ocorre quando invasores se movem dentro da rede explorando hosts comprometidos."},
+    {q: "69. Qual métrica XDR mede eficácia da resposta a ameaças?", options: ["MTTR (Mean Time to Respond)", "CPU Load", "Número de impressoras conectadas", "Velocidade de backup"], answer: 0, comment: "MTTR avalia quanto tempo leva para identificar e remediar ameaças detectadas."},
+    {q: "70. Qual técnica de EDR detecta comportamentos suspeitos sem depender de assinaturas?", options: ["Assinatura de vírus", "Detecção baseada em comportamento/anomalia", "Backup de logs", "Filtro de firewall"], answer: 1, comment: "EDR moderno usa machine learning e heurísticas para detectar comportamentos suspeitos."},
+    {q: "71. O que é threat hunting proativo?", options: ["Esperar alertas do SIEM", "Procurar sinais de ameaças ativamente antes que causem impacto", "Atualizar antivírus apenas", "Bloquear todo tráfego externo"], answer: 1, comment: "Threat hunting busca indicadores de comprometimento antes que incidentes se tornem críticos."},
+    {q: "72. Qual é a função de um playbook SOAR?", options: ["Listar impressoras", "Automatizar sequência de ações em resposta a incidentes", "Gerar relatórios financeiros", "Monitorar temperatura do servidor"], answer: 1, comment: "Playbooks SOAR definem ações automáticas, como isolamento de host ou notificação de equipe, reduzindo tempo de resposta."},
+    {q: "73. Em IPS, o que significa blocking mode?", options: ["Apenas logar eventos", "Bloquear ativamente pacotes ou conexões maliciosas", "Desativar firewall", "Ignorar tráfego externo"], answer: 1, comment: "Blocking mode permite prevenir que tráfego malicioso atinja sistemas críticos."},
+    {q: "74. Qual é a principal função do MITRE ATT&CK em SOC?", options: ["Treinar equipe financeira", "Mapear TTPs adversários e orientar detecção e resposta", "Configurar firewall", "Gerar backups"], answer: 1, comment: "Framework MITRE ATT&CK guia análise de comportamento de atacantes e criação de alertas eficazes."},
+    {q: "75. Qual benefício do XDR sobre soluções pontuais?", options: ["Mais consumo de memória", "Visão integrada de múltiplos domínios de segurança, facilitando detecção e resposta", "Substitui SOC", "Não gera alertas"], answer: 1, comment: "XDR centraliza visibilidade de endpoints, rede e nuvem para respostas coordenadas."},
+    {q: "76. Qual é a diferença entre prevenção reativa e proativa em SOC?", options: ["Reativa reage a incidentes, proativa antecipa ameaças", "Não há diferença", "Reativa é mais rápida que proativa", "Proativa ignora logs"], answer: 0, comment: "Proativa envolve threat hunting, simulação e monitoramento contínuo, reativa aguarda incidentes."},
+    {q: "77. O que significa false positive tuning em SIEM?", options: ["Aumentar número de alertas", "Ajustar regras para reduzir alertas incorretos", "Apagar logs antigos", "Configurar firewall"], answer: 1, comment: "Afinar regras de correlação e thresholds diminui falsos positivos e melhora eficiência operacional."},
+    {q: "78. Qual abordagem EDR permite investigar ataques passados?", options: ["Log tradicional", "Recording / forensic analysis em endpoints", "VPN ativa", "Firewall stateful"], answer: 1, comment: "EDR mantém registros detalhados para análise forense e investigação retroativa de incidentes."},
+    {q: "79. Qual é a vantagem de integrar SOAR com SIEM?", options: ["Reduz logs", "Automatiza resposta a alertas e correlaciona dados de múltiplas fontes", "Aumenta falso positivo", "Ignora ameaças"], answer: 1, comment: "Integração permite que alertas do SIEM acionem respostas automáticas, acelerando mitigação."},
+    {q: "80. Em segurança de endpoints, o que significa containment?", options: ["Isolar sistema comprometido para evitar propagação", "Atualizar antivírus", "Executar backup completo", "Desligar toda a rede"], answer: 0, comment: "Containment evita que ameaças em um host se espalhem para outros sistemas ou redes."}
+];
 
-    // --- FUNÇÕES DE SALVAMENTO ---
+    // --- SALVAR / CARREGAR RESPOSTAS ---
     function saveAnswer(containerId, index, value) {
       let saved = JSON.parse(localStorage.getItem(containerId)) || {};
       saved[index] = value;
@@ -139,7 +179,6 @@
       });
     }
 
-    // --- CARREGAR QUIZ ---
     function loadQuiz(containerId, qList) {
       const quizDiv = document.getElementById(containerId);
       quizDiv.innerHTML = "";
@@ -162,13 +201,10 @@
         qDiv.appendChild(comment);
         quizDiv.appendChild(qDiv);
 
-        // evento de salvar automaticamente
         opts.querySelectorAll('input[type=radio]').forEach(radio => {
           radio.addEventListener('change', () => saveAnswer(containerId, index, radio.value));
         });
       });
-
-      // carregar respostas salvas
       loadAnswers(containerId, qList);
     }
 
@@ -216,8 +252,10 @@
 
     // --- LIMPAR QUIZ ---
     function resetQuiz(containerId, resultId) {
-      localStorage.removeItem(containerId); // apaga respostas salvas
-      loadQuiz(containerId, containerId === 'quiz' ? questions : questions2);
+      localStorage.removeItem(containerId);
+      if(containerId === 'quiz') loadQuiz('quiz', questions);
+      else if(containerId === 'quiz2') loadQuiz('quiz2', questions2);
+      else if(containerId === 'quiz3') loadQuiz('quiz3', questions3);
       document.getElementById(resultId).textContent = "";
     }
 
@@ -225,11 +263,13 @@
     function showPage(page) {
       document.getElementById('page1').style.display = page === 1 ? 'block' : 'none';
       document.getElementById('page2').style.display = page === 2 ? 'block' : 'none';
+      document.getElementById('page3').style.display = page === 3 ? 'block' : 'none';
     }
 
     // --- INICIALIZAÇÃO ---
     loadQuiz("quiz", questions);
     loadQuiz("quiz2", questions2);
+    loadQuiz("quiz3", questions3);
   </script>
 </body>
 </html>
