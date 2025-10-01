@@ -75,6 +75,20 @@
       box-shadow: 0 2px 10px rgba(0,0,0,0.2);
       z-index: 1000;
     }
+
+    /* Estilo para o progresso geral */
+    .progress-container {
+      margin: 20px 0;
+      background: #e0e0e0;
+      border-radius: 10px;
+      height: 20px;
+    }
+    .progress-bar {
+      height: 100%;
+      background: #4CAF50;
+      border-radius: 10px;
+      transition: width 0.5s;
+    }
   </style>
 </head>
 <body>
@@ -414,95 +428,884 @@
       document.getElementById("page" + pageNum).style.display = "block";
     }
 
-    // --- QUESTÕES (mantidas as mesmas) ---
-    const questions = [
-      {q: "O que é um SIEM?", options: ["Sistema de Monitoramento de Energia", "Ferramenta de gestão de eventos e informações de segurança", "Firewall de próxima geração", "Sistema de gestão de identidades"], answer: 1, comment: "SIEM coleta, normaliza e correlaciona logs de múltiplas fontes para detectar incidentes e facilitar investigação."},
-      {q: "Qual é o principal objetivo da ISO/IEC 27001?", options: ["Estabelecer políticas de backup", "Definir requisitos para um SGSI", "Criar firewalls", "Gerenciar vulnerabilidades de hardware"], answer: 1, comment: "A ISO/IEC 27001 especifica requisitos para implementar, manter e melhorar um Sistema de Gestão de Segurança da Informação (SGSI)."},
-      {q: "Na ISO/IEC 27001, o que é o Anexo A?", options: ["Lista de requisitos legais", "Controle de versão do documento", "Lista de objetivos e controles de segurança da informação", "Guia de implementação do SIEM"], answer: 2, comment: "O Anexo A fornece uma lista de objetivos e controles de segurança (boas práticas) que podem ser adotados pela organização."},
-      {q: "O que significa PDCA, método usado em ISO 27001?", options: ["Plan-Do-Check-Act", "Protect-Detect-Contain-Analyze", "Prepare-Deploy-Certify-Assess", "Plan-Design-Check-Agree"], answer: 0, comment: "PDCA é o ciclo de melhoria contínua (Planejar, Fazer, Verificar e Agir) usado para gerir e aprimorar o SGSI."},
-      {q: "Qual é um uso típico de correlação em um SIEM?", options: ["Compilar logs de nossos usuários", "Relacionar eventos para identificar padrões de ataque", "Armazenar backups em nuvem", "Gerar certificados digitais"], answer: 1, comment: "Regras de correlação combinam múltiplos eventos (por exemplo, falhas de login seguidas de acesso bem-sucedido) para identificar ataques que isoladamente seriam silenciosos."},
-      {q: "Qual métrica representa o tempo médio para remover uma ameaça detectada?", options: ["MTTI (Mean Time to Identify)", "MTTR (Mean Time to Respond/Recover)", "MTBF (Mean Time Between Failures)", "MTTA (Mean Time to Acknowledge)"], answer: 1, comment: "MTTR mede o tempo médio para responder/recuperar de um incidente; MTTD/M is similares para detecção/identificação."},
-      {q: "Na ISO/IEC 27001, qual controle do Anexo A trata do gerenciamento de acesso de usuários?", options: ["A.9 — Controle de acesso", "A.5 — Política de segurança", "A.12 — Operações de segurança", "A.14 — Segurança no desenvolvimento"], answer: 0, comment: "A seção A.9 do Anexo A trata especificamente do controle de acesso, incluindo responsabilidades, gestão de privilégios e autenticação."},
-      {q: "Qual é a finalidade principal de um runbook em um SOC?", options: ["Documentar procedimentos repetíveis para triagem e resposta a incidentes", "Mapa de rede", "Política de backup", "Manual do usuário do SIEM"], answer: 0, comment: "Runbooks padronizam procedimentos operacionais (triagem, escalonamento, contenção), reduzindo erros e acelerando resposta."},
-      {q: "O que é normalização de logs em um SIEM?", options: ["Alterar o fuso horário de eventos", "Transformar diferentes formatos de log para um formato comum", "Remover logs antigos automaticamente", "Criptografar logs em trânsito"], answer: 1, comment: "Normalização transforma campos heterogêneos (ex.: timestamps, níveis) em uma estrutura comum para que regras e correlações funcionem corretamente."},
-      {q: "Qual protocolo é frequentemente usado para envio de logs em tempo real?", options: ["SMTP", "Syslog", "FTP", "SNMPv1"], answer: 1, comment: "Syslog é o protocolo tradicional para envio de logs de dispositivos e servidores; variantes modernas incluem syslog-ng, rsyslog, e transporte via TLS."},
-      {q: "Uma violação de confidencialidade envolve:", options: ["Acesso não autorizado a dados sensíveis", "Perda de disponibilidade de um serviço", "Destruição física de um servidor", "Atualização de software mal sucedida"], answer: 0, comment: "Confidencialidade refere-se a proteger dados contra acesso ou divulgação não autorizada."},
-      {q: "Que documento é requisito central para a certificação ISO/IEC 27001?", options: ["Declaração de aplicabilidade (SoA)", "Relatório de pentest", "Plano de continuidade de negócios", "Contrato de terceirização"], answer: 0, comment: "A SOA (Statement of Applicability) descreve quais controles do Anexo A foram implementados, com justificativas para inclusões/exclusões."},
-      {q: "O que é threat intelligence?", options: ["Ferramenta de backup", "Informação processada sobre ameaças que ajuda a antecipar ataques", "Tipo de firewall", "Protocolo de rede"], answer: 1, comment: "Threat intelligence organiza dados sobre atores, TTPs e indicadores para orientar deteção e mitigação."},
-      {q: "Qual técnica ajuda a reduzir falsos positivos no SIEM?", options: ["Aumentar o volume de logs", "Ajustar e afinar regras de correlação e baseline", "Desligar alertas", "Duplicar regras"], answer: 1, comment: "Afinar regras, whitelists e thresholds, além de contextualização com inteligência de ameaças, reduz alertas incorretos."},
-      {q: "Na gestão de riscos (ISO 27001), avaliação de risco combina:", options: ["Probabilidade e impacto", "Custo e tempo", "Número de usuários e tamanho do servidor", "Versão do sistema operacional e fabricante"], answer: 0, comment: "Avaliação de risco normalmente considera a probabilidade de um evento e o impacto associado para priorizar ações."},
-      {q: "Qual atitude é parte da resposta a incidentes?", options: ["Ignorar até se repetir", "Conter, erradicar e recuperar", "Vender os ativos comprometidos", "Desativar todos os logs"], answer: 1, comment: "O workflow típico envolve identificação, contenção, erradicação, recuperação e lições aprendidas."},
-      {q: "Qual é um exemplo de log fonte crítica para SIEM no ambiente Windows?", options: ["Event Logs de segurança (Security Event Log)", "Logs de GPS", "Relatórios de impressora", "Logs de armazenamento em fita"], answer: 0, comment: "Event Logs de Segurança contêm eventos de autenticação, autorização e atividades sensíveis essenciais para investigação."},
-      {q: "O que é um playbook em segurança?", options: ["Coleção de scripts e passos práticos para tratar tipos específicos de incidentes", "Software antivírus", "Ferramenta de inventário", "Lista de senhas"], answer: 0, comment: "Playbooks são guias acionáveis (muitas vezes com scripts/automação) para tratar cenários específicos de incidentes."},
-      {q: "Qual conceito descreve o princípio do menor privilégio?", options: ["Todo usuário deve ter acesso completo por padrão", "Usuários recebem apenas os acessos estritamente necessários", "Administradores compartilham contas para agilidade", "Acesso é concedido sem revisão"], answer: 1, comment: "Menor privilégio minimiza privilégios concedidos, reduzindo risco de abuso e propagação de incidentes."},
-      {q: "O que é MITRE ATT&CK?", options: ["Um tipo de malware", "Uma base de conhecimento de táticas, técnicas e procedimentos (TTPs) de adversários", "Um padrão de certificação", "Um protocolo de rede"], answer: 1, comment: "MITRE ATT&CK é um framework amplamente usado para mapear comportamentos adversários e modelar detecções."},
-      {q: "Qual técnica detecta anomalias baseadas em comportamento no SIEM?", options: ["Regras estáticas apenas", "Detecção baseada em perfis e machine learning", "Somente coleta de logs", "Backup em fita"], answer: 1, comment: "Modelos de baseline e ML ajudam a encontrar desvios de comportamento que regras fixas não capturam."},
-      {q: "Na ISO 27001, 'escopo' refere-se a:", options: ["O tamanho do servidor", "O conjunto de ativos, localizações e processos cobertos pelo SGSI", "Modelo de risco financeiro", "Número de funcionários"], answer: 1, comment: "O escopo define as fronteiras do SGSI — quais ativos, sites e processos estão incluídos."},
-      {q: "Qual é a diferença entre IDS e IPS?", options: ["IDS previne ataques; IPS apenas monitora", "IDS monitora e detecta; IPS tem capacidade de bloquear/mitigar tráfego em tempo real", "Não existe diferença", "IDS é hardware; IPS é software"], answer: 1, comment: "IDS detecta; IPS pode bloquear ativamente tráfego malicioso (detecção vs prevenção)."},
-      {q: "O que é unificação (aggregation) em SIEM?", options: ["Somar métricas financeiras", "Concentrar e armazenar logs coletados de múltiplas fontes", "Eliminar logs redundantes sem armazenar", "Enviar alertas por e-mail"], answer: 1, comment: "Aggregation consolida eventos de pontos variados para análise e retenção centralizada."},
-      {q: "Qual requisito legal de proteção de dados exige notificação de violação em âmbito europeu?", options: ["LGPD", "GDPR — notificação de violação em até 72 horas em muitos casos", "HIPAA", "PCI-DSS"], answer: 1, comment: "O GDPR introduziu regras rigorosas de notificação de violação de dados no espaço econômico europeu."},
-      {q: "Qual prática é essencial para gestão de vulnerabilidades?", options: ["Ignorar resultados de scans", "Inventariar ativos, escanear, priorizar e remediar vulnerabilidades", "Atualizar apenas quando houver incidente", "Confiar apenas em varreduras pontuais"], answer: 1, comment: "Gestão eficaz exige inventário, varreduras regulares, priorização por risco e remediação contínua."},
-      {q: "O que é um falso negativo no contexto de detecção?", options: ["Alerta que não representa um incidente", "Incidente detectado corretamente", "Uma ameaça que não é detectada pelo sistema", "Alerta duplicado"], answer: 2, comment: "Falso negativo é quando uma ameaça real não é detectada, representando risco crítico."},
-      {q: "Qual é uma métrica operacional usual de SOC?", options: ["Número de cores da CPU", "MTTR, MTTD, número de incidentes tratados por período", "Versão do SO", "Velocidade de link de internet"], answer: 1, comment: "KPIs como MTTD (Mean Time to Detect) e MTTR são usados para medir desempenho do SOC."},
-      {q: "O que significa 'SoA' na ISO/IEC 27001?", options: ["Statement of Applicability — declaração dos controles aplicáveis e justificativas", "Security of Assets", "Standard of Accreditation", "Sumário das Obrigações Administrativas"], answer: 0, comment: "A SoA documenta quais controles do Anexo A foram implementados e por quê."},
-      {q: "Qual tarefa é típica de um analista Tier 1 em SOC?", options: ["Desenvolver novas regras de correlação avançadas", "Triagem inicial de alertas e escalonamento segundo runbooks", "Redigir a política de segurança da empresa", "Realizar pentests complexos"], answer: 1, comment: "Analistas Tier 1 fazem a triagem inicial e seguem runbooks para decidir escalonamento."}
-    ];
+// =====================
+// BLOCO 1 - SOC / SIEM / MITRE / Incident Response (30 questões)
+// =====================
+const questions = [
+  {
+    q: "Durante uma investigação em SIEM, um analista identifica múltiplos eventos de falhas de login RDP seguidos de um acesso bem-sucedido fora do horário comercial. Qual técnica MITRE ATT&CK melhor descreve esse comportamento?",
+    options: [
+      "T1078 - Uso de Credenciais Válidas",
+      "T1021 - Movimento Lateral via SMB",
+      "T1059 - Execução de Comandos",
+      "T1566 - Phishing"
+    ],
+    answer: 0,
+    comment: "O acesso bem-sucedido após falhas indica uso de credenciais válidas (T1078)."
+  },
+  {
+    q: "Um SOC detecta tráfego de DNS anômalo contendo dados codificados em base64. Qual técnica MITRE ATT&CK está sendo usada?",
+    options: [
+      "T1071.004 - Exfiltração via DNS",
+      "T1562 - Impair Defenses",
+      "T1041 - Exfiltração via C2",
+      "T1090 - Proxy"
+    ],
+    answer: 0,
+    comment: "DNS tunneling com dados codificados caracteriza exfiltração por DNS."
+  },
+  {
+    q: "Qual métrica mede a velocidade de detecção de uma ameaça pelo SOC?",
+    options: [
+      "MTTD (Mean Time to Detect)",
+      "MTTR (Mean Time to Respond)",
+      "MTBF (Mean Time Between Failures)",
+      "MTTA (Mean Time to Acknowledge)"
+    ],
+    answer: 0,
+    comment: "MTTD mede o tempo médio para detectar uma ameaça."
+  },
+  {
+    q: "No processo de resposta a incidentes (NIST), qual é a primeira fase?",
+    options: [
+      "Detecção e Análise",
+      "Preparação",
+      "Erradicação",
+      "Lições Aprendidas"
+    ],
+    answer: 1,
+    comment: "A fase inicial é Preparação."
+  },
+  {
+    q: "Um atacante força logins em um portal web até obter sucesso. Qual técnica MITRE ATT&CK é usada?",
+    options: [
+      "T1110 - Brute Force",
+      "T1003 - Credential Dumping",
+      "T1555 - Credential Harvesting",
+      "T1204 - User Execution"
+    ],
+    answer: 0,
+    comment: "Múltiplas tentativas de login caracterizam brute force (T1110)."
+  },
+  {
+    q: "Qual é o principal benefício de usar um SOAR integrado ao SIEM?",
+    options: [
+      "Automação de resposta",
+      "Melhor compressão de logs",
+      "Aumento do tráfego de rede",
+      "Substituir o firewall"
+    ],
+    answer: 0,
+    comment: "SOAR automatiza respostas baseadas em alertas do SIEM."
+  },
+  {
+    q: "Logs de antivírus indicam quarentena de arquivo malicioso. O que o SOC deve fazer?",
+    options: [
+      "Considerar incidente contido e iniciar análise de impacto",
+      "Ignorar o evento",
+      "Formatar a máquina",
+      "Encerrar a investigação"
+    ],
+    answer: 0,
+    comment: "O incidente deve ser tratado e investigado para impacto."
+  },
+  {
+    q: "Um ataque de phishing direciona usuários para uma página de login falsa. Qual controle ISO 27001 Anexo A está diretamente relacionado?",
+    options: [
+      "A.9 - Controle de Acesso",
+      "A.12 - Operações Seguras",
+      "A.16 - Gestão de Incidentes",
+      "A.18 - Conformidade"
+    ],
+    answer: 2,
+    comment: "Gestão de Incidentes (A.16) cobre resposta a ataques de phishing."
+  },
+  {
+    q: "Qual ferramenta é mais usada para correlacionar logs em tempo real?",
+    options: [
+      "Wireshark",
+      "Nmap",
+      "SIEM",
+      "Snort"
+    ],
+    answer: 2,
+    comment: "SIEM é a ferramenta de correlação e análise de logs."
+  },
+  {
+    q: "Um ataque DDoS foi detectado contra o firewall. Qual é a melhor resposta imediata?",
+    options: [
+      "Ativar mitigação via scrubbing center",
+      "Trocar o firewall",
+      "Apagar todos os logs",
+      "Desabilitar a rede interna"
+    ],
+    answer: 0,
+    comment: "Scrubbing center mitiga tráfego DDoS em larga escala."
+  },
+  {
+    q: "O que é 'Threat Hunting'?",
+    options: [
+      "Busca proativa por ameaças não detectadas",
+      "Escaneamento de portas TCP",
+      "Auditoria de conformidade ISO",
+      "Implementação de antivírus"
+    ],
+    answer: 0,
+    comment: "Threat Hunting é busca ativa por ameaças ocultas."
+  },
+  {
+    q: "Qual técnica MITRE ATT&CK descreve persistência via chave de registro no Windows?",
+    options: [
+      "T1547 - Boot or Logon Autostart Execution",
+      "T1071 - Application Layer Protocol",
+      "T1560 - Archive Collected Data",
+      "T1059 - Command Execution"
+    ],
+    answer: 0,
+    comment: "Persistência no registro é T1547."
+  },
+  {
+    q: "Qual função do SIEM facilita a detecção de ameaças APT?",
+    options: [
+      "Correlações de eventos",
+      "Gerenciamento de patches",
+      "Controle de senhas",
+      "Criação de VLANs"
+    ],
+    answer: 0,
+    comment: "Correlações de eventos cruzam logs para detectar padrões APT."
+  },
+  {
+    q: "Qual métrica mede o tempo para restaurar sistemas após um incidente?",
+    options: [
+      "MTTR",
+      "MTTD",
+      "MTBF",
+      "RPO"
+    ],
+    answer: 0,
+    comment: "MTTR = Mean Time to Recover/Respond."
+  },
+  {
+    q: "Qual etapa do NIST trata de recuperação após um ataque?",
+    options: [
+      "Recovery",
+      "Preparation",
+      "Detection",
+      "Containment"
+    ],
+    answer: 0,
+    comment: "Recovery restaura operações normais."
+  },
+  {
+    q: "Qual componente coleta logs antes de enviá-los ao SIEM central?",
+    options: [
+      "Agente",
+      "Firewall",
+      "IPS",
+      "Switch"
+    ],
+    answer: 0,
+    comment: "Agentes coletam e enviam logs."
+  },
+  {
+    q: "O que caracteriza um 'False Positive' em SIEM?",
+    options: [
+      "Alerta legítimo de ameaça",
+      "Evento benigno identificado como ameaça",
+      "Ataque real sem alerta",
+      "Erro de configuração de rede"
+    ],
+    answer: 1,
+    comment: "False Positive = evento normal tratado como ameaça."
+  },
+  {
+    q: "Qual técnica de exfiltração usa HTTPS para ocultar tráfego?",
+    options: [
+      "T1071 - Application Layer Protocol",
+      "T1041 - Exfiltration Over C2 Channel",
+      "T1567 - Exfiltration Over Web Service",
+      "T1003 - Credential Dumping"
+    ],
+    answer: 0,
+    comment: "HTTPS pode ser usado para exfiltração disfarçada."
+  },
+  {
+    q: "Qual métrica mede o tempo entre a falha e a próxima falha?",
+    options: [
+      "MTBF",
+      "MTTD",
+      "MTTR",
+      "MTTA"
+    ],
+    answer: 0,
+    comment: "MTBF = Mean Time Between Failures."
+  },
+  {
+    q: "O que significa CTI no contexto de SOC?",
+    options: [
+      "Cyber Threat Intelligence",
+      "Central Time Integration",
+      "Critical Technical Indicator",
+      "Computer Telemetry Input"
+    ],
+    answer: 0,
+    comment: "CTI = Inteligência de Ameaças Cibernéticas."
+  },
+  {
+    q: "Qual padrão MITRE ATT&CK cobre movimento lateral por SMB?",
+    options: [
+      "T1021.002",
+      "T1110",
+      "T1548",
+      "T1204"
+    ],
+    answer: 0,
+    comment: "T1021.002 cobre SMB lateral movement."
+  },
+  {
+    q: "Um adversário implanta malware em inicialização UEFI. Isso caracteriza:",
+    options: [
+      "Persistência avançada",
+      "Evasão de firewall",
+      "Exfiltração de DNS",
+      "Sniffing de rede"
+    ],
+    answer: 0,
+    comment: "Malware no boot = persistência avançada."
+  },
+  {
+    q: "Qual é o objetivo principal de um 'Playbook de Incidente' em SOAR?",
+    options: [
+      "Automatizar resposta",
+      "Gerar logs",
+      "Armazenar patches",
+      "Criar VLANs"
+    ],
+    answer: 0,
+    comment: "Playbook SOAR = resposta automatizada."
+  },
+  {
+    q: "Qual protocolo é frequentemente usado para comunicação C2 em APTs?",
+    options: [
+      "HTTPS",
+      "IMAP",
+      "ICMP",
+      "RDP"
+    ],
+    answer: 0,
+    comment: "HTTPS é usado por APTs para se misturar a tráfego legítimo."
+  },
+  {
+    q: "Qual técnica MITRE ATT&CK está associada ao uso de PowerShell para execução maliciosa?",
+    options: [
+      "T1059.001",
+      "T1021",
+      "T1547",
+      "T1566"
+    ],
+    answer: 0,
+    comment: "T1059.001 cobre execução via PowerShell."
+  },
+  {
+    q: "Um ataque via macros em documentos do Office é classificado como:",
+    options: [
+      "T1204 - User Execution",
+      "T1003 - Credential Dumping",
+      "T1041 - Exfiltração",
+      "T1560 - Arquivamento de dados"
+    ],
+    answer: 0,
+    comment: "Macros maliciosas são execução pelo usuário."
+  },
+  {
+    q: "Qual técnica MITRE cobre abuso de contas privilegiadas?",
+    options: [
+      "T1078",
+      "T1003",
+      "T1567",
+      "T1021"
+    ],
+    answer: 0,
+    comment: "T1078 cobre uso de credenciais válidas."
+  },
+  {
+    q: "O que mede MTTA?",
+    options: [
+      "Tempo para reconhecer um alerta",
+      "Tempo para detectar uma ameaça",
+      "Tempo para restaurar sistemas",
+      "Tempo entre falhas"
+    ],
+    answer: 0,
+    comment: "MTTA = Mean Time to Acknowledge."
+  },
+  {
+    q: "Qual modelo é usado como referência para mapeamento de técnicas adversárias?",
+    options: [
+      "MITRE ATT&CK",
+      "ISO 27001",
+      "COBIT",
+      "NIST CSF"
+    ],
+    answer: 0,
+    comment: "MITRE ATT&CK mapeia técnicas adversárias."
+  }
+];
 
-    const questions2 = [
-      {q: "O que significa SOC em cibersegurança?", options: ["Security Operations Center", "System Optimization Core", "Secure Open Cloud", "Service Oriented Computing"], answer: 0, comment: "SOC é o centro operacional responsável por monitorar e responder a incidentes de segurança."},
-      {q: "Qual destes é um objetivo do NIST Cybersecurity Framework?", options: ["Reduzir custos de TI", "Promover resiliência cibernética", "Aumentar o desempenho de rede", "Substituir normas ISO"], answer: 1, comment: "O NIST CSF visa aumentar a resiliência cibernética das organizações."},
-      {q: "Qual é a função principal de um honeypot?", options: ["Acelerar a rede", "Atrair atacantes para estudo", "Proteger senhas com criptografia", "Monitorar desempenho de CPU"], answer: 1, comment: "Honeypot é usado como armadilha para estudar comportamento de atacantes."},
-      {q: "Em gestão de riscos, qual etapa vem primeiro?", options: ["Análise de impacto", "Identificação de ativos", "Tratamento de riscos", "Monitoramento"], answer: 1, comment: "Primeiro identificamos os ativos para depois avaliar riscos associados."},
-      {q: "O que caracteriza um ataque DoS?", options: ["Roubo de credenciais", "Negação de serviço por sobrecarga", "Alteração de registros DNS", "Injeção de código malicioso"], answer: 1, comment: "Ataque DoS visa indisponibilizar um serviço sobrecarregando seus recursos."},
-      {q: "O que é hardening em segurança da informação?", options: ["Aumento de desempenho de hardware", "Configuração segura de sistemas", "Compactação de dados", "Atualização de antivírus"], answer: 1, comment: "Hardening consiste em reduzir a superfície de ataque aplicando configurações seguras."},
-      {q: "Qual é o papel de um playbook em um SOC?", options: ["Gerar relatórios financeiros", "Guiar resposta a incidentes", "Treinar novos colaboradores", "Substituir firewalls"], answer: 1, comment: "Playbooks descrevem passo a passo como responder a determinados incidentes."},
-      {q: "O que significa IDS?", options: ["Intrusion Detection System", "Information Data Service", "Internet Domain Security", "Integrated Defense Suite"], answer: 0, comment: "IDS é um sistema de detecção de intrusão."},
-      {q: "Qual padrão ISO foca na continuidade de negócios?", options: ["ISO 9001", "ISO 31000", "ISO 22301", "ISO/IEC 27002"], answer: 2, comment: "A ISO 22301 é voltada para gestão da continuidade de negócios."},
-      {q: "O que é um falso positivo em segurança?", options: ["Falha real detectada", "Alerta de ameaça inexistente", "Vulnerabilidade confirmada", "Exploit conhecido"], answer: 1, comment: "Falso positivo ocorre quando o sistema alerta sem existir uma ameaça real."},
-      {q: "Qual técnica garante integridade de dados?", options: ["Hashing", "Compressão", "Firewall", "VPN"], answer: 0, comment: "Hashing assegura que os dados não foram alterados, porque qualquer mudança altera o hash."},
-      {q: "O que significa GDPR?", options: ["General Data Protection Regulation", "Global Digital Privacy Rule", "General Device Protection Requirement", "Government Data Protection Regulation"], answer: 0, comment: "GDPR é o regulamento europeu de proteção de dados pessoais."},
-      {q: "Em resposta a incidentes, qual é a primeira fase?", options: ["Contenção", "Identificação", "Erradicação", "Recuperação"], answer: 1, comment: "Identificação (detectar e confirmar) é a fase inicial para entender o incidente."},
-      {q: "O que caracteriza phishing?", options: ["Roubo físico de dados", "Enganar usuários para obter informações", "Ataque de força bruta", "DoS distribuído"], answer: 1, comment: "Phishing usa engenharia social para enganar usuários e coletar credenciais ou dados sensíveis."},
-      {q: "Qual destes é exemplo de autenticação multifator?", options: ["Senha e token SMS", "Duas senhas", "Biometria e mesma senha", "Pergunta secreta"], answer: 0, comment: "MFA combina fatores diferentes: algo que você sabe (senha) e algo que você tem (token)."},
-      {q: "O que é patch management?", options: ["Monitorar rede", "Aplicar atualizações de software", "Gerenciar usuários", "Controle de senhas"], answer: 1, comment: "Patch management corrige vulnerabilidades conhecidas aplicando atualizações e patches."},
-      {q: "Qual protocolo é mais seguro para navegação web?", options: ["HTTP", "HTTPS", "FTP", "Telnet"], answer: 1, comment: "HTTPS protege comunicações web usando TLS, fornecendo confidencialidade e integridade."},
-      {q: "O que é SIEM correlation rule?", options: ["Um log de firewall", "Uma regra que relaciona eventos", "Um backup de sistema", "Política de senha"], answer: 1, comment: "Regra de correlação define padrões que, quando encontrados, disparam alertas por comportamento suspeito."},
-      {q: "Qual o objetivo de um pentest?", options: ["Validar segurança simulando ataques", "Substituir antivírus", "Gerenciar logs", "Criar firewalls"], answer: 0, comment: "Pentest simula ataques controlados para identificar e priorizar falhas exploráveis."},
-      {q: "Qual técnica é usada para proteger senhas em banco de dados?", options: ["Criptografia ou hashing", "Backup diário", "Compressão", "Antivírus"], answer: 0, comment: "Senhas devem ser armazenadas com hashing seguro (bcrypt, Argon2) e salting, não em texto claro."},
-      {q: "O que significa VPN?", options: ["Virtual Private Network", "Verified Protection Node", "Virtual Public Net", "Variable Protocol Network"], answer: 0, comment: "VPN cria um túnel criptografado entre cliente e servidor, protegendo tráfego em redes inseguras."},
-      {q: "Qual é o objetivo da ISO/IEC 27002?", options: ["Controles de segurança da informação", "Gestão de qualidade", "Gestão de continuidade de negócios", "Proteção de dados pessoais"], answer: 0, comment: "ISO/IEC 27002 fornece um conjunto de boas práticas e orientações para implementar controles de segurança."},
-      {q: "Qual ataque explora injeção em consultas SQL?", options: ["Cross-Site Scripting", "SQL Injection", "Man-in-the-Middle", "Phishing"], answer: 1, comment: "SQL Injection manipula entradas para alterar consultas ao banco e acessar dados indevidos."},
-      {q: "Qual é a função de um firewall?", options: ["Bloquear spam", "Filtrar tráfego de rede", "Proteger contra vírus", "Monitorar desempenho"], answer: 1, comment: "Firewalls controlam o tráfego entre redes com base em regras de segurança."},
-      {q: "O que caracteriza ransomware?", options: ["Espionagem de e-mails", "Sequestro e criptografia de dados", "Roubo de hardware", "Exploração de CPU"], answer: 1, comment: "Ransomware criptografa dados e exige pagamento para liberar o acesso."},
-      {q: "O que é zero-day?", options: ["Falha sem correção disponível", "Política de backup", "Senha temporária", "Ataque DDoS"], answer: 0, comment: "Zero-day é vulnerabilidade desconhecida pelo fornecedor; pode ser explorada antes de haver patch."},
-      {q: "O que significa DLP?", options: ["Data Loss Prevention", "Database Log Protection", "Dynamic Link Protocol", "Digital Layer Protection"], answer: 0, comment: "DLP engloba ferramentas e políticas para prevenir vazamento ou exposição indevida de dados sensíveis."},
-      {q: "O que é autenticação biométrica?", options: ["Verificação por algo que você é", "Uso de tokens", "Uso de senha", "Pergunta secreta"], answer: 0, comment: "Biometria usa características físicas/biológicas (impressão digital, face) para autenticar o usuário."},
-      {q: "Qual é a principal função de logs de auditoria?", options: ["Controlar backups", "Registrar atividades para rastreabilidade", "Gerenciar licenças", "Monitorar hardware"], answer: 1, comment: "Logs de auditoria fornecem rastreabilidade de ações para investigações e conformidade."},
-      {q: "Qual é o objetivo do princípio de menor privilégio?", options: ["Dar acesso ilimitado", "Restringir acessos ao mínimo necessário", "Evitar uso de criptografia", "Permitir múltiplas senhas"], answer: 1, comment: "O princípio limita acessos para reduzir riscos e impacto associado a contas comprometidas."}
-    ];
 
-    const questions3 = [
-      {q: "Qual é a função principal de um SOAR?", options: ["Gerar relatórios financeiros", "Automatizar resposta a incidentes e orquestrar processos de segurança", "Monitorar temperatura do servidor", "Gerar backups automáticos"], answer: 1, comment: "SOAR integra alertas de segurança, automatiza tarefas e ajuda na resposta rápida a incidentes."},
-      {q: "O que significa XDR?", options: ["Extended Detection and Response", "eXtended Data Repository", "Cross Domain Routing", "Extreme Data Recovery"], answer: 0, comment: "XDR correlaciona dados de múltiplas camadas (endpoints, rede, nuvem) para detecção avançada de ameaças."},
-      {q: "Qual a principal diferença entre EDR e antivírus tradicional?", options: ["EDR não detecta malware", "EDR coleta e analisa eventos de endpoints em tempo real para respostas rápidas", "Antivírus não usa assinaturas", "Não há diferença"], answer: 1, comment: "EDR permite investigação e resposta a ameaças modernas, indo além da detecção por assinatura."},
-      {q: "Qual é o papel de um honeynet?", options: ["Rede de honeypots interligados para estudar ataques", "Firewall avançado", "Monitoramento de tráfego interno apenas", "Servidor de backup remoto"], answer: 0, comment: "Honeynet permite análise detalhada de ataques através de múltiplos honeypots conectados."},
-      {q: "O que diferencia IDS passivo de IPS ativo?", options: ["IDS bloqueia tráfego, IPS apenas alerta", "IDS apenas detecta e alerta, IPS pode bloquear tráfego malicioso", "Não há diferença", "IPS não monitora logs"], answer: 1, comment: "IDS alerta sobre eventos suspeitos; IPS pode interromper a comunicação maliciosa em tempo real."},
-      {q: "Qual vantagem de correlacionar eventos de múltiplos sensores?", options: ["Aumenta a confusão", "Melhora a detecção de padrões complexos de ataque", "Reduz logs armazenados", "Acelera CPU"], answer: 1, comment: "A correlação permite identificar ataques que isoladamente seriam imperceptíveis."},
-      {q: "Em SIEM, o que é enrichment?", options: ["Aumentar espaço em disco", "Adicionar contexto a eventos, como localização, usuário ou reputação IP", "Gerar relatórios financeiros", "Atualizar antivírus automaticamente"], answer: 1, comment: "Enrichment fornece contexto adicional para melhorar a análise e priorização de alertas."},
-      {q: "O que caracteriza um ataque lateral em endpoints?", options: ["Infiltração apenas no firewall", "Movimento dentro da rede de um host comprometido para outros sistemas", "Roteamento errado", "Backups corrompidos"], answer: 1, comment: "Ataque lateral ocorre quando invasores se movem dentro da rede explorando hosts comprometidos."},
-      {q: "Qual métrica XDR mede eficácia da resposta a ameaças?", options: ["MTTR (Mean Time to Respond)", "CPU Load", "Número de impressoras conectadas", "Velocidade de backup"], answer: 0, comment: "MTTR avalia quanto tempo leva para identificar e remediar ameaças detectadas."},
-      {q: "Qual técnica de EDR detecta comportamentos suspeitos sem depender de assinaturas?", options: ["Assinatura de vírus", "Detecção baseada em comportamento/anomalia", "Backup de logs", "Filtro de firewall"], answer: 1, comment: "EDR moderno usa machine learning e heurísticas para detectar comportamentos suspeitos."},
-      {q: "O que é threat hunting proativo?", options: ["Esperar alertas do SIEM", "Procurar sinais de ameaças ativamente antes que causem impacto", "Atualizar antivírus apenas", "Bloquear todo tráfego externo"], answer: 1, comment: "Threat hunting busca indicadores de comprometimento antes que incidentes se tornem críticos."},
-      {q: "Qual é a função de um playbook SOAR?", options: ["Listar impressoras", "Automatizar sequência de ações em resposta a incidentes", "Gerar relatórios financeiros", "Monitorar temperatura do servidor"], answer: 1, comment: "Playbooks SOAR definem ações automáticas, como isolamento de host ou notificação de equipe, reduzindo tempo de resposta."},
-      {q: "Em IPS, o que significa blocking mode?", options: ["Apenas logar eventos", "Bloquear ativamente pacotes ou conexões maliciosas", "Desativar firewall", "Ignorar tráfego externo"], answer: 1, comment: "Blocking mode permite prevenir que tráfego malicioso atinja sistemas críticos."},
-      {q: "Qual é a principal função do MITRE ATT&CK em SOC?", options: ["Treinar equipe financeira", "Mapear TTPs adversários e orientar detecção e resposta", "Configurar firewall", "Gerar backups"], answer: 1, comment: "Framework MITRE ATT&CK guia análise de comportamento de atacantes e criação de alertas eficazes."},
-      {q: "Qual benefício do XDR sobre soluções pontuais?", options: ["Mais consumo de memória", "Visão integrada de múltiplos domínios de segurança, facilitando detecção e resposta", "Substitui SOC", "Não gera alertas"], answer: 1, comment: "XDR centraliza visibilidade de endpoints, rede e nuvem para respostas coordenadas."},
-      {q: "Qual é a diferença entre prevenção reativa e proativa em SOC?", options: ["Reativa reage a incidentes, proativa antecipa ameaças", "Não há diferença", "Reativa é mais rápida que proativa", "Proativa ignora logs"], answer: 0, comment: "Proativa envolve threat hunting, simulação e monitoramento contínuo, reativa aguarda incidentes."},
-      {q: "O que significa false positive tuning em SIEM?", options: ["Aumentar número de alertas", "Ajustar regras para reduzir alertas incorretos", "Apagar logs antigos", "Configurar firewall"], answer: 1, comment: "Afinar regras de correlação e thresholds diminui falsos positivos e melhora eficiência operacional."},
-      {q: "Qual abordagem EDR permite investigar ataques passados?", options: ["Log tradicional", "Recording / forensic analysis em endpoints", "VPN ativa", "Firewall stateful"], answer: 1, comment: "EDR mantém registros detalhados para análise forense e investigação retroativa de incidentes."},
-      {q: "Qual é a vantagem de integrar SOAR com SIEM?", options: ["Reduz logs", "Automatiza resposta a alertas e correlaciona dados de múltiplas fontes", "Aumenta falso positivo", "Ignora ameaças"], answer: 1, comment: "Integração permite que alertas do SIEM acionem respostas automáticas, acelerando mitigação."},
-      {q: "Em segurança de endpoints, o que significa containment?", options: ["Isolar sistema comprometido para evitar propagação", "Atualizar antivírus", "Executar backup completo", "Desligar toda a rede"], answer: 0, comment: "Containment evita que ameaças em um host se espalhem para outros sistemas ou redes."}
-    ];
+// =====================
+// BLOCO 2 - Redes / Linux / Protocolos / Vulnerabilidades (30 questões)
+// =====================
+const questions2 = [
+  {
+    q: "Qual comando Linux permite monitorar tentativas de login em tempo real?",
+    options: [
+      "tail -f /var/log/auth.log",
+      "systemctl restart ssh",
+      "chmod 777 /etc/shadow",
+      "cat /etc/passwd"
+    ],
+    answer: 0,
+    comment: "O arquivo /var/log/auth.log registra autenticações."
+  },
+  {
+    q: "Qual protocolo utiliza a porta 3389/TCP?",
+    options: [
+      "SSH",
+      "RDP",
+      "Telnet",
+      "LDAP"
+    ],
+    answer: 1,
+    comment: "RDP usa a porta 3389/TCP."
+  },
+  {
+    q: "Um atacante explora SQL Injection. Qual mitigação é mais eficaz?",
+    options: [
+      "Uso de parâmetros preparados (prepared statements)",
+      "Desabilitar logs do banco",
+      "Criptografar tráfego HTTPS",
+      "Trocar a porta padrão do SQL"
+    ],
+    answer: 0,
+    comment: "Prepared statements previnem SQL Injection."
+  },
+  {
+    q: "Qual protocolo deve ser usado em vez de FTP para transferência segura?",
+    options: [
+      "SFTP",
+      "SMTP",
+      "SNMP",
+      "TFTP"
+    ],
+    answer: 0,
+    comment: "SFTP oferece transferência criptografada."
+  },
+  {
+    q: "Um sysadmin detecta que o serviço Apache no Linux está rodando como root. Qual risco existe?",
+    options: [
+      "Escalada de privilégios",
+      "Baixo consumo de memória",
+      "Aumento de latência",
+      "Logs duplicados"
+    ],
+    answer: 0,
+    comment: "Executar serviços como root aumenta risco de exploração."
+  },
+  {
+    q: "Qual comando Linux lista conexões de rede ativas?",
+    options: [
+      "netstat -tulnp",
+      "ps -ef",
+      "ls -la",
+      "df -h"
+    ],
+    answer: 0,
+    comment: "netstat exibe conexões de rede."
+  },
+  {
+    q: "Qual protocolo é usado para sincronização de tempo em redes?",
+    options: [
+      "NTP",
+      "SNMP",
+      "IMAP",
+      "SMB"
+    ],
+    answer: 0,
+    comment: "NTP sincroniza o relógio entre dispositivos."
+  },
+  {
+    q: "Qual vulnerabilidade é explorada quando dados são enviados sem sanitização para o navegador?",
+    options: [
+      "XSS (Cross-Site Scripting)",
+      "SQL Injection",
+      "CSRF",
+      "Buffer Overflow"
+    ],
+    answer: 0,
+    comment: "XSS ocorre quando dados não são sanitizados antes de exibição."
+  },
+  {
+    q: "Em IPv6, qual protocolo substitui o ARP?",
+    options: [
+      "NDP (Neighbor Discovery Protocol)",
+      "RIPng",
+      "OSPFv3",
+      "EIGRP"
+    ],
+    answer: 0,
+    comment: "IPv6 usa NDP em vez de ARP."
+  },
+  {
+    q: "Um atacante explora Heartbleed. Qual protocolo está envolvido?",
+    options: [
+      "TLS/SSL",
+      "SSH",
+      "IPSec",
+      "RDP"
+    ],
+    answer: 0,
+    comment: "Heartbleed afetava o OpenSSL (TLS/SSL)."
+  },
+  {
+    q: "Qual comando exibe permissões de arquivos no Linux?",
+    options: [
+      "ls -l",
+      "chmod",
+      "ps aux",
+      "whoami"
+    ],
+    answer: 0,
+    comment: "ls -l mostra permissões de arquivos."
+  },
+  {
+    q: "Qual porta padrão o HTTPS utiliza?",
+    options: [
+      "443",
+      "80",
+      "21",
+      "22"
+    ],
+    answer: 0,
+    comment: "HTTPS usa a porta 443."
+  },
+  {
+    q: "Qual vulnerabilidade explora falha em buffer de memória?",
+    options: [
+      "Buffer Overflow",
+      "SQL Injection",
+      "XSS",
+      "CSRF"
+    ],
+    answer: 0,
+    comment: "Buffer Overflow ocorre quando a memória é corrompida."
+  },
+  {
+    q: "Qual ferramenta é usada para varredura de portas?",
+    options: [
+      "Nmap",
+      "Snort",
+      "Wireshark",
+      "Burp Suite"
+    ],
+    answer: 0,
+    comment: "Nmap faz varredura de portas."
+  },
+  {
+    q: "Qual comando altera permissões de arquivo no Linux?",
+    options: [
+      "chmod",
+      "ls",
+      "pwd",
+      "cat"
+    ],
+    answer: 0,
+    comment: "chmod altera permissões."
+  },
+  {
+    q: "Qual técnica de ataque envolve falsificação de requisições autenticadas?",
+    options: [
+      "CSRF",
+      "XSS",
+      "SQL Injection",
+      "Sniffing"
+    ],
+    answer: 0,
+    comment: "CSRF = Cross-Site Request Forgery."
+  },
+  {
+    q: "Qual protocolo é usado para envio de e-mails?",
+    options: [
+      "SMTP",
+      "IMAP",
+      "POP3",
+      "SNMP"
+    ],
+    answer: 0,
+    comment: "SMTP envia e-mails."
+  },
+  {
+    q: "Qual comando exibe interfaces de rede no Linux?",
+    options: [
+      "ifconfig",
+      "lsusb",
+      "mount",
+      "uptime"
+    ],
+    answer: 0,
+    comment: "ifconfig exibe interfaces de rede."
+  },
+  {
+    q: "Qual vulnerabilidade é explorada em 'clickjacking'?",
+    options: [
+      "Enganar o usuário para clicar em elementos invisíveis",
+      "Executar código remoto",
+      "Forçar upload de arquivo",
+      "Injetar SQL"
+    ],
+    answer: 0,
+    comment: "Clickjacking engana usuários com camadas ocultas."
+  },
+  {
+    q: "Qual porta o DNS utiliza?",
+    options: [
+      "53",
+      "80",
+      "25",
+      "110"
+    ],
+    answer: 0,
+    comment: "DNS usa porta 53."
+  },
+  {
+    q: "Qual comando exibe uso de disco no Linux?",
+    options: [
+      "df -h",
+      "du -sh",
+      "lsblk",
+      "free -m"
+    ],
+    answer: 0,
+    comment: "df -h mostra espaço em disco."
+  },
+  {
+    q: "Qual protocolo é usado em VPNs para tunelamento seguro?",
+    options: [
+      "IPSec",
+      "SMTP",
+      "FTP",
+      "POP3"
+    ],
+    answer: 0,
+    comment: "IPSec é usado em VPNs."
+  },
+  {
+    q: "Qual vulnerabilidade é explorada por injeção de comandos no SO?",
+    options: [
+      "Command Injection",
+      "XSS",
+      "CSRF",
+      "Buffer Overflow"
+    ],
+    answer: 0,
+    comment: "Command Injection explora execução no SO."
+  },
+  {
+    q: "Qual protocolo é usado pelo SNMP?",
+    options: [
+      "UDP 161",
+      "TCP 21",
+      "UDP 67",
+      "TCP 443"
+    ],
+    answer: 0,
+    comment: "SNMP usa UDP porta 161."
+  },
+  {
+    q: "Qual ferramenta captura pacotes de rede para análise?",
+    options: [
+      "Wireshark",
+      "Nmap",
+      "Burp Suite",
+      "Metasploit"
+    ],
+    answer: 0,
+    comment: "Wireshark captura pacotes."
+  },
+  {
+    q: "Qual comando encerra um processo no Linux?",
+    options: [
+      "kill -9 PID",
+      "ls -la",
+      "chmod 755",
+      "tail -f"
+    ],
+    answer: 0,
+    comment: "kill -9 encerra processos."
+  },
+  {
+    q: "Qual vulnerabilidade foi explorada pelo ransomware WannaCry?",
+    options: [
+      "EternalBlue (SMBv1)",
+      "SQL Injection",
+      "Heartbleed",
+      "XSS"
+    ],
+    answer: 0,
+    comment: "WannaCry explorava EternalBlue no SMBv1."
+  },
+  {
+    q: "Qual protocolo autentica usuários no Active Directory?",
+    options: [
+      "Kerberos",
+      "LDAP",
+      "RADIUS",
+      "TACACS+"
+    ],
+    answer: 0,
+    comment: "AD usa Kerberos como protocolo principal."
+  },
+  {
+    q: "Qual comando exibe processos em execução no Linux?",
+    options: [
+      "ps aux",
+      "ls",
+      "uptime",
+      "who"
+    ],
+    answer: 0,
+    comment: "ps aux lista processos ativos."
+  }
+];
+
+
+// =====================
+// BLOCO 3 - Compliance / ISO / LGPD / COBIT / Governança (20 questões)
+// =====================
+const questions3 = [
+  {
+    q: "Qual é o principal objetivo da ISO 27001?",
+    options: [
+      "Implementar controles técnicos específicos",
+      "Estabelecer um Sistema de Gestão de Segurança da Informação",
+      "Criar políticas de backup",
+      "Auditar logs de rede"
+    ],
+    answer: 1,
+    comment: "ISO 27001 define requisitos para um SGSI."
+  },
+  {
+    q: "Qual legislação brasileira trata de proteção de dados pessoais?",
+    options: [
+      "LGPD",
+      "Marco Civil da Internet",
+      "Lei Carolina Dieckmann",
+      "Código Penal"
+    ],
+    answer: 0,
+    comment: "LGPD é a Lei Geral de Proteção de Dados."
+  },
+  {
+    q: "Na LGPD, quem é o 'Encarregado'?",
+    options: [
+      "Responsável por TI",
+      "Pessoa que atua como DPO (Data Protection Officer)",
+      "Auditor interno",
+      "Gerente de rede"
+    ],
+    answer: 1,
+    comment: "O Encarregado é o DPO no contexto da LGPD."
+  },
+  {
+    q: "Qual framework foca em governança de TI?",
+    options: [
+      "COBIT",
+      "ISO 27001",
+      "NIST CSF",
+      "GDPR"
+    ],
+    answer: 0,
+    comment: "COBIT é voltado para governança de TI."
+  },
+  {
+    q: "Qual princípio da LGPD garante que os dados coletados sejam apenas os necessários?",
+    options: [
+      "Necessidade",
+      "Finalidade",
+      "Adequação",
+      "Transparência"
+    ],
+    answer: 0,
+    comment: "Necessidade limita a coleta ao mínimo essencial."
+  },
+  {
+    q: "Na ISO 27001, o Anexo A traz:",
+    options: [
+      "Controles de segurança",
+      "Exemplos de políticas",
+      "Templates de logs",
+      "Scripts de auditoria"
+    ],
+    answer: 0,
+    comment: "O Anexo A lista 114 controles de segurança."
+  },
+  {
+    q: "Qual princípio de governança do COBIT foca em gerar valor para os stakeholders?",
+    options: [
+      "Entrega de Valor",
+      "Segurança",
+      "Conformidade",
+      "Eficiência Operacional"
+    ],
+    answer: 0,
+    comment: "Entrega de Valor é central no COBIT."
+  },
+  {
+    q: "Qual regulamento europeu é equivalente à LGPD?",
+    options: [
+      "GDPR",
+      "HIPAA",
+      "SOX",
+      "PCI-DSS"
+    ],
+    answer: 0,
+    comment: "GDPR é a versão europeia da LGPD."
+  },
+  {
+    q: "Qual norma ISO é referência para continuidade de negócios?",
+    options: [
+      "ISO 22301",
+      "ISO 27001",
+      "ISO 9001",
+      "ISO 20000"
+    ],
+    answer: 0,
+    comment: "ISO 22301 cobre continuidade de negócios."
+  },
+  {
+    q: "Qual documento formaliza a base legal de tratamento de dados na LGPD?",
+    options: [
+      "Política de Privacidade",
+      "Relatório de Impacto",
+      "Contrato ou Consentimento",
+      "Backup Criptografado"
+    ],
+    answer: 2,
+    comment: "Contrato ou consentimento dá base legal ao tratamento."
+  },
+  {
+    q: "Na ISO 27001, a cláusula 9 refere-se a:",
+    options: [
+      "Avaliação de Desempenho",
+      "Contexto da Organização",
+      "Liderança",
+      "Planejamento"
+    ],
+    answer: 0,
+    comment: "Cláusula 9 = Avaliação de Desempenho."
+  },
+  {
+    q: "Qual órgão brasileiro fiscaliza a LGPD?",
+    options: [
+      "ANPD",
+      "CGU",
+      "STF",
+      "BACEN"
+    ],
+    answer: 0,
+    comment: "ANPD é a Autoridade Nacional de Proteção de Dados."
+  },
+  {
+    q: "Qual framework divide segurança em Identify, Protect, Detect, Respond, Recover?",
+    options: [
+      "NIST Cybersecurity Framework",
+      "ISO 27001",
+      "COBIT",
+      "GDPR"
+    ],
+    answer: 0,
+    comment: "NIST CSF é baseado nessas 5 funções."
+  },
+  {
+    q: "Na LGPD, qual princípio exige clareza ao titular sobre o uso dos dados?",
+    options: [
+      "Transparência",
+      "Segurança",
+      "Finalidade",
+      "Necessidade"
+    ],
+    answer: 0,
+    comment: "Transparência exige clareza no uso de dados."
+  },
+  {
+    q: "Na ISO 27001, qual cláusula trata do suporte (recursos, competência, conscientização)?",
+    options: [
+      "Cláusula 7",
+      "Cláusula 5",
+      "Cláusula 9",
+      "Cláusula 4"
+    ],
+    answer: 0,
+    comment: "Cláusula 7 = Suporte."
+  },
+  {
+    q: "Qual framework define controles de pagamento com cartão?",
+    options: [
+      "PCI-DSS",
+      "SOX",
+      "HIPAA",
+      "GDPR"
+    ],
+    answer: 0,
+    comment: "PCI-DSS regula segurança em cartões."
+  },
+  {
+    q: "Qual princípio da LGPD garante compatibilidade entre finalidade e uso dos dados?",
+    options: [
+      "Adequação",
+      "Necessidade",
+      "Segurança",
+      "Transparência"
+    ],
+    answer: 0,
+    comment: "Adequação assegura alinhamento da coleta ao uso."
+  },
+  {
+    q: "No COBIT, qual é o objetivo do domínio APO?",
+    options: [
+      "Alinhar, Planejar e Organizar",
+      "Executar e Suportar",
+      "Monitorar e Avaliar",
+      "Responder a Incidentes"
+    ],
+    answer: 0,
+    comment: "APO = Align, Plan and Organize."
+  },
+  {
+    q: "Qual documento da LGPD pode ser solicitado pela ANPD para avaliar riscos?",
+    options: [
+      "Relatório de Impacto à Proteção de Dados",
+      "Política de Backup",
+      "Plano de Continuidade",
+      "Ata de Reunião"
+    ],
+    answer: 0,
+    comment: "Relatório de Impacto é previsto na LGPD."
+  },
+  {
+    q: "Na ISO 27001, qual cláusula trata da melhoria contínua?",
+    options: [
+      "Cláusula 10",
+      "Cláusula 5",
+      "Cláusula 6",
+      "Cláusula 4"
+    ],
+    answer: 0,
+    comment: "Cláusula 10 aborda melhoria contínua."
+  }
+];
+
 
     // Inicializa os quizzes com numeração correta
     renderQuiz("quiz", questions, "quiz", 1);
@@ -519,5 +1322,3 @@
   </script>
 </body>
 </html>
-
-
