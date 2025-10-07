@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simulador de Certificações - Página Inicial</title>
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+      background-size: 400% 400%;
+      animation: gradient 15s ease infinite;
+      color: #fff;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    @keyframes gradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    header {
+      text-align: center;
+      padding: 40px 0;
+    }
+
+    .logo {
+      font-size: 3.5rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .tagline {
+      font-size: 1.5rem;
+      font-weight: 300;
+      margin-bottom: 30px;
+      opacity: 0.9;
+    }
+
+    .main-content {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      margin-bottom: 40px;
+    }
+
+    .intro {
+      flex: 1;
+      min-width: 300px;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 15px;
+      padding: 30px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    }
+
+    .intro h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      color: #fff;
+    }
+
+    .intro p {
+      margin-bottom: 15px;
+      font-size: 1.1rem;
+    }
+
+    .features {
+      flex: 1;
+      min-width: 300px;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .feature-card {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 10px;
+      padding: 20px;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    }
+
+    .feature-icon {
+      font-size: 2.5rem;
+      margin-bottom: 15px;
+    }
+
+    .feature-card h3 {
+      font-size: 1.3rem;
+      margin-bottom: 10px;
+    }
+
+    .certifications {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 15px;
+      padding: 30px;
+      margin-bottom: 40px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    }
+
+    .certifications h2 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 30px;
+    }
+
+    .cert-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .cert-card {
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 10px;
+      padding: 20px;
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+
+    .cert-card:hover {
+      transform: scale(1.05);
+    }
+
+    .cert-card h3 {
+      font-size: 1.3rem;
+      margin-bottom: 10px;
+    }
+
+    .cert-card p {
+      font-size: 0.9rem;
+      opacity: 0.8;
+    }
+
+    .cta-section {
+      text-align: center;
+      padding: 40px 0;
+    }
+
+    .cta-button {
+      display: inline-block;
+      background: #ff6b6b;
+      color: white;
+      padding: 15px 40px;
+      font-size: 1.3rem;
+      font-weight: 600;
+      text-decoration: none;
+      border-radius: 50px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .cta-button:hover {
+      background: #ff5252;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px 0;
+      margin-top: 40px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 0.9rem;
+      opacity: 0.7;
+    }
+
+    @media (max-width: 768px) {
+      .logo {
+        font-size: 2.5rem;
+      }
+      
+      .tagline {
+        font-size: 1.2rem;
+      }
+      
+      .intro h2 {
+        font-size: 1.7rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1 class="logo">Simulador de Certificações</h1>
+      <p class="tagline">Prepare-se para suas certificações de cibersegurança com nossos simulados realistas</p>
+    </header>
+
+    <div class="main-content">
+      <div class="intro">
+        <h2>Bem-vindo ao seu simulador de certificações</h2>
+        <p>Nosso simulador oferece uma experiência completa de preparação para as principais certificações de cibersegurança do mercado.</p>
+        <p>Com questões atualizadas e comentários detalhados, você poderá testar seus conhecimentos e identificar áreas que precisam de mais atenção.</p>
+        <p>O sistema mantém um placar global para acompanhar seu progresso ao longo do tempo.</p>
+      </div>
+
+      <div class="features">
+        <div class="feature-grid">
+          <div class="feature-card">
+            <div class="feature-icon">💡</div>
+            <h3>Questões Realistas</h3>
+            <p>Questões baseadas em exames reais com diferentes níveis de dificuldade</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">📉</div>
+            <h3>Análise de Desempenho</h3>
+            <p>Acompanhe seu progresso com estatísticas detalhadas e relatórios</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">§</div>
+            <h3>Explicações Detalhadas</h3>
+            <p>Comentários completos para cada questão para reforçar o aprendizado</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🏆</div>
+            <h3>Placar Global</h3>
+            <p>Monitore seu desempenho geral em todas as certificações</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="certifications">
+      <h2>Certificações Disponíveis</h2>
+      <div class="cert-grid">
+        <div class="cert-card">
+          <h3>Microsoft Azure</h3>
+          <p>Segurança de nuvem, identidade, governança e proteção de dados</p>
+        </div>
+        <div class="cert-card">
+          <h3>Fortinet</h3>
+          <p>Firewalls FortiGate, detecção de intrusões e proteção contra ameaças</p>
+        </div>
+        <div class="cert-card">
+          <h3>SC200 Microsoft</h3>
+          <p>Microsoft Sentinel, Defender, detecção de ameaças e resposta a incidentes</p>
+        </div>
+        <div class="cert-card">
+          <h3>CompTIA Security+</h3>
+          <p>Conceitos fundamentais de segurança, ameaças, vulnerabilidades e criptografia</p>
+        </div>
+        <div class="cert-card">
+          <h3>CySA+</h3>
+          <p>Análise de vulnerabilidades, monitoramento de ameaças e resposta a incidentes</p>
+        </div>
+        <div class="cert-card">
+          <h3>Cisco</h3>
+          <p>Segurança de rede, firewalls Cisco, detecção/prevenção de intrusões</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="cta-section">
+      <a href="simulador.html" class="cta-button">Começar Agora</a>
+    </div>
+
+    <footer>
+      <p>Simulador de Certificações de Cibersegurança &copy; 2025 - Todos os direitos reservados</p>
+    </footer>
+  </div>
+
+  <script>
+    // Adicionar um efeito de digitação ao título
+    document.addEventListener('DOMContentLoaded', function() {
+      const logo = document.querySelector('.logo');
+      const originalText = logo.textContent;
+      logo.textContent = '';
+      
+      let i = 0;
+      const typeWriter = () => {
+        if (i < originalText.length) {
+          logo.textContent += originalText.charAt(i);
+          i++;
+          setTimeout(typeWriter, 100);
+        }
+      };
+      
+      // Iniciar o efeito de digitação após um breve delay
+      setTimeout(typeWriter, 500);
+    });
+  </script>
+</body>
+</html>
