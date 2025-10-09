@@ -5,6 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Simulador de Certificações - Login</title>
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+  
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore-compat.js"></script>
+  
   <style>
     * {
       margin: 0;
@@ -188,6 +194,41 @@
       transform: translateY(0);
     }
 
+    .btn-google {
+      background: #4285F4;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .btn-google:hover {
+      background: #357ae8;
+    }
+
+    .google-icon {
+      width: 18px;
+      height: 18px;
+    }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      margin: 20px 0;
+    }
+
+    .divider-line {
+      flex: 1;
+      height: 1px;
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .divider-text {
+      padding: 0 15px;
+      font-size: 0.9rem;
+      opacity: 0.7;
+    }
+
     .auth-links {
       text-align: center;
       margin-top: 20px;
@@ -288,6 +329,22 @@
         
         <button type="submit" class="btn">Entrar</button>
         
+        <div class="divider">
+          <div class="divider-line"></div>
+          <div class="divider-text">ou</div>
+          <div class="divider-line"></div>
+        </div>
+        
+        <button type="button" class="btn btn-google" id="google-login">
+          <svg class="google-icon" viewBox="0 0 24 24">
+            <path fill="#fff" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+            <path fill="#fff" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+            <path fill="#fff" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+            <path fill="#fff" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+          </svg>
+          Entrar com Google
+        </button>
+        
         <div class="auth-links">
           <a href="#" class="auth-link" id="forgot-password">Esqueceu a senha?</a>
         </div>
@@ -347,6 +404,22 @@
         </div>
         
         <button type="submit" class="btn">Cadastrar</button>
+        
+        <div class="divider">
+          <div class="divider-line"></div>
+          <div class="divider-text">ou</div>
+          <div class="divider-line"></div>
+        </div>
+        
+        <button type="button" class="btn btn-google" id="google-register">
+          <svg class="google-icon" viewBox="0 0 24 24">
+            <path fill="#fff" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+            <path fill="#fff" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+            <path fill="#fff" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+            <path fill="#fff" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+          </svg>
+          Cadastrar com Google
+        </button>
       </form>
       
       <!-- Formulário de Recuperação de Senha -->
@@ -370,6 +443,22 @@
   </div>
 
   <script>
+    // Configuração do Firebase
+    // IMPORTANTE: Substitua pela sua configuração do Firebase
+    const firebaseConfig = {
+      apiKey: "SUA_API_KEY",
+      authDomain: "SEU_PROJETO.firebaseapp.com",
+      projectId: "SEU_PROJETO_ID",
+      storageBucket: "SEU_PROJETO.appspot.com",
+      messagingSenderId: "SEU_SENDER_ID",
+      appId: "SEU_APP_ID"
+    };
+
+    // Inicializar Firebase
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    const db = firebase.firestore();
+
     // Elementos DOM
     const authTabs = document.querySelectorAll('.auth-tab');
     const authForms = document.querySelectorAll('.auth-form');
@@ -379,6 +468,8 @@
     const messageDiv = document.getElementById('message');
     const forgotPasswordLink = document.getElementById('forgot-password');
     const backToLoginLink = document.getElementById('back-to-login');
+    const googleLoginBtn = document.getElementById('google-login');
+    const googleRegisterBtn = document.getElementById('google-register');
     
     // Elementos de validação de senha
     const passwordInput = document.getElementById('register-password');
@@ -497,7 +588,7 @@
     });
     
     // Validação do formulário de cadastro
-    registerForm.addEventListener('submit', (e) => {
+    registerForm.addEventListener('submit', async (e) => {
       e.preventDefault();
       
       const email = document.getElementById('register-email').value;
@@ -526,7 +617,7 @@
       // Verificar se o usuário é maior de 16 anos
       const birthDate = new Date(birthdate);
       const today = new Date();
-      const age = today.getFullYear() - birthDate.getFullYear();
+      let age = today.getFullYear() - birthDate.getFullYear();
       const monthDiff = today.getMonth() - birthDate.getMonth();
       
       if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
@@ -538,86 +629,147 @@
         return;
       }
       
-      // Simular cadastro (em um sistema real, isso seria uma chamada de API)
-      const users = JSON.parse(localStorage.getItem('users') || '[]');
-      
-      // Verificar se o e-mail já está cadastrado
-      if (users.find(user => user.email === email)) {
-        showMessage('Este e-mail já está cadastrado.', 'error');
-        return;
-      }
-      
-      // Adicionar novo usuário
-      users.push({
-        email: email,
-        birthdate: birthdate,
-        password: password // Em um sistema real, isso seria criptografado
-      });
-      
-      localStorage.setItem('users', JSON.stringify(users));
-      showMessage('Cadastro realizado com sucesso! Faça login para continuar.', 'success');
-      
-      // Limpar formulário
-      registerForm.reset();
-      passwordStrengthBar.style.width = '0%';
-      document.querySelectorAll('.requirement').forEach(req => {
-        req.classList.remove('valid');
-        req.classList.add('invalid');
-        req.querySelector('.requirement-icon').textContent = '❌';
-      });
-      
-      // Voltar para o login
-      setTimeout(() => {
-        authForms.forEach(form => form.classList.remove('active'));
-        loginForm.classList.add('active');
-        authTabs.forEach(tab => tab.classList.remove('active'));
-        document.querySelector('[data-tab="login"]').classList.add('active');
-      }, 2000);
-    });
-    
-    // Validação do formulário de login
-    loginForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      
-      const email = document.getElementById('login-email').value;
-      const password = document.getElementById('login-password').value;
-      
-      // Verificar credenciais (em um sistema real, isso seria uma chamada de API)
-      const users = JSON.parse(localStorage.getItem('users') || '[]');
-      const user = users.find(u => u.email === email && u.password === password);
-      
-      if (user) {
-        showMessage('Login realizado com sucesso!', 'success');
+      try {
+        // Criar usuário no Firebase Auth
+        const userCredential = await auth.createUserWithEmailAndPassword(email, password);
+        const user = userCredential.user;
         
-        // Em um sistema real, você armazenaria um token de autenticação
-        localStorage.setItem('currentUser', JSON.stringify({
-          email: user.email,
-          birthdate: user.birthdate
-        }));
+        // Salvar dados adicionais no Firestore
+        await db.collection('users').doc(user.uid).set({
+          email: email,
+          birthdate: birthdate,
+          createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+          lastLogin: firebase.firestore.FieldValue.serverTimestamp()
+        });
+        
+        showMessage('Cadastro realizado com sucesso!', 'success');
+        
+        // Limpar formulário
+        registerForm.reset();
+        passwordStrengthBar.style.width = '0%';
+        document.querySelectorAll('.requirement').forEach(req => {
+          req.classList.remove('valid');
+          req.classList.add('invalid');
+          req.querySelector('.requirement-icon').textContent = '❌';
+        });
         
         // Redirecionar para o simulador após um breve delay
         setTimeout(() => {
           window.location.href = 'simulador.html';
         }, 1500);
-      } else {
-        showMessage('E-mail ou senha incorretos.', 'error');
+        
+      } catch (error) {
+        console.error('Erro no cadastro:', error);
+        
+        // Tratamento de erros específicos do Firebase
+        if (error.code === 'auth/email-already-in-use') {
+          showMessage('Este e-mail já está cadastrado.', 'error');
+        } else if (error.code === 'auth/invalid-email') {
+          showMessage('O e-mail fornecido é inválido.', 'error');
+        } else if (error.code === 'auth/weak-password') {
+          showMessage('A senha é muito fraca.', 'error');
+        } else {
+          showMessage('Erro ao criar conta. Tente novamente.', 'error');
+        }
       }
     });
     
+    // Validação do formulário de login
+    loginForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const email = document.getElementById('login-email').value;
+      const password = document.getElementById('login-password').value;
+      
+      try {
+        // Fazer login com Firebase Auth
+        const userCredential = await auth.signInWithEmailAndPassword(email, password);
+        const user = userCredential.user;
+        
+        // Atualizar último login no Firestore
+        await db.collection('users').doc(user.uid).update({
+          lastLogin: firebase.firestore.FieldValue.serverTimestamp()
+        });
+        
+        showMessage('Login realizado com sucesso!', 'success');
+        
+        // Redirecionar para o simulador após um breve delay
+        setTimeout(() => {
+          window.location.href = 'simulador.html';
+        }, 1500);
+        
+      } catch (error) {
+        console.error('Erro no login:', error);
+        
+        // Tratamento de erros específicos do Firebase
+        if (error.code === 'auth/user-not-found' || error.code === 'auth/wrong-password') {
+          showMessage('E-mail ou senha incorretos.', 'error');
+        } else if (error.code === 'auth/invalid-email') {
+          showMessage('O e-mail fornecido é inválido.', 'error');
+        } else if (error.code === 'auth/too-many-requests') {
+          showMessage('Muitas tentativas de login. Tente novamente mais tarde.', 'error');
+        } else {
+          showMessage('Erro ao fazer login. Tente novamente.', 'error');
+        }
+      }
+    });
+    
+    // Login com Google
+    async function signInWithGoogle() {
+      const provider = new firebase.auth.GoogleAuthProvider();
+      
+      try {
+        const result = await auth.signInWithPopup(provider);
+        const user = result.user;
+        
+        // Verificar se é um novo usuário
+        if (result.additionalUserInfo.isNewUser) {
+          // Salvar dados do usuário no Firestore
+          await db.collection('users').doc(user.uid).set({
+            email: user.email,
+            name: user.displayName,
+            photoURL: user.photoURL,
+            createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+            lastLogin: firebase.firestore.FieldValue.serverTimestamp(),
+            provider: 'google'
+          });
+        } else {
+          // Atualizar último login
+          await db.collection('users').doc(user.uid).update({
+            lastLogin: firebase.firestore.FieldValue.serverTimestamp()
+          });
+        }
+        
+        showMessage('Login com Google realizado com sucesso!', 'success');
+        
+        // Redirecionar para o simulador após um breve delay
+        setTimeout(() => {
+          window.location.href = 'simulador.html';
+        }, 1500);
+        
+      } catch (error) {
+        console.error('Erro no login com Google:', error);
+        showMessage('Erro ao fazer login com Google. Tente novamente.', 'error');
+      }
+    }
+    
+    // Adicionar event listeners para login com Google
+    googleLoginBtn.addEventListener('click', signInWithGoogle);
+    googleRegisterBtn.addEventListener('click', signInWithGoogle);
+    
     // Validação do formulário de recuperação de senha
-    resetForm.addEventListener('submit', (e) => {
+    resetForm.addEventListener('submit', async (e) => {
       e.preventDefault();
       
       const email = document.getElementById('reset-email').value;
       
-      // Verificar se o e-mail existe (em um sistema real, isso seria uma chamada de API)
-      const users = JSON.parse(localStorage.getItem('users') || '[]');
-      const userExists = users.find(u => u.email === email);
-      
-      if (userExists) {
+      try {
+        // Enviar e-mail de recuperação de senha
+        await auth.sendPasswordResetEmail(email);
+        
         showMessage('Um link de recuperação foi enviado para o seu e-mail.', 'success');
         
-        // Em um sistema real, você enviaria um e-mail com um link de recuperação
+        // Limpar formulário
         resetForm.reset();
         
         // Voltar para o login após um breve delay
@@ -627,15 +779,23 @@
           authTabs.forEach(tab => tab.classList.remove('active'));
           document.querySelector('[data-tab="login"]').classList.add('active');
         }, 3000);
-      } else {
-        showMessage('Este e-mail não está cadastrado.', 'error');
+        
+      } catch (error) {
+        console.error('Erro na recuperação de senha:', error);
+        
+        if (error.code === 'auth/user-not-found') {
+          showMessage('Este e-mail não está cadastrado.', 'error');
+        } else if (error.code === 'auth/invalid-email') {
+          showMessage('O e-mail fornecido é inválido.', 'error');
+        } else {
+          showMessage('Erro ao enviar e-mail de recuperação. Tente novamente.', 'error');
+        }
       }
     });
     
     // Verificar se já existe um usuário logado
-    window.addEventListener('DOMContentLoaded', () => {
-      const currentUser = localStorage.getItem('currentUser');
-      if (currentUser) {
+    auth.onAuthStateChanged((user) => {
+      if (user) {
         // Se já estiver logado, redirecionar para o simulador
         window.location.href = 'simulador.html';
       }
