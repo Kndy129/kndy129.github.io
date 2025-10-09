@@ -188,7 +188,7 @@
     <label for="certSelect"><strong>Selecione a certificação:</strong></label>
     <select id="certSelect" onchange="loadCertification()">
       <option value="">-- Escolha uma certificação --</option>
-      <option value="azure">Microsoft Azure</option>
+      <option value="azure">Microsof Azure DP-900t Azure</option>
       <option value="fortinet">Fortinet Cibersegurança</option>
       <option value="sc200">SC200 Microsoft</option>
       <option value="comptia">CompTIA Security+</option>
@@ -393,26 +393,26 @@
       // Página 1 - Questões 1-30
       currentQuestions.questions = [
         {
-          q: "Qual serviço Azure é recomendado para implementar uma solução SIEM nativa da Microsoft?",
+          q: "Complete a sentença abaixo: <p>......... apoia nativamente a análise de relacionamentos entre entidades.</p>",
           options: [
-            "Azure Monitor",
-            "Azure Security Center", 
-            "Azure Sentinel",
-            "Azure Log Analytics"
+            "Bandos de dados de família de colunas",
+            "Bancos de dados de documentos", 
+            "Bancos de dados Gráfos",
+            "Lojas de valores-Chave"
           ],
           answer: 2,
-          comment: "Azure Sentinel é a solução SIEM nativa da Microsoft no Azure."
+          comment: "Bancos de dados de grafos (como Neo4j, Amazon Neptune ou Azure Cosmos DB com API Gremlin) são especializados em modelar e analisar relacionamentos complexos entre entidades — como conexões entre pessoas, produtos, redes, etc."
         },
         {
-          q: "Qual recurso do Azure AD permite aplicar políticas de acesso condicional baseadas em risco?",
+          q: "Qual é uma característica do processamento em lote?",
           options: [
-            "Identity Protection",
-            "Privileged Identity Management",
-            "Conditional Access",
-            "Multi-Factor Authentication"
+            "Os dados ingeridos durante o processamento em lote devem ser processados assim que os dados foram recebidos.",
+            "Grandes conjuntos de dados devem ser divididos em lotes de menos de 1GB antes que os dados possam ser processados",
+            "Há um atraso necessário entre a obtenção de dados e a obtenção dos resultados do processamento de dados",
+            "O processamento em lote só pode processar dados estruturados"
           ],
-          answer: 0,
-          comment: "Azure AD Identity Protection permite políticas baseadas em risco de identidade."
+          answer: 2,
+          comment: "O processamento em lote (batch processing) é caracterizado por: <p> Processar grandes volumes de dados de uma vez, em blocos (ou “lotes”), em vez de linha a linha em tempo real.</p><p>Normalmente é feito em intervalos programados (ex: diário, semanal, etc.).</p><p>Por isso, há um atraso natural entre a coleta dos dados e o resultado final do processamento — diferentemente do processamento em tempo real (streaming), que reage instantaneamente.</p>"
         },
         {
           q: "Qual recurso permite segmentar redes privadas dentro do Azure?",
@@ -426,15 +426,14 @@
           comment: "A Virtual Network (VNet) é o recurso do Azure que permite segmentar redes privadas, criando ambientes de rede isolados e seguros dentro da nuvem."
         },
         {
-          q: "Qual ferramenta do Azure permite gerenciar identidades híbridas?",
+          q: "Sua empresa planeja carregar dados de um sistema de gerenciamento de relacionamento com o cliente (CRM) para um data warehouse usando um processo de extração, carregamento e transformação (ELT). <p>A opção Transform do E T L está para qual opção?</p>",
           options: [
-            "Azure AD Connect",
-            "Azure AD B2B",
-            "Azure AD B2C",
-            "Azure AD Domain Services"
+		    "O Data warehouse",
+            "Uma ferramenta de integração de dados na memória",
+            "Do sistema CRM",
           ],
-          answer: 1,
-          comment: "Azure AD Connect sincroniza diretórios locais com Azure AD."
+          answer: 0,
+          comment: "No processo ELT (Extract, Load, Transform): <p>Extract (Extrair): os dados são retirados da fonte (como o CRM).</p><p>Load (Carregar): esses dados brutos são carregados diretamente no data warehouse.</p><p>Transform (Transformar): a transformação (limpeza, junção, agregação, etc.) é feita dentro do próprio data warehouse, aproveitando o poder de processamento dele.</p>"
         },
         {
           q: "O Azure oferece cobrança “pay-as-you-go”?",
@@ -446,15 +445,14 @@
           comment: "O Azure trabalha com o modelo “pay-as-you-go”, ou seja, você paga apenas pelos recursos que utiliza, sem necessidade de contratos longos ou pagamentos antecipados. Isso oferece flexibilidade para escalar serviços conforme a demanda e otimizar custos. Exemplo: se você criar uma VM por 10 horas, paga só por essas 10 horas, nada mais."
         },
         {
-          q: "Qual recurso do Azure Security Center fornece recomendações de segurança?",
+          q: "Selecione a frase verdadeira:",
           options: [
-            "Secure Score",
-            "Security Alerts",
-            "Compliance Dashboard",
-            "Threat Protection"
+            "O Bando de Dados SQL do Azure inclui um serviço de backup gerenciado.",
+            "O Banco de Dados SQL Azure possui alta disponibilidade integrada.",
+            "O Banco de Dados SQL do Azure pode usar o Azure Defender.",
           ],
-          answer: 0,
-          comment: "Secure Score mede e fornece recomendações para melhorar a postura de segurança."
+          answer: 1,
+          comment: "Banco de Dados SQL do Azure é um serviço PaaS (Plataforma como Serviço) da Microsoft. <p>Ele já vem com alta disponibilidade (HA) e redundância integradas — ou seja, não precisa que você configure clusters, réplicas ou failovers manualmente.</p><p>Isso faz parte do pacote gerenciado do Azure.</p>"
         },
         {
           q: "Qual serviço gerencia pipelines de CI/CD?",
@@ -468,92 +466,90 @@
           comment: "O Azure DevOps é a plataforma da Microsoft que gerencia pipelines de CI/CD (Integração Contínua / Entrega Contínua), permitindo automatizar o build, testes e deploy de aplicações."
         },
         {
-          q: "Qual recurso permite gerenciar acesso privilegiado no Azure AD?",
+          q: "Que tipo de banco de dados contém nós e arestas?",
           options: [
-            "Conditional Access",
-            "Role-Based Access Control",
-            "Privileged Identity Management",
-            "Identity Protection"
-          ],
-          answer: 2,
-          comment: "PIM gerencia, controla e monitora acesso privilegiado."
-        },
-        {
-          q: "Qual serviço Azure fornece proteção contra ameaças para endpoints?",
-          options: [
-            "Microsoft Defender for Endpoint",
-            "Azure Security Center",
-            "Azure Sentinel",
-            "Azure Firewall"
+            "Um Grafo",
+            "Chave/valor",
+            "Colunar",
+            "Série temporal"
           ],
           answer: 0,
-          comment: "Microsoft Defender for Endpoint protege dispositivos contra ameaças avançadas."
+          comment: "Bancos de dados de grafos representam dados como nós (entidades) e arestas (relacionamentos), permitindo consultas complexas sobre conexões e relações entre dados.<p>Exemplos: Neo4j, Amazon Neptune, Azure Cosmos DB (API Gremlin).</p>"
         },
         {
-          q: "Qual recurso do Azure permite criar políticas de governança?",
+          q: "Complete a sentença abaixo: <p>Em uma instrução SQL, .......... são exemplos de funções agregadas.</p>",
           options: [
-            "Azure Policy",
-            "Azure Blueprints",
-            "Resource Manager",
-            "Management Groups"
+            "GROUP BY e ORDER BY",
+            "MAX AND MIN",
+            "JOIN and MERGE ",
+            "FROM and WHERE"
           ],
           answer: 1,
-          comment: "Azure Policy impõe regras e efeitos sobre recursos Azure."
+          comment: "Funções agregadas no SQL resumem ou agregam valores de múltiplas linhas em um único valor.Exemplos clássicos: <p>MAX() → retorna o valor máximo</p><p>MIN() → retorna o valor mínimo</p><p>Outros: SUM(), AVG(), COUNT()</p>"
         },
         {
-          q: "Qual serviço Azure é usado para backup e recuperação de desastres?",
+          q: "Um documento JSON é um exemplo de",
           options: [
-            "Azure Backup",
-            "Azure Site Recovery",
-            "Azure Storage",
-            "Azure Archive"
+            "Dados do gráfico",
+            "Dados relacionais",
+            "Dados semi-estruturados",
+            "Dados não estruturados"
           ],
           answer: 2,
-          comment: "Azure Backup fornece soluções de backup para dados Azure."
+          comment: "Um documento JSON possui estrutura interna (chaves e valores), mas não segue o esquema rígido de tabelas relacionais.<p>Por isso, é considerado semi-estruturado.</p>"
         },
         {
-          q: "Qual recurso do Azure Monitor coleta logs de segurança?",
+          q: "Você está escrevendo um conjunto de consultas SQL que os administradores usarão para solucionar problemas de um banco de dados SQL do Azure.<p>Você precisa incorporar documentos e resultados de consultas em um notebook SQL. O que você deve usar?</p>",
           options: [
-            "Log Analytics Workspace",
-            "Application Insights",
-            "Azure Metrics",
-            "Activity Log"
+            "Microsoft SQL Server Management Studio (SSMS)",
+            "Azure PowerShell",
+            "Azure CLI",
+            "Azure Data Studio"
           ],
           answer: 3,
-          comment: "Log Analytics Workspace coleta e analisa logs de diversos serviços Azure."
+          comment: "Azure Data Studio é a ferramenta da Microsoft voltada para administradores e desenvolvedores SQL, com suporte a:<p>Notebooks SQL (mistura de código, resultados de consultas e anotações)</p><p>Extensões para análise e visualização de dados</p><p>Conexão com Azure SQL Database, SQL Server e outros bancos.</p>"
         },
         {
-          q: "Qual serviço Azure fornece isolamento de rede para recursos?",
+          q: "Complete a sentença abaixo:<p> ............ é um objeto associado a uma tabela que classifica e armazena as linhas de dados da tabela com base em seus valores-chave</p>",
           options: [
-            "Azure Virtual Network",
-            "Azure VPN Gateway",
-            "Azure ExpressRoute",
-            "Azure Firewall"
+            "Uma tabela de arquivos",
+            "Um índice clusterizado",
+            "Um procedimento armazenado",
+            "Uma chave estrangeira"
           ],
           answer: 1,
-          comment: "Azure VNet fornece isolamento e segmentação de rede."
+          comment: "Um índice clusterizado: <p>É um objeto associado à tabela.</p><p>Ordena fisicamente os dados na tabela com base nas colunas chave do índice.</p><p>Permite acesso rápido a linhas com valores específicos e facilita consultas por intervalo.</p>"
         },
         {
-          q: "Qual recurso do Azure AD permite autenticação sem senha?",
+          q: "Você tem a seguinte consulta SQL:<br><img src='SQL.png' alt='Consulta SQL'>",
           options: [
-            "Windows Hello for Business",
-            "FIDO2 Security Keys",
-            "Microsoft Authenticator",
-            "Todas as anteriores"
+            "Um banco de dados",
+            "Um index",
+            "Uma tabela",
+            "Uma coluna"
+          ],
+          answer: 2,
+          comment: "Uma tabela: <p>O comando INSERT INTO adiciona linhas a uma tabela existente.</p><p>No exemplo, a tabela é <strong>Products</strong>, e os valores fornecidos correspondem às colunas especificadas.</p>"
+        },
+        {
+          q: "Esta afirmação sobre normalização está correta?<p>A normalização de um banco de dados reduz a redundância de dados.</p>",
+          options: [
+            "Não",
+            "Sim",
+          ],
+          answer: 1,
+          comment: "<p>É um processo aplicado ao banco de dados.</p><p>Organiza os dados em tabelas para reduzir redundância e inconsistências.</p><p>Facilita a manutenção, atualizações e garante integridade dos dados.</p>"
+        },
+        {
+          q: "<p>Você está implantando um aplicativo de software como serviço (SaaS) que requer um banco de dados relacional para processamento de transações online (OLTP).</p><p>Qual serviço do Azure você deve usar para dar suporte ao aplicativo?</p>",
+          options: [
+            "Azure Synapse Analystics",
+            "Azure HDInsight",
+            "Azure Cosmos DB",
+            "Azure SQL Database"
           ],
           answer: 3,
-          comment: "Azure AD suporta múltiplos métodos de autenticação sem senha."
-        },
-        {
-          q: "Qual serviço Azure é usado para proteger dados em repouso?",
-          options: [
-            "Azure Disk Encryption",
-            "Azure Storage Service Encryption",
-            "Azure SQL Transparent Data Encryption",
-            "Todas as anteriores"
-          ],
-          answer: 0,
-          comment: "Vários serviços Azure fornecem criptografia para dados em repouso."
+          comment: "<p>O Azure SQL Database é um banco de dados relacional na nuvem.</p><p>É ideal para processamento de transações online (OLTP), permitindo que aplicativos SaaS gerenciem dados de forma segura e eficiente.</p><p>Outros serviços do Azure, como Synapse Analytics, HDInsight e Cosmos DB, não são voltados para transações relacionais OLTP.</p>"
         },
         {
           q: "Qual recurso do Azure Sentinel automatiza respostas a incidentes?",
@@ -563,30 +559,30 @@
             "Hunting Queries",
             "Analytics Rules"
           ],
-          answer: 2,
+          answer: 0,
           comment: "Playbooks no Azure Sentinel automatizam respostas usando Logic Apps."
         },
         {
-          q: "Qual serviço Azure fornece proteção para identidades?",
+          q: "Qual das opções é um exemplo de linguagem de manipulação de dados (DML)?",
           options: [
-            "Microsoft Defender for Identity",
-            "Azure AD Identity Protection",
-            "Azure AD Conditional Access",
-            "Todas as anteriores"
+            "DISABLE",
+            "REVOKE",
+            "CREATE",
+            "UPDATE"
           ],
           answer: 3,
-          comment: "Múltiplos serviços Azure trabalham juntos para proteger identidades."
+          comment: "<p>O comando <strong>UPDATE</strong> é um exemplo de linguagem de manipulação de dados (DML), pois serve para modificar dados já existentes em tabelas de um banco de dados.</p>"
         },
         {
-          q: "Qual recurso do Azure permite gerenciar certificados SSL/TLS?",
+          q: "Complete a sentença abaixo: <p>Uma visualização(View) que mostra a matrícula atual de estudantes de uma universidade versus a capacidade máxima é um exemplo de análise ......... .</p>", 
           options: [
-            "Azure Key Vault",
-            "Azure App Service",
-            "Azure CDN",
-            "Azure Front Door"
+                "descritiva",
+                "diagnóstica",
+                "preditiva",
+                "prescritiva"
           ],
-          answer: 1,
-          comment: "Azure Key Vault pode gerenciar e renovar certificados SSL/TLS automaticamente."
+          answer: 0,
+          comment: "<p>Uma <strong>visualização (View)</strong> que compara a matrícula atual de estudantes com a capacidade máxima fornece informações sobre o estado atual do sistema, sem prever tendências futuras ou sugerir ações.</p><p>Esse tipo de análise é chamado de <strong>análise descritiva</strong>, pois resume e descreve os dados existentes de forma compreensível.</p><p>Análises diagnósticas investigam causas, análises preditivas tentam prever resultados futuros, e análises prescritivas recomendam ações com base nos dados.</p>"
         },
         {
           q: "Qual serviço Azure é usado para monitorar ameaças em tempo real?",
@@ -596,30 +592,28 @@
             "Azure Monitor",
             "Azure Defender"
           ],
-          answer: 2,
+          answer: 1,
           comment: "Azure Sentinel fornece monitoramento de segurança e análise de ameaças em tempo real."
         },
-        {
-          q: "Qual recurso do Azure AD permite acesso seguro a aplicações?",
+		{
+          q: "Esta sentença é verdadeira? <p>A normalização envolve a eliminação de relacionamentos entre tabelas de banco de dados.</p>",
           options: [
-            "Application Proxy",
-            "Enterprise Applications",
-            "App Registrations",
-            "Todas as anteriores"
-          ],
-          answer: 0,
-          comment: "Azure AD fornece múltiplos recursos para gerenciar acesso a aplicações."
-        },
-        {
-          q: "Qual serviço Azure fornece firewall como serviço?",
-          options: [
-            "Azure Firewall",
-            "Network Security Groups",
-            "Azure Front Door",
-            "Azure Application Gateway"
+            "Sim",
+            "Não",
           ],
           answer: 1,
-          comment: "Azure Firewall é um firewall como serviço gerenciado e altamente disponível."
+          comment: "A normalização: <p>É um processo aplicado ao banco de dados.</p><p>Organiza os dados em tabelas para reduzir redundância e inconsistências.</p><p>Mantém relacionamentos entre tabelas usando chaves primárias e estrangeiras, garantindo integridade dos dados e facilitando consultas e manutenção.</p>"
+        },
+        {
+          q: "Qual afirmação é um exemplo de linguagem de definição de dados (DDL)?",
+          options: [
+            "JOIN",
+            "UPDATE",
+            "CREATE",
+            "SELECT"
+          ],
+          answer: 2,
+          comment: "CREATE: <p>É um comando de linguagem de definição de dados (DDL).</p><p>É usado para criar estruturas de banco de dados, como tabelas, índices e schemas.</p><p>Permite definir a forma como os dados serão armazenados, mas não manipula os dados em si.</p>"
         },
         {
           q: "Qual recurso do Azure permite criar redes privadas virtuais?",
@@ -7001,7 +6995,3 @@ function generateCiscoSecurityQuestions() {
   </script>
 </body>
 </html>
-
-
-
-
