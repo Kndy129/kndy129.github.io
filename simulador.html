@@ -715,558 +715,550 @@ q: "Você tem o seguinte documento JSON, precisa analisá-lo e completar a frase
       // Página 2 - Questões 31-60  
       currentQuestions.questions2 = [
         {
-          q: "Qual serviço Azure fornece proteção para servidores SQL?",
+          q: "Sua empresa planeja carregar dados de um sistema de gerenciamento de relacionamento com o cliente (CRM) para um data warehouse usando um processo de extração, carregamento e transformação (ELT).<br><br>A opção Extract do ETL está para qual opção?",
           options: [
-            "Azure SQL Database",
-            "Microsoft Defender for SQL",
-            "Azure Database for PostgreSQL",
-            "Azure Synapse Analytics"
+    "Uma ferramenta de integração de dados na memória",
+    "Do sistema CRM",
+    "O Data warehouse"
           ],
           answer: 1,
-          comment: "Microsoft Defender for SQL protege bancos de dados SQL contra ameaças."
+          comment: "<p>No processo ELT (Extract, Load, Transform):</p><p><strong>Extract (Extrair)</strong>: Os dados são retirados da <strong>fonte original</strong>, que neste caso é o sistema CRM.</p><p><strong>Load (Carregar)</strong>: Esses dados brutos são carregados diretamente no data warehouse.</p><p><strong>Transform (Transformar)</strong>: A transformação (limpeza, junção, agregação, etc.) é feita dentro do próprio data warehouse, aproveitando o poder de processamento dele.</p><p>Portanto, a etapa Extract sempre se refere à <strong>extração dos dados da fonte original</strong> (sistema CRM).</p>"
         },
        {
-          q: "Qual recurso do Azure AD permite acesso temporário a recursos?",
+          q: "Complete a sentença abaixo:<p>A transcrição de arquivos de áudio é um exemplo de análise .........</p>",
           options: [
-            "Privileged Identity Management",
-            "Time-based Access",
-            "Temporary Access Pass",
-            "Guest User Access"
-          ],
-          answer: 3,
-          comment: "PIM permite acesso just-in-time a recursos privilegiados."
-        },
-        {
-          q: "Qual serviço Azure é usado para proteger contêineres?",
-          options: [
-            "Microsoft Defender for Containers",
-            "Azure Kubernetes Service",
-            "Azure Container Instances",
-            "Azure Container Registry"
-          ],
-          answer: 0,
-          comment: "Microsoft Defender for Containers protege ambientes de contêineres."
-        },
-        {
-          q: "Qual recurso do Azure permite gerenciar identidades de workload?",
-          options: [
-            "Managed Identities",
-            "Service Principals",
-            "Azure AD Applications",
-            "Todas as anteriores"
-          ],
-          answer: 2,
-          comment: "Azure oferece múltiplas opções para identidades de workload."
-        },
-        {
-          q: "Qual serviço Azure fornece proteção para armazenamento?",
-          options: [
-            "Microsoft Defender for Storage",
-            "Azure Blob Storage",
-            "Azure File Sync",
-            "Azure Data Lake"
-          ],
-          answer: 3,
-          comment: "Microsoft Defender for Storage detecta ameaças em contas de armazenamento."
-        },
-        {
-          q: "Qual recurso do Azure permite configurar políticas de rede?",
-          options: [
-            "Azure Policy for Networking",
-            "Network Security Groups",
-            "Azure Firewall Policy",
-            "Route Tables"
+            "Descritivo",
+            "Cognitivo",
+            "Preditivo",
+            "Prescritivo"
           ],
           answer: 1,
-          comment: "Azure Firewall Policy permite gerenciamento centralizado de políticas de firewall."
+          comment: "<p>A transcrição de arquivos de áudio é um exemplo de análise <strong>Cognitivo</strong>.</p><p><strong>Análise Cognitiva</strong>: Envolve capacidades de IA como processamento de linguagem natural, reconhecimento de fala, visão computacional e outras funções que simulam a inteligência humana para entender e processar informações não estruturadas.</p>"
         },
         {
-          q: "Qual serviço Azure é usado para gerenciar chaves de criptografia?",
+          q: "Que tipo de banco de dados é o Banco de Dados do Azure para PostgreSQL?",
           options: [
-            "Azure Key Vault",
-            "Azure Security Center",
-            "Azure Sentinel",
-            "Azure Policy"
-          ],
-          answer: 2,
-          comment: "Azure Key Vault gerencia chaves de criptografia, certificados e segredos."
-        },
-        {
-          q: "Qual recurso do Azure AD permite autenticação multifator?",
-          options: [
-            "Azure AD MFA",
-            "Conditional Access",
-            "Identity Protection",
-            "Security Defaults"
-          ],
-          answer: 0,
-          comment: "Azure AD MFA fornece autenticação de dois fatores para acesso seguro."
-        },
-        {
-          q: "Qual serviço Azure fornece proteção para aplicações?",
-          options: [
-            "Microsoft Defender for Cloud Apps",
-            "Azure App Service",
-            "Azure Application Gateway",
-            "Azure Front Door"
+            "On-premises",
+            "Platform as a service (PaaS)",
+            "Microsoft SQL Server",
+            "Infrastructure as a service (IaaS)"
           ],
           answer: 1,
-          comment: "Microsoft Defender for Cloud Apps protege aplicações em nuvem."
+          comment: "<p>O Azure Database for PostgreSQL é um serviço gerenciado de banco de dados na nuvem.</p><p>Ele fornece manutenção automática, backups, escalabilidade e alta disponibilidade, sem que o usuário precise gerenciar a infraestrutura subjacente.</p><p>Portanto, trata-se de um serviço do tipo Platform as a Service (PaaS).</p>"
         },
         {
-          q: "Qual recurso do Azure permite monitorar conformidade?",
+          q: "Utilizando os conhecimentos de análise de dados, escolha a opção que representa a frase abaixo:<p>'Um gráfico que exibe os principais contribuintes de um resultado ou valor selecionado.'</p>",
           options: [
-            "Azure Policy Compliance",
-            "Azure Security Center Regulatory Compliance",
-            "Azure Sentinel Compliance",
-            "Azure Monitor Compliance"
-          ],
-          answer: 0,
-          comment: "Azure Security Center fornece dashboard de conformidade regulatória."
-        },
-        {
-          q: "Qual serviço Azure é usado para backup de máquinas virtuais?",
-          options: [
-            "Azure Backup for VMs",
-            "Azure Site Recovery",
-            "Azure Snapshot",
-            "Azure Archive Storage"
-          ],
-          answer: 3,
-          comment: "Azure Backup fornece backup para máquinas virtuais Azure."
-        },
-        {
-          q: "Qual recurso do Azure AD permite acesso híbrido seguro?",
-          options: [
-            "Azure AD Application Proxy",
-            "Azure AD Connect",
-            "Azure AD Domain Services",
-            "Azure AD B2B"
-          ],
-          answer: 2,
-          comment: "Azure AD Application Proxy permite acesso seguro a aplicações locais."
-        },
-        {
-          q: "Qual serviço Azure fornece proteção para Key Vault?",
-          options: [
-            "Microsoft Defender for Key Vault",
-            "Azure Key Vault Firewall",
-            "Azure Private Link",
-            "Azure Network Security Groups"
-          ],
-          answer: 0,
-          comment: "Microsoft Defender for Key Vault detecta tentativas incomuns de acesso ao Key Vault."
-        },
-        {
-          q: "Qual recurso do Azure permite gerenciar atualizações de segurança?",
-          options: [
-            "Azure Update Management",
-            "Azure Automation",
-            "Azure Security Center",
-            "Azure Monitor"
-          ],
-          answer: 3,
-          comment: "Azure Update Management gerencia atualizações para VMs Azure e locais."
-        },
-        {
-          q: "Qual serviço Azure é usado para proteger redes virtuais?",
-          options: [
-            "Azure DDoS Protection",
-            "Azure Firewall",
-            "Network Security Groups",
-            "Todas as anteriores"
+            "Gráfico Mapa de árvore",
+            "Influenciadores chave",
+            "Gráfico de Dispersão", 
           ],
           answer: 1,
-          comment: "Múltiplos serviços Azure trabalham juntos para proteger redes virtuais."
+          comment: "<p><strong>Resposta correta: Influenciadores chave</strong></p><p>O recurso 'Influenciadores chave' no Power BI e outras ferramentas de análise é especificamente projetado para identificar e exibir os principais fatores que contribuem para um resultado ou métrica específica.</p><p>Ele analisa automaticamente os dados para mostrar quais dimensores mais impactam o valor selecionado, destacando os principais contribuintes para aquela métrica.</p>"
         },
         {
-          q: "Qual recurso do Azure AD permite gerenciar dispositivos?",
+          q: "Qual o modelo de análise devemos utilizar na sentença abaixo?<p>'Como aloco meu orçamento para comprar diferentes itens de estoque?'</p>",
           options: [
-            "Azure AD Device Management",
-            "Microsoft Intune",
-            "Azure AD Join",
-            "Todas as anteriores"
-          ],
-          answer: 2,
-          comment: "Azure AD oferece recursos abrangentes para gerenciamento de dispositivos."
-        },
-        {
-          q: "Qual serviço Azure fornece proteção para servidores?",
-          options: [
-            "Microsoft Defender for Servers",
-            "Azure Security Center",
-            "Azure Sentinel",
-            "Azure Monitor"
+            "Descritivo",
+            "Preditivo",
+            "Cognitivo",
+            "Prescritivo"
           ],
           answer: 3,
-          comment: "Microsoft Defender for Servers protege servidores Windows e Linux."
+          comment: "<p><strong>Resposta correta: Prescritivo</strong></p><p>A análise prescritiva é a mais adequada para esta questão, pois ela não apenas prevê o que pode acontecer, mas também recomenda ações específicas para alcançar os melhores resultados.</p><p>No contexto de alocação de orçamento para compra de estoque, a análise prescritiva consideraria:</p><ul><li>Demanda prevista para cada item</li><li>Custos de aquisição e armazenamento</li><li>Restrições orçamentárias</li><li>Objetivos de negócio</li></ul><p>E forneceria recomendações específicas sobre quanto investir em cada item para maximizar o retorno.</p>"
         },
         {
-          q: "Qual recurso do Azure permite criar políticas de segurança?",
+          q: "Utilizando os conhecimentos de análise de dados, escolha a opção que representa a frase abaixo:<p>'Um gráfico de retângulos coloridos e aninhados que exibe pontos de dados individuais representados pelo tamanho e pela cor de um retângulo relativo.'</p>",
           options: [
-            "Azure Policy",
-            "Azure Blueprints",
-            "Resource Manager Templates",
-            "Todas as anteriores"
-          ],
-          answer: 0,
-          comment: "Azure oferece múltiplas formas de definir e implementar políticas de segurança."
-        },
-        {
-          q: "Qual serviço Azure é usado para análise de vulnerabilidades?",
-          options: [
-            "Microsoft Defender Vulnerability Management",
-            "Azure Security Center",
-            "Azure Sentinel",
-            "Azure Monitor"
+            "Gráfico de Dispersão",
+            "Gráfico Mapa de árvore",
+            "Influenciador chave"
           ],
           answer: 1,
-          comment: "Microsoft Defender Vulnerability Management identifica e prioriza vulnerabilidades."
+          comment: "<p><strong>Resposta correta: Gráfico Mapa de árvore</strong></p><p>O gráfico mapa de árvore (treemap) é exatamente descrito pela frase:</p><ul><li>Usa retângulos aninhados para representar hierarquias</li><li>O tamanho de cada retângulo indica o valor proporcional</li><li>A cor representa uma dimensão adicional ou categoria</li><li>Cada retângulo mostra um ponto de dados individual</li></ul><p>Este tipo de visualização é ideal para comparar proporções dentro de uma hierarquia, como vendas por categoria e subcategoria.</p>"
         },
         {
-          q: "Qual recurso do Azure AD permite acesso condicional baseado em dispositivo?",
+          q: "Complete a sentença abaixo:<p>'Um banco de dados com modelagem \"chave/valor\" é otimizado para .......'</p>",
           options: [
-            "Device-based Conditional Access",
-            "Azure AD Device Registration",
-            "Microsoft Intune",
-            "Azure AD Join"
-          ],
-          answer: 2,
-          comment: "Conditional Access pode usar estado do dispositivo como condição para acesso."
-        },
-        {
-          q: "Qual serviço Azure fornece proteção para IoT?",
-          options: [
-            "Microsoft Defender for IoT",
-            "Azure IoT Hub",
-            "Azure IoT Central",
-            "Azure Sphere"
-          ],
-          answer: 0,
-          comment: "Microsoft Defender for IoT protege dispositivos e redes IoT."
-        },
-        {
-          q: "Qual recurso do Azure permite monitorar ameaças internas?",
-          options: [
-            "Azure Sentinel UEBA",
-            "Azure AD Identity Protection",
-            "Microsoft Defender for Identity",
-            "Todas as anteriores"
+            "Junção de tabelas (Joins)",
+            "Import restrições", 
+            "Transações (Transactions)",
+            "Consulta simples"
           ],
           answer: 3,
-          comment: "Esses serviços trabalham juntos para detectar ameaças internas."
+          comment: "<p><strong>Resposta correta: Consulta simples</strong></p><p>Bancos de dados chave/valor (como Redis, DynamoDB, Memcached) são otimizados para operações de leitura e escrita simples e rápidas, onde você acessa dados diretamente por uma chave única.</p><p>Características principais:</p><ul><li>Alta performance em consultas pontuais</li><li>Esquema flexível - não há estrutura fixa</li><li>Escalabilidade horizontal</li><li>Não são ideais para joins complexos ou consultas relacionais</li></ul>"
         },
         {
-          q: "Qual serviço Azure é usado para gerenciar certificados digitais?",
+          q: "Qual o modelo de análise devemos utilizar na sentença abaixo:<p>'Por que as vendas aumentaram no mês passado?'</p>",
           options: [
-            "Azure Key Vault Certificates",
-            "Azure App Service Certificates",
-            "Azure CDN Certificates",
-            "Azure Front Door Certificates"
+            "Descritivo",
+            "Diagnóstico",
+            "Prescritivo",
+            "Preditivo",
+			"Cognitivo"
           ],
           answer: 1,
-          comment: "Azure Key Vault gerencia certificados digitais de forma segura."
+          comment: "<p><strong>Resposta correta: Diagnóstico</strong></p><p>A análise diagnóstica é focada em entender <strong>por que</strong> algo aconteceu. Ela investiga as causas e razões por trás de eventos ou resultados observados.</p><p>Para responder 'Por que as vendas aumentaram no mês passado?', precisaríamos:</p><ul><li>Analisar fatores causais (campanhas de marketing, sazonalidade, etc.)</li><li>Investigar correlações entre variáveis</li><li>Identificar relações de causa e efeito</li><li>Examinar dados históricos para entender os motivos</li></ul>"
         },
         {
-          q: "Qual recurso do Azure permite resposta a incidentes automatizada?",
+          q: "Analise o documento JSON abaixo e complete a frase:<p>'A opção 'customer' é .........'</p><img src='costumer.png' alt='Documento JSON mostrando estrutura do customer com campos first name, last name, address, social media e phone numbers' style='max-width: 400px; border: 1px solid #ccc; margin: 10px 0;'>",
           options: [
-            "Azure Sentinel Playbooks",
-            "Azure Automation Runbooks",
-            "Logic Apps Workflows",
-            "Todas as anteriores"
+            "Uma raiz",
+            "Uma matriz",
+            "Um Objeto Raiz",
+            "Um objeto"
           ],
           answer: 2,
-          comment: "Azure oferece múltiplas opções para automação de resposta a incidentes."
+          comment: "<p><strong>Resposta correta: Um Objeto Raiz</strong></p><p>Analisando a estrutura do JSON:</p><ul><li>'customer' é o ponto de partida de todo o documento JSON</li><li>Contém todos os outros elementos como filhos (first name, last name, address, etc.)</li><li>É o primeiro nível hierárquico da estrutura de dados</li><li>Todos os demais objetos e arrays estão aninhados dentro dele</li></ul><p>Em JSON, o elemento principal que encapsula toda a estrutura é chamado de Objeto Raiz.</p>"
         },
         {
-          q: "Qual serviço Azure fornece proteção para dados em trânsito?",
+          q: "Sua empresa precisa implementar um banco de dados relacional no Azure. A solução deve minimizar a manutenção contínua.<p>Qual serviço do Azure você deve usar?</p>",
           options: [
-            "Azure VPN Gateway",
-            "Azure ExpressRoute",
-            "Azure Private Link",
-            "Todas as anteriores"
+            "Azure SQL Database",
+            "SQL Server on Azure Virtual Machines",
+            "Azure Cosmos DB",
+            "Azure HDInsight"
           ],
           answer: 0,
-          comment: "Esses serviços garantem segurança para dados em trânsito entre redes."
+          comment: "<p><strong>Resposta correta: Azure SQL Database</strong></p><p>O Azure SQL Database é um serviço de banco de dados relacional totalmente gerenciado (PaaS) que minimiza a manutenção contínua porque:</p><ul><li>Microsoft gerencia patches, backups e atualizações automaticamente</li><li>Escalabilidade automática e alta disponibilidade integrada</li><li>Não requer gerenciamento de sistema operacional ou infraestrutura</li><li>Manutenção proativa com inteligência artificial integrada</li></ul><p>SQL Server em VMs (IaaS) requer mais administração, Cosmos DB é NoSQL, e HDInsight é para big data.</p>"
         },
         {
-          q: "Qual recurso do Azure AD permite gerenciamento de identidades externas?",
+          q: "Um processo de extração, transformação e carregamento (ETL) que requer:",
           options: [
-            "Azure AD B2B",
-            "Azure AD B2C",
-            "External Identities",
-            "Todas as anteriores"
-          ],
-          answer: 1,
-          comment: "Azure AD oferece múltiplas soluções para identidades externas."
-        },
-        {
-          q: "Qual serviço Azure é usado para análise forense?",
-          options: [
-            "Azure Sentinel",
-            "Azure Monitor Logs",
-            "Azure Security Center",
-            "Microsoft Defender for Cloud"
-          ],
-          answer: 2,
-          comment: "Azure Sentinel fornece capacidades avançadas de análise forense."
-        },
-        {
-          q: "Qual recurso do Azure permite gerenciar segredos de aplicação?",
-          options: [
-            "Azure Key Vault Secrets",
-            "Azure App Configuration",
-            "Azure Service Bus",
-            "Azure Functions Configuration"
-          ],
-          answer: 0,
-          comment: "Azure Key Vault Secrets armazena e gerencia segredos de forma segura."
-        },
-        {
-          q: "Qual serviço Azure fornece proteção para DNS?",
-          options: [
-            "Azure DNS Private Resolver",
-            "Azure Firewall DNS Proxy",
-            "Azure Virtual Network DNS",
-            "Todas as anteriores"
+            "Que o destino de dados seja um banco de dados relacional",
+            "Um armazenamento de dados de destino poderoso o suficiente para transformar dados", 
+            "Um esquema correspondente na fonte de dados e no destino de dados",
+            "Os dados que são processados até o final, antes de serem carregados no armazenamento de dados de destino"
           ],
           answer: 3,
-          comment: "Azure oferece múltiplas opções para segurança e resolução DNS."
+          comment: "<p><strong>Resposta correta: Opção 4</strong></p><p>No processo ETL tradicional, a característica fundamental é que <strong>toda a transformação ocorre antes do carregamento</strong> no destino.</p><p>As outras opções são incorretas:</p><ul><li><strong>Opção 1:</strong> ETL pode carregar em vários tipos de destinos</li><li><strong>Opção 2:</strong> Esta é característica do ELT (transformação no destino)</li><li><strong>Opção 3:</strong> ETL pode trabalhar com esquemas diferentes através das transformações</li></ul>"
         },
         {
-          q: "Qual recurso do Azure permite monitoramento contínuo de segurança?",
+                    q: "Utilizando os conhecimentos de análise de dados, escolha a opção que representa a frase abaixo:<p>'Um gráfico que mostra a relação entre dois valores numéricos.'</p>",
           options: [
-            "Azure Security Center Continuous Export",
-            "Azure Sentinel Data Connectors",
-            "Azure Monitor Alerts",
-            "Todas as anteriores"
+            "Gráfico de Dispersão",
+            "Influenciador chave", 
+            "Gráfico Mapa de árvore"
           ],
           answer: 0,
-          comment: "Azure fornece múltiplos recursos para monitoramento contínuo de segurança."
+          comment: "<p><strong>Resposta correta: Gráfico de Dispersão</strong></p><p>O Gráfico de Dispersão (Scatter Plot) é especificamente projetado para visualizar a relação entre duas variáveis numéricas:</p><ul><li>Cada ponto no gráfico representa uma observação</li><li>O eixo X representa uma variável numérica</li><li>O eixo Y representa outra variável numérica</li><li>Permite identificar correlações, tendências e outliers</li></ul><p>Exemplo: relação entre altura e peso, ou entre investimento em marketing e vendas.</p>"
+        },
+        {
+          q: "Você tem um armazenamento de dados que possui a estrutura mostrada na imagem a seguir.<br><img src='image.png' alt='Estrutura de dados mostrando entidades Employee e Department com relacionamentos Works in e Reports to' style='max-width: 500px; border: 1px solid #ccc; margin: 10px 0;'><br>Que tipo de armazenamento é esse?",
+          options: [
+            "Série temporal",
+            "Chave/valor",
+            "Grafos",
+            "Dados do objeto"
+          ],
+          answer: 2,
+          comment: "<p><strong>Resposta correta: Grafos</strong></p><p>A estrutura representa um banco de dados de grafos porque:</p><ul><li>Mostra <strong>nós</strong> (vértices) - Employee (Sue, Bob, Frank, Jon, John) e Department (Sales, Accounts, Marketing)</li><li>Mostra <strong>arestas</strong> (relacionamentos) - 'Works in' e 'Reports to'</li><li>Permite modelar relações complexas entre entidades</li><li>Ideal para consultas que navegam por múltiplos níveis de relacionamento</li></ul><p>Bancos de grafos como Neo4j, Azure Cosmos DB Gremlin API são especializados neste modelo.</p>"
+        },
+        {
+          q: "Complete a sentença abaixo:<p>'Um bloco de código executado em um banco de dados é chamado de ......'</p>",
+          options: [
+            "View",
+            "Table",
+            "Stored procedure",
+            "Index"
+          ],
+          answer: 2,
+          comment: "<p><strong>Resposta correta: Stored procedure</strong></p><p>Uma stored procedure (procedimento armazenado) é exatamente isso: um bloco de código SQL que é armazenado e executado diretamente no banco de dados.</p><p>Características das stored procedures:</p><ul><li>Contêm lógica de negócio executada no servidor de banco de dados</li><li>Podem aceitar parâmetros de entrada</li><li>Retornam resultados ou afetam dados</li><li>Melhoram performance ao reduzir tráfego de rede</li><li>São pré-compiladas e armazenadas no banco</li></ul>"
+        },
+        {
+          q: "Complete a sentença:<p>'O mecanismo de processamento (MPP - Massively parallel processing) do Azure Synapse Analytics ...... .'</p>",
+          options: [
+            "distribui o processamento entre nós de controle",
+            "redireciona conexões de clientes entre nós de computação", 
+            "distribui o processamento entre nós de computação",
+            "redireciona conexões de clientes entre nós de controle"
+          ],
+          answer: 2,
+          comment: "<p><strong>Resposta correta: distribui o processamento entre nós de computação</strong></p><p>O MPP (Massively Parallel Processing) no Azure Synapse Analytics funciona distribuindo o processamento de consultas entre múltiplos nós de computação:</p><ul><li>Cada nó de computação processa uma parte dos dados em paralelo</li><li>O nó de controle coordena a distribuição e consolida os resultados</li><li>Permite processar grandes volumes de dados rapidamente</li><li>Escalabilidade horizontal - adiciona mais nós para maior performance</li></ul><p>Esta arquitetura é fundamental para o alto desempenho em data warehouses.</p>"
+        },
+        {
+          q: "Você tem um aplicativo de comércio eletrônico que lê e grava dados em um banco de dados SQL do Azure. Que tipo de processamento o aplicativo usa?",
+          options: [
+            "Processamento Analítico Online (OLAP)",
+            "processamento de fluxo", 
+            "Processamento de transações online (OLTP)",
+            "processamento em lote"
+          ],
+          answer: 2,
+          comment: "<p><strong>Resposta correta: Processamento de transações online (OLTP)</strong></p><p>Um aplicativo de e-commerce utiliza OLTP porque:</p><ul><li>Executa operações transacionais em tempo real (leituras e gravações)</li><li>Lida com transações curtas e rápidas (consultas de produtos, adicionar ao carrinho, finalizar compras)</li><li>Mantém a integridade dos dados com propriedades ACID</li><li>Otimizado para operações de CRUD (Create, Read, Update, Delete)</li></ul><p>OLAP seria para análise de dados, processamento em lote para operações agendadas, e processamento de fluxo para dados em tempo real contínuo.</p>"
+        },
+        {
+          q: "Complete a sentença abaixo:<p>'A análise descritiva diz ......'</p>",
+          options: [
+            "Por que algo ocorreu no passado",
+            "O que ocorreu no passado", 
+            "O que é mais provável de ocorrer no futuro",
+            "Quais ações você pode executar para afetar os resultados"
+          ],
+          answer: 1,
+          comment: "<p><strong>Resposta correta: O que ocorreu no passado</strong></p><p>A análise descritiva foca em resumir e descrever <strong>o que já aconteceu</strong> com base em dados históricos.</p><p>Características da análise descritiva:</p><ul><li>Resume dados passados através de relatórios e dashboards</li><li>Usa métricas como vendas totais, taxa de conversão, etc.</li><li>Responda perguntas como 'Quantas unidades vendemos no último trimestre?'</li><li>É a base para outros tipos de análise (diagnóstica, preditiva, prescritiva)</li></ul><p>As outras opções se referem a análise diagnóstica (porque), preditiva (futuro) e prescritiva (ações).</p>"
+        },
+        {
+          q: "Você tem a seguinte consulta SQL:<br><img src='image2.png' alt='Consulta SQL INSERT INTO dbo.Products (ProductID, ProductName, Price, ProductDescription) VALUES (1, Clamp, 12.48, Workbench clamp)' style='max-width: 500px; border: 1px solid #ccc; margin: 10px 0;'><br>Defina o que é 'ProductName'",
+          options: [
+            "Uma coluna",
+            "Um banco de dados",
+            "Um index", 
+            "Uma tabela"
+          ],
+          answer: 0,
+          comment: "<p><strong>Resposta correta: Uma coluna</strong></p><p>Na consulta SQL mostrada, 'ProductName' é uma <strong>coluna</strong> da tabela 'dbo.Products'.</p><p>Análise da estrutura:</p><ul><li><strong>dbo.Products</strong> - nome da tabela</li><li><strong>ProductID, ProductName, Price, ProductDescription</strong> - colunas da tabela</li><li><strong>VALUES</strong> - valores que serão inseridos nas respectivas colunas</li></ul><p>Portanto, ProductName é um campo/coluna que armazenará o nome do produto na tabela Products.</p>"
+        },
+        {
+          q: "Uma equipe de desenvolvedores possui computadores que executam Windows 10 e Ubuntu Desktop. Os desenvolvedores precisam se conectar e consultar um banco de dados SQL do Azure em cada um dos seus computadores. Os desenvolvedores exigem recursos de assistência de código, como IntelliSense. O que os desenvolvedores devem usar?",
+          options: [
+            "Azure Data Studio",
+            "sqlcmd", 
+            "Azure Data Explorer",
+            "Microsoft SQL Server Management Studio (SSMS)"
+          ],
+          answer: 0,
+          comment: "<p><strong>Resposta correta: Azure Data Studio</strong></p><p>O Azure Data Studio é a ferramenta ideal porque:</p><ul><li>É <strong>multiplataforma</strong> - funciona no Windows, Linux (Ubuntu) e macOS</li><li>Oferece <strong>IntelliSense</strong> completo para SQL</li><li>Conecta-se ao Azure SQL Database</li><li>Interface gráfica moderna com notebooks integrados</li><li>Extensível com extensões</li></ul><p>As outras opções não atendem aos requisitos: SSMS só funciona no Windows, sqlcmd não tem IntelliSense, e Azure Data Explorer é um serviço diferente.</p>"
+        },
+        {
+          q: "Sua empresa planeja carregar dados de um sistema de gerenciamento de relacionamento com o cliente (CRM) para um data warehouse usando um processo de extração, carregamento e transformação (ELT). A opção Load do ETL está para qual opção?",
+          options: [
+		    "Uma ferramenta de integração de dados na memória",
+            "O Data warehouse", 
+            "Do sistema CRM"
+          ],
+          answer: 1,
+          comment: "<p><strong>Resposta correta: O Data warehouse</strong></p><p>No processo ELT (Extract, Load, Transform):</p><ul><li><strong>Extract (E)</strong> - Extrai dados do sistema CRM (fonte)</li><li><strong>Load (L)</strong> - Carrega os dados brutos diretamente no <strong>Data warehouse</strong> (destino)</li><li><strong>Transform (T)</strong> - Transforma os dados dentro do próprio data warehouse</li></ul><p>A principal diferença para ETL é que no ELT os dados são carregados primeiro no destino (data warehouse) e só depois transformados, aproveitando o poder de processamento do data warehouse.</p>"
+        },
+        {
+          q: "Qual serviço é possível utilizar JSON (pares de Chave/valor)?",
+          options: [
+            "Azure blob storage",
+            "Azure Cosmos DB Gremlin API", 
+            "Azure Table Storage"
+          ],
+          answer: 2,
+          comment: "<p><strong>Resposta correta: Azure Table Storage</strong></p><p>O Azure Table Storage é um serviço de banco de dados NoSQL que utiliza o modelo de pares chave/valor:</p><ul><li>Estrutura composta por PartitionKey e RowKey</li><li>Cada entidade pode ter propriedades adicionais (pares chave/valor)</li><li>Suporta dados semi-estruturados e flexíveis</li><li>Ideal para armazenar dados JSON de forma nativa</li></ul><p>As outras opções: Azure Blob Storage armazena arquivos binários, e Cosmos DB Gremlin API é para bancos de grafos, não para modelo chave/valor.</p>"
+        },
+        {
+          q: "Complete a sentença abaixo:<p>'Um banco de dados relacional é apropriado para cenários que envolvem um grande volume de ......'.</p>",
+          options: [
+            "gravações distribuídas geograficamente",
+            "gravações transacionais", 
+            "mudanças nos relacionamentos entre entidades",
+            "escrita de estruturas variadas de dados"
+          ],
+          answer: 1,
+          comment: "<p><strong>Resposta correta: gravações transacionais</strong></p><p>Bancos de dados relacionais são otimizados para:</p><ul><li>Transações ACID (Atomicidade, Consistência, Isolamento, Durabilidade)</li><li>Operações de leitura e escrita transacionais</li><li>Estrutura de dados consistente com esquema definido</li><li>Integridade referencial entre tabelas relacionadas</li></ul><p>Exemplos típicos: sistemas bancários, e-commerce, ERP - onde múltiplas operações devem ser processadas como uma única unidade lógica.</p>"
+        },
+        {
+          q: "Você precisa modificar uma visualização em um banco de dados relacional adicionando uma nova coluna. Qual comando você deve usar?",
+          options: [
+            "UPDATE",
+            "INSERT", 
+            "ALTER",
+            "MERGE"
+          ],
+          answer: 2,
+          comment: "<p><strong>Resposta correta: ALTER</strong></p><p>O comando <strong>ALTER VIEW</strong> é usado para modificar uma visualização existente em um banco de dados relacional.</p><p>Exemplo de sintaxe:</p><pre>ALTER VIEW nome_da_view AS<br>SELECT coluna1, coluna2, nova_coluna<br>FROM tabela<br>WHERE condicao;</pre><p>Os outros comandos têm funções diferentes:</p><ul><li>UPDATE - modifica dados em tabelas</li><li>INSERT - insere novos registros</li><li>MERGE - combina operações de INSERT, UPDATE e DELETE</li></ul>"
+        },
+        {
+          q: "Complete a sentença:<p>'No processamento em lote .......'</p>",
+          options: [
+            "O processamento só pode ser executado em série",
+            "Os dados são processados em tempo real", 
+            "A latência na entrega dos resultados do processamento de dados é aceitável",
+            "Os dados são sempre inseridos uma linha por vez"
+          ],
+          answer: 2,
+          comment: "<p><strong>Resposta correta: A latência na entrega dos resultados do processamento de dados é aceitável</strong></p><p>O processamento em lote (batch processing) caracteriza-se por:</p><ul><li>Processamento de grandes volumes de dados em grupos</li><li>Execução em horários agendados ou quando há dados suficientes</li><li><strong>Latência aceitável</strong> - os resultados não precisam ser imediatos</li><li>Pode ser executado em paralelo para melhor performance</li></ul><p>Exemplos: relatórios diários, processamento de folha de pagamento, ETL noturno - onde a entrega dos resultados pode levar horas ou até dias.</p>"
+        },
+        {
+          q: "Você possui um modelo de dados, precisa analisá-lo e completar a frase.<br><img src='image3.png' alt='Modelo de dados mostrando tabelas Customer, Product, Sales, SalesPerson e Warehouse com suas chaves primárias e estrangeiras' style='max-width: 500px; border: 1px solid #ccc; margin: 10px 0;'><br>'Tabela Customer é .........'",
+          options: [
+            "uma tabela de fatos",
+            "uma tabela de dimensão", 
+            "uma tabela de ponte",
+            "uma tabela de junção"
+          ],
+          answer: 1,
+          comment: "<p><strong>Resposta correta: uma tabela de dimensão</strong></p><p>Analisando o modelo de dados:</p><ul><li><strong>Customer</strong> é uma tabela de dimensão - contém dados descritivos (atributos dos clientes)</li><li><strong>Sales</strong> é a tabela de fatos - contém métricas e medidas transacionais</li><li><strong>Product, SalesPerson, Warehouse</strong> são tabelas de dimensão</li><li>As chaves estrangeiras na tabela Sales conectam às dimensões</li></ul><p>Em modelagem dimensional (data warehouse), tabelas de dimensão descrevem entidades de negócio, enquanto tabelas de fatos registram eventos mensuráveis.</p>"
+        },
+        {
+          q: "Qual ferramenta de linha de comando você pode usar para consultar bancos de dados SQL do Azure?",
+          options: [
+            "sqlcmd",
+            "azdata", 
+            "bcp",
+            "CLI do Azure"
+          ],
+          answer: 0,
+          comment: "<p><strong>Resposta correta: sqlcmd</strong></p><p>O <strong>sqlcmd</strong> é a ferramenta de linha de comando específica para executar consultas SQL em bancos de dados SQL Server e Azure SQL Database.</p><p>Características do sqlcmd:</p><ul><li>Executa consultas T-SQL diretamente no prompt de comando</li><li>Conecta-se ao Azure SQL Database usando string de conexão</li><li>Permite automatizar scripts SQL</li><li>Disponível no Windows, Linux e macOS</li></ul><p>As outras ferramentas têm funções diferentes: azdata (gerenciamento), bcp (import/export de dados), CLI do Azure (gerenciamento de recursos Azure).</p>"
+        },
+        {
+          q: "Complete a sentença abaixo:<p>'Campos variados para cada entidade em um documento JSON são um exemplo de .......'</p>",
+          options: [
+            "dados não estruturados",
+            "dados estruturados", 
+            "dados semi-estruturados",
+            "dados relacionais"
+          ],
+          answer: 2,
+          comment: "<p><strong>Resposta correta: dados semi-estruturados</strong></p><p>JSON é um formato típico de <strong>dados semi-estruturados</strong> porque:</p><ul><li>Possui uma estrutura definida (chaves/valores, arrays, objetos)</li><li>Mas permite <strong>flexibilidade</strong> - campos podem variar entre documentos</li><li>Não exige um esquema rígido como bancos relacionais</li><li>Pode ter campos opcionais ou diferentes para cada entidade</li></ul><p>Exemplo: um documento JSON de cliente pode ter 'email' enquanto outro não tem, mas ambos são válidos. Isso diferencia de dados estruturados (esquema fixo) e não estruturados (sem estrutura).</p>"
+        },
+        {
+          q: "Você precisa projetar e modelar um banco de dados usando uma ferramenta gráfica que ofereça suporte ao desenvolvimento de banco de dados offline orientado a projetos. O que você deve usar?",
+          options: [
+            "Microsoft SQL Server Management Studio (SSMS)",
+            "Microsoft SQL Server Data Tools (SSDT)", 
+            "Azure Data Studio",
+            "Azure Databricks"
+          ],
+          answer: 1,
+          comment: "<p><strong>Resposta correta: Microsoft SQL Server Data Tools (SSDT)</strong></p><p>O SSDT é a ferramenta ideal para desenvolvimento de banco de dados offline orientado a projetos porque:</p><ul><li>Permite criar projetos de banco de dados no Visual Studio</li><li>Oferece modelagem gráfica com Designer de Tabelas</li><li>Suporte completo para desenvolvimento offline</li><li>Controle de versão integrado com sistemas como Git</li><li>Gera scripts de implantação e atualização</li></ul><p>As outras opções: SSMS e Azure Data Studio são mais para administração e consultas, Azure Databricks é para análise de dados e machine learning.</p>"
+        },
+        {
+          q: "Qual solução de armazenamento oferece suporte a listas de controle de acesso (ACLs) em nível de arquivo e pasta?",
+          options: [
+            "Azure Cosmos DB",
+            "Azure Queue storage", 
+            "Azure Data Lake Storage",
+            "Azure Blob storage"
+          ],
+          answer: 2,
+          comment: "<p><strong>Resposta correta: Azure Data Lake Storage</strong></p><p>O Azure Data Lake Storage Gen2 oferece suporte completo a ACLs (Access Control Lists) em nível de arquivo e pasta:</p><ul><li>Controle de acesso granular para arquivos e diretórios específicos</li><li>Suporte a POSIX-compliant permissions</li><li>Permissões de leitura, escrita e execução</li><li>Herança de permissões entre pastas</li></ul><p>As outras opções não oferecem esse nível de granularidade: Azure Blob Storage tem ACLs apenas em nível de contêiner, Cosmos DB e Queue Storage têm modelos de autorização diferentes.</p>"
+        },
+        {
+          q: "Você tem uma consulta SQL que combina dados do cliente e dados do pedido. A consulta inclui colunas calculadas. Você precisa criar um objeto de banco de dados que permita que outros usuários executem novamente a mesma consulta SQL. O que você deve criar?",
+          options: [
+            "Uma tabela",
+            "Uma função escalar (scalar function)", 
+            "Uma VIEW",
+			"Um índice"
+          ],
+          answer: 2,
+          comment: "<p><strong>Resposta correta: Uma VIEW</strong></p><p>Uma VIEW é o objeto ideal para este cenário porque:</p><ul><li>Armazena a consulta SQL como um objeto reutilizável no banco de dados</li><li>Permite que múltiplos usuários executem a mesma consulta complexa</li><li>Suporta colunas calculadas, junções e agregações</li><li>Fornece uma interface simplificada para consultas complexas</li><li>Mantém a segurança - usuários só acessam as colunas definidas na view</li></ul><p>As outras opções: tabela armazenaria dados duplicados, função escalar retorna apenas um valor único.</p>"
         },
       ];
 
       // Página 3 - Questões 61-80
       currentQuestions.questions3 = [
         {
-          q: "Qual serviço Azure é usado para proteger máquinas virtuais Windows?",
+          q: "Qual propriedade de uma carga de trabalho transacional garante que cada transação seja tratada como uma única unidade que seja bem-sucedida ou falhe completamente?",
           options: [
-            "Microsoft Defender for Servers",
-            "Azure Security Center",
-            "Azure Sentinel",
-            "Azure Monitor"
-          ],
-          answer: 0,
-          comment: "Microsoft Defender for Servers fornece proteção avançada para VMs Windows e Linux."
-        },
-        {
-          q: "Qual recurso do Azure AD permite autenticação baseada em certificado?",
-          options: [
-            "Certificate-Based Authentication",
-            "Smart Card Authentication",
-            "FIDO2 Authentication",
-            "Windows Hello for Business"
-          ],
-          answer: 1,
-          comment: "Azure AD suporta autenticação baseada em certificados para acesso seguro."
-        },
-        {
-          q: "Qual serviço Azure fornece proteção para aplicações web?",
-          options: [
-            "Azure Web Application Firewall",
-            "Azure Application Gateway",
-            "Azure Front Door",
-            "Todas as anteriores"
+            "Consistência",
+            "Isolamento",
+            "Atomicidade",
+            "Durabilidade"
           ],
           answer: 2,
-          comment: "Esses serviços trabalham juntos para proteger aplicações web em Azure."
+          comment: "<p><strong>Resposta correta: Atomicidade</strong></p><p>A propriedade ACID da <strong>Atomicidade</strong> garante que uma transação seja tratada como uma única unidade indivisível - ou todas as operações da transação são executadas com sucesso, ou nenhuma delas é executada.</p><p>Exemplo prático: em uma transferência bancária, tanto o débito de uma conta quanto o crédito na outra devem ocorrer, ou nenhum dos dois - não pode acontecer apenas um deles.</p><p>As outras propriedades ACID são:</p><ul><li><strong>Consistência</strong> - mantém as regras de integridade do banco</li><li><strong>Isolamento</strong> - controla o acesso concorrente às transações</li><li><strong>Durabilidade</strong> - garante que transações confirmadas sejam permanentes</li></ul>"
         },
         {
-          q: "Qual recurso do Azure permite gerenciar identidades gerenciadas?",
+          q: "Você tem um banco de dados SQL do Azure que pode ser acessado diretamente da Internet. Você alterou recentemente o endereço IP público do seu computador. Após alterar o endereço IP, você não poderá mais acessar o banco de dados. Você pode conectar-se a outros recursos no Azure. Qual é a possível causa do problema?",
           options: [
-            "Managed Identities",
-            "Service Principals",
-            "Azure AD Applications",
-            "Azure AD Managed Service Identity"
+            "Controle de acesso baseado em função (RBAC)",
+            "Protocolo de configuração dinâmica de host (DHCP)", 
+            "Um firewall em nível de banco de dados",
+            "Serviço de Nome de Domínio (DNS)"
           ],
-          answer: 0,
-          comment: "Managed Identities fornecem identidades automaticamente gerenciadas para recursos Azure."
+          answer: 2,
+          comment: "<p><strong>Resposta correta: Um firewall em nível de banco de dados</strong></p><p>O Azure SQL Database possui um firewall que controla o acesso baseado em endereços IP. Quando você alterou seu IP público:</p><ul><li>O novo endereço IP não está na lista de permissões do firewall</li><li>O firewall bloqueia conexões de IPs não autorizados</li><li>Você precisa adicionar o novo IP às regras de firewall do SQL Database</li></ul><p>As outras opções não se aplicam: RBAC gerencia permissões de usuário, DHCP atribui IPs internamente, DNS resolve nomes mas não bloqueia conexões baseadas em IP.</p>"
         },
         {
-          q: "Qual serviço Azure é usado para backup de bancos de dados?",
+          q: "Qual serviço pode ser utilizado para armazenar arquivos de imagem?",
           options: [
-            "Azure Backup for SQL",
-            "Azure Database Backup",
-            "Azure Site Recovery",
-            "Azure Snapshot"
+            "Azure Table Storage",
+            "Azure blob storage", 
+            "Azure Cosmos DB Gremlin API"
           ],
           answer: 1,
-          comment: "Azure Backup fornece soluções de backup para bancos de dados SQL."
+          comment: "<p><strong>Resposta correta: Azure blob storage</strong></p><p>O Azure Blob Storage é o serviço ideal para armazenar arquivos de imagem porque:</p><ul><li>Projetado especificamente para armazenar objetos binários grandes (blobs)</li><li>Suporta qualquer tipo de arquivo (JPEG, PNG, GIF, etc.)</li><li>Oferece tieres de armazenamento econômicos (hot, cool, archive)</li><li>Fornece alta disponibilidade e durabilidade</li><li>Permite acesso via URL e integração com CDN</li></ul><p>As outras opções: Table Storage é para dados estruturados, Cosmos DB Gremlin API é para bancos de grafos.</p>"
         },
         {
-          q: "Qual recurso do Azure Security Center fornece recomendações de segurança?",
+          q: "Você precisa garantir que os usuários usem a autenticação multifator (MFA) ao se conectarem a um banco de dados SQL do Azure. Que tipo de autenticação você deve usar?",
           options: [
-            "Secure Score",
-            "Security Recommendations",
-            "Compliance Dashboard",
-            "Threat Protection"
-          ],
-          answer: 0,
-          comment: "Security Recommendations fornece orientações específicas para melhorar a segurança."
-        },
-        {
-          q: "Qual serviço Azure fornece proteção para redes híbridas?",
-          options: [
-            "Azure Firewall",
-            "Azure VPN Gateway",
-            "Azure ExpressRoute",
-            "Todas as anteriores"
+            "Certificate authentication",
+            "Service principal authentication", 
+            "SQL authentication",
+            "Azure Active Directory (Azure AD) authentication (Microsoft ENTRA ID)"
           ],
           answer: 3,
-          comment: "Esses serviços trabalham juntos para proteger redes híbridas Azure e locais."
+          comment: "<p><strong>Resposta correta: Azure Active Directory (Azure AD) authentication (Microsoft ENTRA ID)</strong></p><p>O Azure Active Directory (agora Microsoft Entra ID) é o único método de autenticação que suporta MFA para o Azure SQL Database porque:</p><ul><li>Integra-se com Azure AD Conditional Access policies</li><li>Permite configurar MFA obrigatório para acesso ao banco de dados</li><li>Oferece autenticação moderna baseada em identidade</li><li>Suporta SSO (Single Sign-On) e autenticação sem senha</li></ul><p>Os outros métodos não suportam MFA: SQL authentication usa apenas usuário/senha, Certificate e Service Principal são para automação e aplicações.</p>"
         },
         {
-          q: "Qual recurso do Azure AD permite gerenciamento de acesso just-in-time?",
+          q: "Complete a sentença abaixo:<p>'Um banco de dados relacional deve ser usado quando .......'</p>",
           options: [
-            "Privileged Identity Management",
-            "Conditional Access",
-            "Identity Protection",
-            "Access Reviews"
+            "os dados serão armazenados como pares chave/valor",
+            "armazenar imagens e vídeos grandes", 
+            "são permitidas fortes garantias de consistência",
+            "um esquema dinâmico é necessário"
           ],
           answer: 2,
-          comment: "PIM permite acesso privilegiado just-in-time com aprovação e timeouts."
+          comment: "<p><strong>Resposta correta: são permitidas fortes garantias de consistência</strong></p><p>Bancos de dados relacionais são ideais quando se necessita de fortes garantias de consistência ACID porque:</p><ul><li>Garantem transações atômicas (todas as operações ocorrem ou nenhuma)</li><li>Mantêm integridade referencial entre tabelas</li><li>Oferecem consistência imediata dos dados</li><li>Validam dados contra esquemas predefinidos</li></ul><p>As outras opções são mais adequadas para outros tipos de bancos:</p><ul><li>Pares chave/valor - Bancos NoSQL como Redis, Cosmos DB</li><li>Imagens/vídeos - Azure Blob Storage</li><li>Esquema dinâmico - Bancos de documentos como MongoDB</li></ul>"
         },
         {
-          q: "Qual serviço Azure é usado para monitorar ameaças avançadas?",
+          q: "Você precisa recomendar um armazenamento de dados não relacional otimizado para armazenar e recuperar arquivos, vídeos, fluxo de áudio e imagens de disco virtual. O armazenamento de dados deve armazenar dados, alguns metadados e um ID exclusivo para cada arquivo. Que tipo de armazenamento de dados você deve recomendar?",
           options: [
-            "Azure Sentinel",
-            "Microsoft Defender for Cloud",
-            "Azure Security Center",
-            "Todas as anteriores"
+            "objeto",
+            "Documento", 
+            "colunar",
+            "chave/valor (Key/value)"
           ],
           answer: 0,
-          comment: "Esses serviços trabalham juntos para detectar e responder a ameaças avançadas."
+          comment: "<p><strong>Resposta correta: objeto</strong></p><p>O armazenamento de <strong>objetos</strong> é o ideal para este cenário porque:</p><ul><li>Otimizado para arquivos binários grandes (imagens, vídeos, áudio)</li><li>Armazena dados + metadados + ID único para cada objeto</li><li>Escalabilidade horizontal ilimitada</li><li>Acesso via HTTP/HTTPS com URLs únicas</li></ul><p>Exemplos: Azure Blob Storage, Amazon S3</p><p>Os outros modelos não são adequados:</p><ul><li>Documento - para dados semi-estruturados (JSON, XML)</li><li>Colunar - para análise de dados com agregações</li><li>Chave/valor - para dados simples com acesso rápido</li></ul>"
         },
         {
-          q: "Qual recurso do Azure permite criptografia de disco?",
+          q: "Qual serviço do Azure oferece maior compatibilidade para bancos de dados migrados do Microsoft SQL Server 2019 Enterprise edition?",
           options: [
-            "Azure Disk Encryption",
-            "Azure Storage Service Encryption",
-            "Azure SQL TDE",
-            "Todas as anteriores"
+            "Banco de Dados SQL do Azure",
+            "Pool elástico do Banco de Dados SQL do Azure", 
+            "Banco de Dados do Azure para MySQL",
+            "Instância Gerenciada do Azure SQL"
           ],
           answer: 3,
-          comment: "Azure Disk Encryption criptografa discos de máquinas virtuais Windows e Linux."
+          comment: "<p><strong>Resposta correta: Instância Gerenciada do Azure SQL</strong></p><p>A Instância Gerenciada do Azure SQL oferece a maior compatibilidade com SQL Server porque:</p><ul><li>Suporta quase 100% da área de superfície do SQL Server</li><li>Compatível com SQL Server Agent, Service Broker, CLR</li><li>Oferece suporte a instâncias (diferente do Banco de Dados SQL)</li><li>Permite lift-and-shift de aplicações existentes</li><li>Ideal para migrações complexas do SQL Server Enterprise</li></ul><p>As outras opções têm limitações: Banco de Dados SQL é mais limitado em features, Pool Elástico usa a mesma engine, e MySQL é um banco completamente diferente.</p>"
         },
         {
-          q: "Qual serviço Azure fornece proteção para aplicações móveis?",
+          q: "Sua empresa precisa criar um banco de dados que mostre como os dispositivos de rede individuais estão sendo usados em uma rede local. Qual tipo de armazenamento de dados você deveria usar?",
           options: [
-            "Microsoft Intune",
-            "Azure AD Conditional Access",
-            "Azure App Service",
-            "Todas as anteriores"
+            "Documents",
+            "Colunar", 
+            "Chave/valor",
+            "Grafos"
+          ],
+          answer: 3,
+          comment: "<p><strong>Resposta correta: Grafos</strong></p><p>Bancos de dados de <strong>grafos</strong> são ideais para modelar relacionamentos complexos entre entidades, como dispositivos em uma rede porque:</p><ul><li>Permitem modelar dispositivos como <strong>nós</strong> (switches, roteadores, computadores)</li><li>Representam conexões e dependências como <strong>arestas</strong></li><li>Facilitam consultas de relacionamento (ex: quais dispositivos se conectam a um switch específico)</li><li>Mostram padrões de uso e dependências na rede</li></ul><p>Exemplos: Azure Cosmos DB com API Gremlin, Neo4j. Os outros modelos não são otimizados para relacionamentos complexos.</p>"
+        },
+        {
+          q: "Um engenheiro de dados é responsável por qual tarefa?",
+          options: [
+            "Implementar políticas e ferramentas e processos para planos de backup e recuperação.",
+            "Projetar e implementar armazenamento de dados para cargas de trabalho analíticas.",
+            "Projetar e construir modelos analíticos.",
+            "Explore dados para identificar tendências."
           ],
           answer: 1,
-          comment: "Esses serviços trabalham juntos para proteger aplicações móveis e acesso."
+          comment: "<p><strong>Resposta correta: Projetar e implementar armazenamento de dados para cargas de trabalho analíticas</strong></p><p>O engenheiro de dados é responsável pela infraestrutura de dados:</p><ul><li>Projetar pipelines de dados (ETL/ELT)</li><li>Implementar data warehouses e data lakes</li><li>Otimizar armazenamento para consultas analíticas</li><li>Garantir qualidade e disponibilidade dos dados</li></ul><p>As outras funções pertencem a:</p><ul><li>Backup/recuperação - Administrador de BD</li><li>Modelos analíticos - Cientista de dados</li><li>Identificar tendências - Analista de dados</li></ul>"
         },
         {
-          q: "Qual recurso do Azure permite gerenciamento centralizado de políticas?",
+          q: "Complete a sentença abaixo:<p>'Em um banco de dados relacional, ...... identifique exclusivamente cada linha em uma tabela'</p>",
           options: [
-            "Azure Policy",
-            "Azure Blueprints",
-            "Management Groups",
-            "Todas as anteriores"
-          ],
-          answer: 2,
-          comment: "Esses recursos permitem gerenciamento centralizado de políticas em escala."
-        },
-        {
-          q: "Qual serviço Azure é usado para análise comportamental?",
-          options: [
-            "Azure Sentinel UEBA",
-            "Microsoft Defender for Identity",
-            "Azure AD Identity Protection",
-            "Todas as anteriores"
-          ],
-          answer: 3,
-          comment: "Esses serviços usam análise comportamental para detectar ameaças."
-        },
-        {
-          q: "Qual recurso do Azure permite backup automático?",
-          options: [
-            "Azure Backup Policy",
-            "Azure Site Recovery",
-            "Azure Snapshot Policy",
-            "Azure Archive Policy"
+            "a chave primária",
+            "uma chave estrangeira", 
+            "o índice não clusterizado",
+            "uma cláusula where"
           ],
           answer: 0,
-          comment: "Azure Backup Policy permite agendar e automatizar backups."
+          comment: "<p><strong>Resposta correta: a chave primária</strong></p><p>A <strong>chave primária</strong> é o elemento que identifica exclusivamente cada linha em uma tabela de banco de dados relacional porque:</p><ul><li>Garante que cada registro seja único e identificável</li><li>Não permite valores duplicados ou nulos</li><li>É usada para estabelecer relacionamentos com outras tabelas</li><li>Pode ser simples (uma coluna) ou composta (múltiplas colunas)</li></ul><p>As outras opções têm funções diferentes:</p><ul><li>Chave estrangeira - cria relacionamentos entre tabelas</li><li>Índice não clusterizado - melhora performance de consultas</li><li>Cláusula WHERE - filtra resultados em consultas</li></ul>"
         },
         {
-          q: "Qual serviço Azure fornece proteção para APIs REST?",
+          q: "Você precisa criar um recurso do Azure para armazenar dados no armazenamento da Tabela do Azure. Qual comando você deve executar?",
           options: [
-            "Azure API Management",
-            "Azure Application Gateway",
-            "Azure Front Door",
-            "Todas as anteriores"
-          ],
-          answer: 1,
-          comment: "Esses serviços fornecem segurança abrangente para APIs REST."
-        },
-        {
-          q: "Qual recurso do Azure AD permite autenticação passwordless?",
-          options: [
-            "Windows Hello for Business",
-            "Microsoft Authenticator",
-            "FIDO2 Security Keys",
-            "Todas as anteriores"
+            "az cosmos db criar",
+            "az storage share create", 
+            "az storage account create",
+            "az storage container create"
           ],
           answer: 2,
-          comment: "Azure AD suporta múltiplos métodos de autenticação passwordless."
+          comment: "p><strong>Resposta correta: az storage account create</strong></p><p>Para usar o Azure Table Storage, você precisa primeiro criar uma <strong>conta de armazenamento</strong>, pois o Table Storage é um dos serviços incluídos em uma conta do Azure Storage.</p><p>Fluxo correto:</p><ol><li><code>az storage account create</code> - cria a conta de armazenamento</li><li><code>az storage table create</code> - cria a tabela dentro da conta</li></ol><p>Os outros comandos criam recursos diferentes:</p><ul><li>az cosmos db create - cria conta Cosmos DB (não Table Storage)</li><li>az storage share create - cria compartilhamento de arquivos</li><li>az storage container create - cria contêiner para Blob Storage</li></ul>"
         },
         {
-          q: "Qual serviço Azure é usado para proteger dados em uso?",
+          q: "Complete a sentença abaixo:<p>'Os dados relacionais são armazenados em .......'</p>",
           options: [
-            "Azure Confidential Computing",
-            "Azure Encryption",
-            "Azure Key Vault",
-            "Azure Security Center"
+            "Uma estrutura hierárquica de pastas",
+            "Uma forma tabular de linhas e colunas", 
+            "Um sistema de arquivos como dados não estruturados",
+            "Arquivos de valores separados por vírgula (CSV)"
+          ],
+          answer: 1,
+          comment: "<p><strong>Resposta correta: Uma forma tabular de linhas e colunas</strong></p><p>Os dados relacionais são organizados em <strong>tabelas</strong> com estrutura tabular porque:</p><ul><li>Cada tabela possui colunas (atributos) e linhas (registros)</li><li>As colunas definem o esquema e tipo de dados</li><li>As linhas representam instâncias individuais dos dados</li><li>As tabelas se relacionam através de chaves primárias e estrangeiras</li></ul><p>As outras opções descrevem outros formatos:</p><ul><li>Estrutura hierárquica - Bancos NoSQL ou sistemas de arquivos</li><li>Sistema de arquivos - Dados não estruturados</li><li>Arquivos CSV - Formato de intercâmbio de dados, não armazenamento relacional nativo</li></ul>"
+        },
+        {
+          q: "A sua empresa precisa de garantir que uma máquina virtual do Azure pode ligar-se a bases de dados SQL do Azure sem expor as bases de dados à Internet. O que você deve usar?",
+          options: [
+            "Azure Private Link",
+            "Azure Application Gateway", 
+            "Azure Traffic Manager",
+            "Azure DNS"
           ],
           answer: 0,
-          comment: "Azure Confidential Computing protege dados durante o processamento."
+          comment: "<p><strong>Resposta correta: Azure Private Link</strong></p><p>O Azure Private Link é a solução ideal porque:</p><ul><li>Permite conectar-se ao Azure SQL Database através de um <strong>endpoint privado</strong> na VNet</li><li>O tráfego fica totalmente na <strong>rede backbone da Microsoft</strong>, sem exposição à Internet</li><li>Fornece conectividade segura e privada entre a VM e o banco de dados</li><li>Atende a requisitos de compliance e segurança</li></ul><p>As outras opções não resolvem este problema:</p><ul><li>Application Gateway - balanceamento de carga para aplicações web</li><li>Traffic Manager - roteamento de tráfego DNS global</li><li>Azure DNS - serviço de hospedagem de zonas DNS</li></ul>"
         },
         {
-          q: "Qual recurso do Azure permite monitoramento de integridade de segurança?",
+          q: "Você precisa armazenar dados no armazenamento de Blobs do Azure por sete anos para atender aos requisitos de conformidade da sua empresa. O tempo de recuperação dos dados não é importante. A solução deve minimizar os custos de armazenamento. Qual camada de armazenamento você deve usar?",
           options: [
-            "Azure Security Center Secure Score",
-            "Azure Sentinel Health Monitoring",
-            "Azure Monitor Health",
-            "Azure Advisor Recommendations"
-          ],
-          answer: 3,
-          comment: "Secure Score mede a postura de segurança e fornece métricas de melhoria."
-        },
-        {
-          q: "Qual serviço Azure fornece proteção para redes sociais?",
-          options: [
-            "Microsoft Defender for Office 365",
-            "Azure AD Identity Protection",
-            "Microsoft Cloud App Security",
-            "Todas as anteriores"
+            "Quente",
+            "Arquivo", 
+            "Fria"
           ],
           answer: 1,
-          comment: "Microsoft Cloud App Security protege aplicações de nuvem, incluindo redes sociais."
+          comment: "<p><strong>Resposta correta: Arquivo</strong></p><p>A camada <strong>Arquivo</strong> é a mais econômica para armazenamento de longo prazo porque:</p><ul><li>Oferece o <strong>menor custo de armazenamento</strong> entre todas as camadas</li><li>Ideal para dados que precisam ser retidos por anos (7 anos neste caso)</li><li>O tempo de recuperação não é crítico (horas são aceitáveis)</li><li>Perfeito para requisitos de compliance e retenção legal</li></ul><p>As outras camadas são mais caras:</p><ul><li>Quente - Para dados acessados frequentemente</li><li>Fria - Para dados acessados ocasionalmente (custo intermediário)</li></ul><p>O Archive tem custos de recuperação, mas como o tempo não é importante, é a opção mais econômica.</p>"
         },
         {
-          q: "Qual recurso do Azure permite resposta rápida a incidentes?",
+          q: "Qual formato de arquivo possui nomes e tipos de dados definidos para cada coluna e utiliza armazenamento colunar comprimido?",
           options: [
-            "Azure Sentinel Incidents",
-            "Azure Security Center Alerts",
-            "Azure Monitor Action Groups",
-            "Todas as anteriores"
+            "CSV",
+            "HTML", 
+            "Apache Parquet",
+            "JSON"
           ],
           answer: 2,
-          comment: "Esses recursos permitem detecção e resposta rápidas a incidentes de segurança."
+          comment: "<p><strong>Resposta correta: Apache Parquet</strong></p><p>O Apache Parquet é um formato de arquivo colunar otimizado para processamento analítico porque:</p><ul><li>Armazena dados em <strong>formato colunar</strong> - organiza por colunas em vez de linhas</li><li>Utiliza <strong>compressão eficiente</strong> para reduzir espaço em disco</li><li>Define <strong>esquema com nomes e tipos de dados</strong> para cada coluna</li><li>Otimizado para consultas que acessam colunas específicas</li><li>Ideal para data lakes e processamento de big data</li></ul><p>Os outros formatos não atendem a estas características: CSV não tem tipos de dados nativos, HTML é para web, e JSON é semi-estruturado e linha por linha.</p>"
+        },
+        {
+          q: "Qual é o objetivo principal de um data warehouse?",
+          options: [
+            "para fornecer armazenamento para aplicativos transacionais de linha de negócios (LOB)",
+            "para fornecer serviços de transformação entre armazenamentos de dados de origem e de destino", 
+            "para fornecer respostas a consultas complexas que dependem de dados de múltiplas fontes",
+            "para fornecer armazenamento somente leitura de dados históricos relacionais e não relacionais"
+          ],
+          answer: 2,
+          comment: "<p><strong>Resposta correta: para fornecer respostas a consultas complexas que dependem de dados de múltiplas fontes</strong></p><p>O objetivo principal de um data warehouse é consolidar dados de múltiplas fontes para permitir análise e business intelligence:</p><ul><li>Integra dados de sistemas transacionais diferentes</li><li>Otimizado para consultas analíticas complexas (OLAP)</li><li>Permite análise histórica e tendências de negócio</li><li>Suporta tomada de decisão baseada em dados</li></ul><p>As outras opções descrevem funções secundárias ou de outros sistemas:</p><ul><li>Armazenamento para apps transacionais - Sistemas OLTP</li><li>Serviços de transformação - Ferramentas ETL/ELT</li><li>Armazenamento somente leitura - É uma característica, não o objetivo principal</li></ul>"
+        },
+        {
+          q: "Você tem um aplicativo transacional que armazena dados em uma instância gerenciada do Azure SQL. Quando você deve implementar uma réplica de banco de dados somente leitura?",
+          options: [
+            "Você precisa gerar relatórios sem afetar a carga de trabalho transacional",
+            "Você precisa melhorar o objetivo do ponto de recuperação (RPO)", 
+            "Você precisa implementar alta disponibilidade no caso de uma interrupção regional",
+            "Você precisa auditar o aplicativo transacional"
+          ],
+          answer: 0,
+          comment: "<p><strong>Resposta correta: Você precisa gerar relatórios sem afetar a carga de trabalho transacional</strong></p><p>Réplicas somente leitura são ideais para <strong>descarga de cargas de trabalho analíticas e de relatórios</strong> porque:</p><ul><li>Permitem executar consultas pesadas de relatórios sem impactar a performance do banco transacional principal</li><li>Isolam as operações de leitura intensiva do ambiente OLTP</li><li>Mantêm a consistência dos dados para relatórios</li><li>Melhoram a escalabilidade geral do sistema</li></ul><p>As outras opções têm soluções mais adequadas:</p><ul><li>Melhorar RPO - Backups frequentes ou replicação síncrona</li><li>Alta disponibilidade regional - Azure SQL geo-replication</li><li>Auditoria - Recursos de audit do Azure SQL</li></ul>"
+        },
+        {
+          q: "Você planeja implantar um banco de dados PostgreSQL em uma VM do Azure. Qual modelo de hospedagem corresponde às opções de implantação disponíveis?",
+          options: [
+            "Plataforma como serviço (PaaS)",
+            "Software como serviço (SaaS)", 
+            "Infraestrutura como serviço (IaaS)"
+          ],
+          answer: 2,
+          comment: "<p><strong>Resposta correta: Infraestrutura como serviço (IaaS)</strong></p><p>Implantar PostgreSQL em uma VM do Azure caracteriza <strong>IaaS</strong> porque:</p><ul><li>Você gerencia o sistema operacional, instalação e configuração do PostgreSQL</li><li>Responsável por patches, atualizações e manutenção do banco de dados</li><li>Controla completamente a infraestrutura do servidor</li><li>A Microsoft fornece apenas a infraestrutura virtualizada</li></ul><p>Alternativas de serviço gerenciado:</p><ul><li><strong>PaaS</strong> - Usaria o Azure Database for PostgreSQL (serviço gerenciado)</li><li><strong>SaaS</strong> - Seria um aplicativo completo como Office 365</li></ul><p>No IaaS você tem mais controle, mas também mais responsabilidade de gerenciamento.</p>"
+        },
+        {
+          q: "Complete a sentença abaixo:<p>'...... é uma tabela virtual que contém conteúdo definido por uma consulta.'</p>",
+          options: [
+            "Um index",
+            "Uma view", 
+            "Uma stored procedure",
+            "Uma heap"
+          ],
+          answer: 1,
+          comment: "<p><strong>Resposta correta: Uma view</strong></p><p>Uma <strong>view</strong> é exatamente uma tabela virtual cujo conteúdo é definido por uma consulta SQL porque:</p><ul><li>Não armazena dados fisicamente - os dados permanecem nas tabelas base</li><li>É definida por uma consulta SELECT que especifica quais colunas e linhas incluir</li><li>Pode ser usada como uma tabela normal em consultas</li><li>Fornece uma camada de abstração sobre os dados</li></ul><p>Os outros objetos têm funções diferentes:</p><ul><li>Index - Melhora performance de consultas</li><li>Stored procedure - Bloco de código executável</li><li>Heap - Tabela sem índice clusterizado</li></ul>"
+        },
+        {
+          q: "Qual solução de armazenamento oferece suporte ao controle de acesso baseado em função (RBAC) no nível de arquivo e pasta?",
+          options: [
+            "Azure Queue storage",
+            "Azure Blob storage", 
+            "Azure Disk Storage",
+            "Azure Data Lake Storage"
+          ],
+          answer: 3,
+          comment: "<p><strong>Resposta correta: Azure Data Lake Storage</strong></p><p>O Azure Data Lake Storage Gen2 oferece suporte completo a RBAC no nível de arquivo e pasta porque:</p><ul><li>Combina o poder do sistema de arquivos do Data Lake com o armazenamento de blobs</li><li>Permite atribuir permissões RBAC do Azure AD em arquivos e pastas específicos</li><li>Oferece controle de acesso granular baseado em identidade</li><li>Suporta tanto RBAC quanto ACLs (Access Control Lists) POSIX</li></ul><p>Os outros serviços têm limitações:</p><ul><li>Azure Blob Storage - RBAC apenas no nível do contêiner</li><li>Azure Queue Storage - RBAC no nível da fila</li><li>Azure Disk Storage - Discos são anexados a VMs, sem RBAC granular</li></ul>"
         }
       ];
     }
