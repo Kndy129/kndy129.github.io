@@ -6,6 +6,11 @@
   <title>Simulador de Certificações</title>
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 <style>
+  /* Reset e configurações básicas */
+  * {
+    box-sizing: border-box;
+  }
+  
   body {
     margin: 0;
     padding: 0;
@@ -15,44 +20,8 @@
     background-position: center;
     background-attachment: fixed;
     color: #333;
+    line-height: 1.6;
   }
-
-/* Estilos para a notificação +1 */
-    .plusOne {
-      position: absolute;
-      right: 15px;
-      top: 15px;
-      color: green;
-      font-weight: bold;
-      font-size: 1.2em;
-      opacity: 0;
-      transition: all 0.5s ease-in-out;
-      pointer-events: none;
-      z-index: 10;
-    }
-    .plusOne.show {
-      opacity: 1;
-      animation: floatUp 1s ease-in-out forwards;
-    }
-    @keyframes floatUp {
-      0% { transform: translateY(0); opacity: 1; }
-      100% { transform: translateY(-30px); opacity: 0; }
-    }
-    
-    .question-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 10px;
-    }
-    .question-text {
-      flex: 1;
-    }
-    .question-actions {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
 
   /* Camada sutil escurecendo a imagem de fundo */
   body::before {
@@ -66,6 +35,53 @@
     z-index: -1;
   }
 
+  /* Container principal responsivo */
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+  }
+
+  /* Estilos para a notificação +1 */
+  .plusOne {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    color: green;
+    font-weight: bold;
+    font-size: 1.2em;
+    opacity: 0;
+    transition: all 0.5s ease-in-out;
+    pointer-events: none;
+    z-index: 10;
+  }
+  .plusOne.show {
+    opacity: 1;
+    animation: floatUp 1s ease-in-out forwards;
+  }
+  @keyframes floatUp {
+    0% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(-30px); opacity: 0; }
+  }
+    
+  .question-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+  }
+  .question-text {
+    flex: 1;
+    min-width: 250px;
+  }
+  .question-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+  }
+
   h1, h2 {
     color: #004080;
   }
@@ -75,7 +91,7 @@
     padding: 15px;
     border: 1px solid #ccc;
     border-radius: 8px;
-    background: rgba(255,255,255,0.92); /* fundo quase branco, bem legível */
+    background: rgba(255,255,255,0.92);
     color: #000;
     position: relative;
     box-shadow: 0 2px 6px rgba(0,0,0,0.15);
@@ -83,7 +99,13 @@
 
   .options label {
     display: block;
-    margin: 5px 0;
+    margin: 8px 0;
+    padding: 8px;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+  }
+  .options label:hover {
+    background-color: rgba(0,64,128,0.05);
   }
 
   .feedback {
@@ -115,6 +137,7 @@
     border-radius: 6px;
     cursor: pointer;
     transition: 0.3s;
+    font-size: 14px;
   }
 
   button:hover {
@@ -138,6 +161,7 @@
     font-weight: bold;
     box-shadow: 0 2px 10px rgba(0,0,0,0.3);
     z-index: 1000;
+    max-width: 200px;
   }
 
   .cert-filter {
@@ -176,90 +200,212 @@
     font-size: 18px;
     color: #004080;
   }
+
+  /* Controles de navegação responsivos */
+  .controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  .page-navigation {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  /* Media Queries para responsividade */
+  @media (max-width: 768px) {
+    .container {
+      padding: 0 10px;
+    }
+    
+    #placarGlobal {
+      position: relative;
+      top: auto;
+      right: auto;
+      margin: 10px auto;
+      max-width: 100%;
+      text-align: center;
+    }
+    
+    h1 {
+      font-size: 1.5rem;
+      text-align: center;
+    }
+    
+    h2 {
+      font-size: 1.3rem;
+    }
+    
+    .question-header {
+      flex-direction: column;
+    }
+    
+    .question-actions {
+      width: 100%;
+      justify-content: center;
+    }
+    
+    .controls {
+      flex-direction: column;
+    }
+    
+    .controls button {
+      width: 100%;
+      margin: 5px 0;
+    }
+    
+    .page-navigation {
+      flex-direction: column;
+    }
+    
+    .page-navigation button {
+      width: 100%;
+      margin: 5px 0;
+    }
+    
+    button {
+      padding: 12px 15px;
+      font-size: 16px; /* Melhor para toque em dispositivos móveis */
+    }
+    
+    .options label {
+      padding: 12px;
+      margin: 10px 0;
+    }
+    
+    .question {
+      padding: 12px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    h1 {
+      font-size: 1.3rem;
+    }
+    
+    h2 {
+      font-size: 1.1rem;
+    }
+    
+    .cert-filter select {
+      font-size: 14px;
+    }
+    
+    button {
+      padding: 14px 15px; /* Botões maiores para facilitar toque */
+    }
+    
+    .plusOne {
+      font-size: 1em;
+      right: 10px;
+      top: 10px;
+    }
+  }
+
+  /* Melhorias para imagens em telas pequenas */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
 </style>
 </head>
 <body>
-  <div id="placarGlobal">Placar Total: 0/80</div>
+  <div class="container">
+    <div id="placarGlobal">Placar Total: 0/80</div>
 
-<h1 style="color: white;">Simulado de Certificações - Para CiberSegurança</h1>
-  
-  <!-- Filtro de certificações -->
-  <div class="cert-filter">
-    <label for="certSelect"><strong>Selecione a certificação:</strong></label>
-    <select id="certSelect" onchange="loadCertification()">
-      <option value="">-- Escolha uma certificação --</option>
-      <option value="azure">Microsoft Azure DP-900</option>
-      <option value="fortinet">Fortinet Cibersegurança</option>
-      <option value="sc200">SC200 Microsoft</option>
-      <option value="comptia">CompTIA Security+</option>
-      <option value="cysa">CySA+</option>
-      <option value="cisco-network">Cisco Network</option>
-      <option value="cisco-security">Cisco CyberSecurity</option>
-    </select>
+    <h1>Simulado de Certificações - Para CiberSegurança</h1>
     
-    <div id="certInfo" class="cert-info">
-      <!-- Informações da certificação serão inseridas aqui -->
+    <!-- Filtro de certificações -->
+    <div class="cert-filter">
+      <label for="certSelect"><strong>Selecione a certificação:</strong></label>
+      <select id="certSelect" onchange="loadCertification()">
+        <option value="">-- Escolha uma certificação --</option>
+        <option value="azure">Microsoft Azure DP-900</option>
+        <option value="fortinet">Fortinet Cibersegurança</option>
+        <option value="sc200">SC200 Microsoft</option>
+        <option value="comptia">CompTIA Security+</option>
+        <option value="cysa">CySA+</option>
+        <option value="cisco-network">Cisco Network</option>
+        <option value="cisco-security">Cisco CyberSecurity</option>
+      </select>
+      
+      <div id="certInfo" class="cert-info">
+        <!-- Informações da certificação serão inseridas aqui -->
+      </div>
+    </div>
+
+    <!-- Conteúdo do simulado -->
+    <div id="simuladoContent" style="display:none;">
+      <p style="color: white;">
+        Responda as questões. Use "Confirmar Resposta" para verificar individualmente ou "Corrigir Todas" para ver todas as respostas de uma vez.
+      </p>
+
+      <!-- PÁGINA 1 -->
+      <div id="page1">
+        <h2 style="color: white;">Parte 1 - Questões 1 a 30</h2>
+        <div class="controls">
+          <button class="btn-corrigir-todas" onclick="checkAllAnswers('quiz', getCurrentQuestions(1))">Corrigir Todas (Página 1)</button>
+          <button class="btn-gabarito" onclick="showAnswers('quiz', getCurrentQuestions(1))">Mostrar Gabarito</button>
+          <button class="btn-limpar" onclick="resetQuiz('quiz','result')">Limpar Respostas</button>
+        </div>
+        <div id="quiz"></div>
+        <div id="result"></div>
+        <div class="page-navigation">
+          <button class="btn-nav" onclick="showPage(2)">Próxima Página</button>
+        </div>
+      </div>
+
+      <!-- PÁGINA 2 -->
+      <div id="page2" style="display:none;">
+        <h2 style="color: white;">Parte 2 - Questões 31 a 60</h2>
+        <div class="controls">
+          <button class="btn-corrigir-todas" onclick="checkAllAnswers('quiz2', getCurrentQuestions(2))">Corrigir Todas (Página 2)</button>
+          <button class="btn-gabarito" onclick="showAnswers('quiz2', getCurrentQuestions(2))">Mostrar Gabarito</button>
+          <button class="btn-limpar" onclick="resetQuiz('quiz2','result2')">Limpar Respostas</button>
+        </div>
+        <div id="quiz2"></div>
+        <div id="result2"></div>
+        <div class="page-navigation">
+          <button class="btn-nav" onclick="showPage(1)">Página Anterior</button>
+          <button class="btn-nav" onclick="showPage(3)">Próxima Página</button>
+        </div>
+      </div>
+
+      <!-- PÁGINA 3 -->
+      <div id="page3" style="display:none;">
+        <h2 style="color: white;">Parte 3 - Questões 61 a 80</h2>
+        <div class="controls">
+          <button class="btn-corrigir-todas" onclick="checkAllAnswers('quiz3', getCurrentQuestions(3))">Corrigir Todas (Página 3)</button>
+          <button class="btn-gabarito" onclick="showAnswers('quiz3', getCurrentQuestions(3))">Mostrar Gabarito</button>
+          <button class="btn-limpar" onclick="resetQuiz('quiz3','result3')">Limpar Respostas</button>
+        </div>
+        <div id="quiz3"></div>
+        <div id="result3"></div>
+        <div class="page-navigation">
+          <button class="btn-nav" onclick="showPage(2)">Página Anterior</button>
+        </div>
+      </div>
+
+      <!-- BOTÃO PARA CORRIGIR TODAS AS PÁGINAS -->
+      <div style="text-align: center; margin-top: 30px;">
+        <button class="btn-corrigir-todas" onclick="checkAllPages()" style="background-color: #9C27B0; font-size: 1.1em; padding: 12px 20px;">
+          Corrigir Todas as Questões (Páginas 1, 2 e 3)
+        </button>
+      </div>
+    </div>
+
+    <div id="loadingMessage" class="loading" style="display: none; color: white;">
+      Carregando questões...
     </div>
   </div>
-
-  <!-- Conteúdo do simulado -->
-  <div id="simuladoContent" style="display:none;">
-   <p style="color: white;">
-  Responda as questões. Use "Confirmar Resposta" para verificar individualmente ou "Corrigir Todas" para ver todas as respostas de uma vez. </p>
-
-    <!-- PÁGINA 1 -->
-    <div id="page1">
-      <h2 style="color: white;">Parte 1 - Questões 1 a 30</h2>
-      <div class="controls">
-        <button class="btn-corrigir-todas" onclick="checkAllAnswers('quiz', getCurrentQuestions(1))">Corrigir Todas (Página 1)</button>
-        <button class="btn-gabarito" onclick="showAnswers('quiz', getCurrentQuestions(1))">Mostrar Gabarito</button>
-        <button class="btn-limpar" onclick="resetQuiz('quiz','result')">Limpar Respostas</button>
-      </div>
-      <div id="quiz"></div>
-      <div id="result"></div>
-      <button class="btn-nav" onclick="showPage(2)">Próxima Página</button>
-    </div>
-
-    <!-- PÁGINA 2 -->
-    <div id="page2" style="display:none;">
-      <h2 style="color: white;">Parte 2 - Questões 31 a 60</h2>
-      <div class="controls">
-        <button class="btn-corrigir-todas" onclick="checkAllAnswers('quiz2', getCurrentQuestions(2))">Corrigir Todas (Página 2)</button>
-        <button class="btn-gabarito" onclick="showAnswers('quiz2', getCurrentQuestions(2))">Mostrar Gabarito</button>
-        <button class="btn-limpar" onclick="resetQuiz('quiz2','result2')">Limpar Respostas</button>
-      </div>
-      <div id="quiz2"></div>
-      <div id="result2"></div>
-      <button class="btn-nav" onclick="showPage(1)">Página Anterior</button>
-      <button class="btn-nav" onclick="showPage(3)">Próxima Página</button>
-    </div>
-
-    <!-- PÁGINA 3 -->
-    <div id="page3" style="display:none;">
-      <h2 style="color: white;">Parte 1 - Questões 61 a 80</h2>
-      <div class="controls">
-        <button class="btn-corrigir-todas" onclick="checkAllAnswers('quiz3', getCurrentQuestions(3))">Corrigir Todas (Página 3)</button>
-        <button class="btn-gabarito" onclick="showAnswers('quiz3', getCurrentQuestions(3))">Mostrar Gabarito</button>
-        <button class="btn-limpar" onclick="resetQuiz('quiz3','result3')">Limpar Respostas</button>
-      </div>
-      <div id="quiz3"></div>
-      <div id="result3"></div>
-      <button class="btn-nav" onclick="showPage(2)">Página Anterior</button>
-    </div>
-
-    <!-- BOTÃO PARA CORRIGIR TODAS AS PÁGINAS -->
-    <div style="text-align: center; margin-top: 30px;">
-      <button class="btn-corrigir-todas" onclick="checkAllPages()" style="background-color: #9C27B0; font-size: 1.1em; padding: 12px 20px;">
-        Corrigir Todas as Questões (Páginas 1, 2 e 3)
-      </button>
-    </div>
-  </div>
-
-<div id="loadingMessage" class="loading" style="display: none; color: white;">
-  Carregando questões...
-</div>
 
   <script>
+    // O código JavaScript permanece exatamente o mesmo
     // Variáveis globais
     let placarTotal = parseInt(localStorage.getItem("placarTotal")) || 0;
     let currentCert = '';
@@ -412,7 +558,7 @@
             "O processamento em lote só pode processar dados estruturados"
           ],
           answer: 2,
-          comment: "O processamento em lote (batch processing) é caracterizado por: <p> Processar grandes volumes de dados de uma vez, em blocos (ou “lotes”), em vez de linha a linha em tempo real.</p><p>Normalmente é feito em intervalos programados (ex: diário, semanal, etc.).</p><p>Por isso, há um atraso natural entre a coleta dos dados e o resultado final do processamento — diferentemente do processamento em tempo real (streaming), que reage instantaneamente.</p>"
+          comment: "O processamento em lote (batch processing) é caracterizado por: <p> Processar grandes volumes de dados de uma vez, em blocos (ou 'lotes'), em vez de linha a linha em tempo real.</p><p>Normalmente é feito em intervalos programados (ex: diário, semanal, etc.).</p><p>Por isso, há um atraso natural entre a coleta dos dados e o resultado final do processamento — diferentemente do processamento em tempo real (streaming), que reage instantaneamente.</p>"
         },
         {
           q: "Qual recurso permite segmentar redes privadas dentro do Azure?",
@@ -3047,7 +3193,7 @@ q: "Você tem o seguinte documento JSON, precisa analisá-lo e completar a frase
       ];
     }
 
-// ================= QUESTÕES COMPTIA SECURITY+ (80 questões) =================
+    // ================= QUESTÕES COMPTIA SECURITY+ (80 questões) =================
 function generateCompTIASecPlusQuestions() {
   // Página 1 - Questões 1-30 - Sequência variada: 3,1,0,2,1,3,2,0,1,2,3,0,2,1,0,3,1,0,2,3,0,1,3,2,1,3,0,2,3,1
   currentQuestions.questions = [
@@ -3942,7 +4088,7 @@ function generateCompTIASecPlusQuestions() {
   ];
 }
 
-// ================= QUESTÕES CYSA+ (80 questões) =================
+    // ================= QUESTÕES CYSA+ (80 questões) =================
 function generateCySAQuestions() {
   // Página 1 - Questões 1-30 - Sequência variada: 2,0,3,1,0,2,1,3,2,1,0,3,1,2,3,0,2,1,3,0,1,2,0,3,2,1,0,3,1,2
   currentQuestions.questions = [
@@ -4836,7 +4982,8 @@ function generateCySAQuestions() {
     }
   ];
 }
-// ================= QUESTÕES CISCO NETWORK (80 questões) =================
+
+    // ================= QUESTÕES CISCO NETWORK (80 questões) =================
 function generateCiscoNetworkQuestions() {
   // Página 1 - Questões 1-30 - Sequência variada: 3,1,0,2,1,3,2,0,1,2,3,0,2,1,0,3,1,0,2,3,0,1,3,2,1,3,0,2,3,1
   currentQuestions.questions = [
@@ -5731,7 +5878,7 @@ function generateCiscoNetworkQuestions() {
   ];
 }
 
-// ================= QUESTÕES CISCO SECURITY (80 questões) =================
+    // ================= QUESTÕES CISCO SECURITY (80 questões) =================
 function generateCiscoSecurityQuestions() {
   // Página 1 - Questões 1-30 - Sequência variada: 2,0,3,1,0,2,1,3,2,1,0,3,1,2,3,0,2,1,3,0,1,2,0,3,2,1,0,3,1,2
   currentQuestions.questions = [
