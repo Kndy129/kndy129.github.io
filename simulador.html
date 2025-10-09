@@ -188,7 +188,7 @@
     <label for="certSelect"><strong>Selecione a certificação:</strong></label>
     <select id="certSelect" onchange="loadCertification()">
       <option value="">-- Escolha uma certificação --</option>
-      <option value="azure">Microsof Azure DP-900t Azure</option>
+      <option value="azure">Microsoft Azure DP-900</option>
       <option value="fortinet">Fortinet Cibersegurança</option>
       <option value="sc200">SC200 Microsoft</option>
       <option value="comptia">CompTIA Security+</option>
@@ -602,7 +602,7 @@
             "Não",
           ],
           answer: 1,
-          comment: "A normalização: <p>É um processo aplicado ao banco de dados.</p><p>Organiza os dados em tabelas para reduzir redundância e inconsistências.</p><p>Mantém relacionamentos entre tabelas usando chaves primárias e estrangeiras, garantindo integridade dos dados e facilitando consultas e manutenção.</p>"
+          comment: "Sim, a normalização: <p>É um processo aplicado ao banco de dados.</p><p>Organiza os dados em tabelas para reduzir redundância e inconsistências.</p><p>Mantém relacionamentos entre tabelas usando chaves primárias e estrangeiras, garantindo integridade dos dados e facilitando consultas e manutenção.</p>"
         },
         {
           q: "Qual afirmação é um exemplo de linguagem de definição de dados (DDL)?",
@@ -616,70 +616,68 @@
           comment: "CREATE: <p>É um comando de linguagem de definição de dados (DDL).</p><p>É usado para criar estruturas de banco de dados, como tabelas, índices e schemas.</p><p>Permite definir a forma como os dados serão armazenados, mas não manipula os dados em si.</p>"
         },
         {
-          q: "Qual recurso do Azure permite criar redes privadas virtuais?",
+          q: "Esta sentença está correta?<br>A normalização melhora a integridade dos dados",
           options: [
-            "Azure VPN Gateway",
-            "Azure ExpressRoute",
-            "Azure Virtual WAN",
-            "Todas as anteriores"
+            "Sim",
+            "Não",
           ],
           answer: 0,
-          comment: "Azure oferece múltiplas opções para criar conectividade de rede privada."
+          comment: "A normalização: <p>É um processo aplicado ao banco de dados.</p><p>Organiza os dados em tabelas para reduzir redundância e inconsistências.</p><p>Melhora a integridade dos dados ao garantir que relacionamentos e dependências entre tabelas sejam consistentes e corretos.</p>"
         },
         {
-          q: "Qual serviço Azure é usado para proteger APIs?",
+          q: "Complete a sentença abaixo:<br>Em um banco de dados relacional, cada linha de uma tabela possui ......... .",
           options: [
-            "Azure API Management",
-            "Azure Application Gateway",
-            "Azure Front Door",
-            "Azure Functions"
+  "um conjunto diferente de colunas",
+  "o mesmo conjunto de colunas.",
+  "dados não estruturados.",
+  "um par de valores-chave."
+],
+          answer: 1,
+          comment: "Linha de tabela (tupla): <p>Em um banco de dados relacional, cada linha de uma tabela representa uma tupla.</p><p>Cada tupla possui o <strong>mesmo conjunto de colunas</strong>, garantindo que todos os registros tenham a mesma estrutura.</p><p>Isso permite organizar, consultar e relacionar dados de forma consistente.</p>"
+        },
+        {
+q: "Qual afirmação é um exemplo de linguagem de manipulação de dados (DML)?",
+options: [
+    "INSERT",
+    "UPDATE",
+    "DELETE",
+    "SELECT"
+],
+          answer: 0,
+          comment: "DML (Data Manipulation Language) = comandos que manipulam dados dentro das tabelas.<p>Exemplos: SELECT, INSERT, UPDATE, DELETE.</p><p>DISABLE, GRANT e REVOKE não manipulam dados — são comandos de controle ou administração.</p>"
+        },
+        {
+          q: "Qual serviço é possível utilizar a modelagem de relacionamento?",
+          options: [
+            "Azure blob Storage",
+            "Azure Table Storage",
+            "Azure Cosmos DB Gremilin API",
           ],
-          answer: 3,
-          comment: "Azure API Management fornece segurança, throttling e monitoramento para APIs."
+          answer: 0,
+          comment: "<p>Azure Blob Storage é usado para armazenamento de objetos, sem suporte a relacionamentos.</p><p>Azure Table Storage é um NoSQL key-value, também sem suporte a relacionamentos complexos.</p><p>Azure Cosmos DB com Gremlin API permite modelagem de grafos e relacionamentos entre entidades, sendo ideal para cenários que exigem modelagem de relacionamento.</p>"
         },
         {
-          q: "Qual recurso do Azure Security Center fornece proteção contra ameaças?",
+          q: "Qual o modelo de análise devemos utilizar nesta situação?<br>Quais pessoas são mencionadas nos documentos comerciais de uma empresa?",
           options: [
-            "Azure Defender",
-            "Secure Score",
-            "Regulatory Compliance",
-            "Inventory"
+            "Cognitivo",
+            "Preditivo",
+            "Descritivo",
+            "Prescritivo",
+			"Diagnóstico"
           ],
           answer: 2,
-          comment: "Azure Defender fornece proteção avançada contra ameaças para recursos Azure."
+          comment: "<p>O modelo descritivo analisa dados existentes para entender o que aconteceu.</p><p>Como a pergunta busca identificar pessoas mencionadas nos documentos comerciais, estamos analisando informações já registradas, sem prever ou prescrever ações futuras.</p><p>Portanto, o modelo correto é Descritivo.</p>"
         },
         {
-          q: "Qual serviço Azure é usado para gerenciar dispositivos móveis?",
+           q: "Você possui um modelo de dados, precisa analisá-lo para completar a frase:<br><img src='DP.png' alt='Modelo de dados'><br>O modelo de dados é um .........",
           options: [
-            "Microsoft Intune",
-            "Azure AD Device Registration",
-            "Azure AD Join",
-            "Conditional Access"
-          ],
-          answer: 0,
-          comment: "Microsoft Intune é a solução MDM (Mobile Device Management) da Microsoft."
-        },
-        {
-          q: "Qual recurso do Azure permite auditoria de acesso?",
-          options: [
-            "Azure AD Audit Logs",
-            "Azure Activity Log",
-            "Azure Diagnostic Logs",
-            "Todas as anteriores"
-          ],
-          answer: 3,
-          comment: "Azure fornece múltiplos tipos de logs para auditoria e monitoramento."
-        },
-        {
-          q: "Qual serviço Azure fornece proteção para dados sensíveis?",
-          options: [
-            "Azure Information Protection",
-            "Azure Rights Management",
-            "Microsoft Cloud App Security",
+            "Esquema de floco de neve (Snowflake schema).",
+            "Esquema em estrela (Star schema).",
+            "Modelo transacional(Transactional model).",
             "Todas as anteriores"
           ],
           answer: 1,
-          comment: "Esses serviços trabalham juntos para proteger dados sensíveis e aplicar políticas."
+          comment: "<p>Analisando a estrutura das tabelas, identificamos uma tabela de fatos central (Sales) conectada diretamente a múltiplas tabelas de dimensões (Customer, Product, SalesPerson, Warehouse).</p><p>Esta configuração, onde uma tabela de fatos referencia várias tabelas de dimensões sem normalização adicional, caracteriza um típico <strong>Esquema em Estrela (Star Schema)</strong> usado em data warehouses e business intelligence.</p><p>No Snowflake schema as dimensões seriam normalizadas, e no modelo transacional as tabelas estariam normalizadas para OLTP.</p>"
         },
         {
           q: "Qual recurso do Azure permite gerenciar custos de segurança?",
@@ -689,30 +687,28 @@
             "Azure Pricing Calculator",
             "Azure Advisor"
           ],
-          answer: 2,
+          answer: 0,
           comment: "Azure Cost Management ajuda a monitorar e otimizar custos de recursos Azure."
         },
         {
-          q: "Qual serviço Azure é usado para desenvolvimento seguro?",
+          q: "Você tem o seguinte documento JSON, precisa análisa-lo e completar a frase.<br>A opção 'address' é .........<br><img src='cont.png' alt='JSON'> ",
           options: [
-            "Azure DevSecOps",
-            "Azure Security Center",
-            "Azure Sentinel",
-            "Microsoft Defender for Cloud"
-          ],
-          answer: 3,
-          comment: "Azure DevSecOps integra segurança no ciclo de vida de desenvolvimento."
-        },
-        {
-          q: "Qual recurso do Azure permite resposta automatizada a incidentes?",
-          options: [
-            "Azure Automation",
-            "Logic Apps",
-            "Azure Functions",
-            "Todas as anteriores"
+            "Um <strong>objeto raiz</strong>",
+            "Um <strong>objeto</strong>",
+            "Uma <strong>matriz</strong>",
           ],
           answer: 0,
-          comment: "Azure oferece múltiplos serviços para automação de respostas a incidentes."
+          comment: "<p>No JSON, 'address' é um <strong>objeto</strong> (nested object) contido dentro do objeto raiz.</p><p>Estrutura típica:</p><pre>{<br>  \"name\": \"João Silva\",<br>  \"address\": {<br>    \"street\": \"Rua A, 123\",<br>    \"city\": \"São Paulo\"<br>  }<br>}</pre><p>• <strong>Objeto raiz</strong>: Todo o documento JSON<br>• <strong>Objeto</strong>: Estrutura entre { } com pares chave-valor (como 'address')<br>• <strong>Matriz</strong>: Estrutura entre [ ] com elementos ordenados</p>"
+        },
+        {
+q: "Você tem o seguinte documento JSON, precisa analisá-lo e completar a frase:<br>A opção 'social media' é .........<br><img src='documento JSON.png' alt='Documento JSON' style='max-width: 400px; border: 1px solid #ccc; padding: 10px; background: white;'>",
+          options: [
+    "Um <strong>objeto raiz</strong>",
+    "Um <strong>objeto</strong>", 
+    "Uma <strong>matriz</strong>"
+  ],
+          answer: 2,
+          comment: "<p>No JSON, 'social media' é uma <strong>matriz (array)</strong> porque está delimitada por colchetes [ ] e contém uma lista de elementos.</p><p>Estrutura analisada:</p><pre>\"social media\": [<br>  {<br>    \"service\": \"twitter\",<br>    \"handle\": \"@bensmith\"<br>  },<br>  {<br>    \"service\": \"linkedin\",<br>    \"handle\": \"bensmith\"<br>  }<br>]</pre><p>• <strong>Matriz/Array</strong>: Delimitada por [ ], contém lista ordenada de elementos<br>• <strong>Objeto</strong>: Delimitado por { }, contém pares chave-valor<br>• <strong>Objeto raiz</strong>: Todo o documento JSON</p><p>Neste caso, 'social media' é uma matriz de objetos, onde cada objeto representa uma rede social.</p>"
         },
       ];
 
