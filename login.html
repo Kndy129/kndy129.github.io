@@ -696,7 +696,7 @@
         
         // Redirecionar para o simulador após um breve delay
         setTimeout(() => {
-          window.location.href = 'simulador.html';
+          window.location.href = 'index.html';
         }, 1500);
         
       } catch (error) {
@@ -745,7 +745,7 @@
         
         // Redirecionar para o simulador após um breve delay
         setTimeout(() => {
-          window.location.href = 'simulador.html';
+          window.location.href = 'index.html';
         }, 1500);
         
       } catch (error) {
@@ -798,10 +798,11 @@
     auth.onAuthStateChanged((user) => {
       if (user) {
         // Se já estiver logado, redirecionar para o simulador
-        window.location.href = 'simulador.html';
+        window.location.href = 'index.html';
       }
     });
   </script>
 </body>
 </html>
+
 
