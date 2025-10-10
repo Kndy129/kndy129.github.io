@@ -3,327 +3,421 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Simulador de Certificações</title>
+  <title>Simulador de Certificações - Cibersegurança</title>
   <link rel="icon" type="image/x-icon" href="favicon.ico">
-<style>
-  /* Reset e configurações básicas */
-  * {
-    box-sizing: border-box;
-  }
-  
-  body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    background-image: url('WallPaper.jpeg');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    color: #333;
-    line-height: 1.6;
-  }
-
-  /* Camada sutil escurecendo a imagem de fundo */
-  body::before {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.35);
-    z-index: -1;
-  }
-
-  /* Container principal responsivo */
-  .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 15px;
-  }
-
-  /* Estilos para a notificação +1 */
-  .plusOne {
-    position: absolute;
-    right: 15px;
-    top: 15px;
-    color: green;
-    font-weight: bold;
-    font-size: 1.2em;
-    opacity: 0;
-    transition: all 0.5s ease-in-out;
-    pointer-events: none;
-    z-index: 10;
-  }
-  .plusOne.show {
-    opacity: 1;
-    animation: floatUp 1s ease-in-out forwards;
-  }
-  @keyframes floatUp {
-    0% { transform: translateY(0); opacity: 1; }
-    100% { transform: translateY(-30px); opacity: 0; }
-  }
-    
-  .question-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 10px;
-    flex-wrap: wrap;
-  }
-  .question-text {
-    flex: 1;
-    min-width: 250px;
-  }
-  .question-actions {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-top: 10px;
-  }
-
-  h1, h2 {
-    color: #004080;
-  }
-
-  .question {
-    margin-bottom: 20px;
-    padding: 15px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    background: rgba(255,255,255,0.92);
-    color: #000;
-    position: relative;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-  }
-
-  .options label {
-    display: block;
-    margin: 8px 0;
-    padding: 8px;
-    border-radius: 4px;
-    transition: background-color 0.2s;
-  }
-  .options label:hover {
-    background-color: rgba(0,64,128,0.05);
-  }
-
-  .feedback {
-    margin-top: 10px;
-    font-weight: bold;
-  }
-
-  .correct { color: green; }
-  .incorrect { color: red; }
-
-  .comment {
-    margin-top: 5px;
-    padding: 10px;
-    border-left: 4px solid #004080;
-    background: #eef5ff;
-    display: none;
-    transition: all 0.3s ease-in-out;
-    opacity: 0;
-  }
-  .comment.show {
-    display: block;
-    opacity: 1;
-  }
-
-  button {
-    margin: 5px;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: 0.3s;
-    font-size: 14px;
-  }
-
-  button:hover {
-    opacity: 0.9;
-  }
-
-  .btn-confirmar { background-color: #4CAF50; color: #fff; }
-  .btn-corrigir-todas { background-color: #FF9800; color: #fff; }
-  .btn-gabarito { background-color: #2196F3; color: #fff; }
-  .btn-limpar { background-color: #f44336; color: #fff; }
-  .btn-nav { background-color: #555; color: #fff; }
-
-  #placarGlobal {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    background: #004080;
-    color: white;
-    padding: 15px;
-    border-radius: 8px;
-    font-weight: bold;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
-    z-index: 1000;
-    max-width: 200px;
-  }
-
-  .cert-filter {
-    background: rgba(255,255,255,0.95);
-    padding: 15px;
-    border-radius: 8px;
-    margin-bottom: 20px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.15);
-  }
-
-  .cert-filter select {
-    padding: 10px;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-    font-size: 16px;
-    width: 100%;
-    max-width: 400px;
-  }
-
-  .cert-info {
-    margin-top: 15px;
-    padding: 10px;
-    background: rgba(238,245,255,0.95);
-    border-radius: 6px;
-    display: none;
-  }
-
-  .cert-info h3 {
-    margin-top: 0;
-    color: #004080;
-  }
-
-  .loading {
-    text-align: center;
-    padding: 20px;
-    font-size: 18px;
-    color: #004080;
-  }
-
-  /* Controles de navegação responsivos */
-  .controls {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-bottom: 20px;
-  }
-
-  .page-navigation {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-
-  /* Media Queries para responsividade */
-  @media (max-width: 768px) {
-    .container {
-      padding: 0 10px;
+  <style>
+    /* Reset e configurações básicas */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
     
-    #placarGlobal {
-      position: relative;
-      top: auto;
-      right: auto;
-      margin: 10px auto;
-      max-width: 100%;
-      text-align: center;
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-image: url('WallPaper.jpeg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      color: #333;
+      line-height: 1.6;
+      min-height: 100vh;
     }
-    
-    h1 {
-      font-size: 1.5rem;
-      text-align: center;
-    }
-    
-    h2 {
-      font-size: 1.3rem;
-    }
-    
-    .question-header {
-      flex-direction: column;
-    }
-    
-    .question-actions {
+
+    /* Camada sutil escurecendo a imagem de fundo */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
       width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.4);
+      z-index: -1;
+    }
+
+    /* Container principal responsivo */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 15px;
+    }
+
+    /* Estilos para a notificação +1 */
+    .plusOne {
+      position: absolute;
+      right: 15px;
+      top: 15px;
+      color: #28a745;
+      font-weight: bold;
+      font-size: 1.2em;
+      opacity: 0;
+      transition: all 0.5s ease-in-out;
+      pointer-events: none;
+      z-index: 10;
+    }
+    .plusOne.show {
+      opacity: 1;
+      animation: floatUp 1s ease-in-out forwards;
+    }
+    @keyframes floatUp {
+      0% { transform: translateY(0); opacity: 1; }
+      100% { transform: translateY(-30px); opacity: 0; }
+    }
+      
+    .question-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 15px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .question-text {
+      flex: 1;
+      min-width: 250px;
+    }
+    .question-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 5px;
+    }
+
+    h1, h2 {
+      color: #fff;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+      margin-bottom: 15px;
+    }
+
+    h1 {
+      font-size: 2rem;
+      text-align: center;
+      margin: 20px 0;
+    }
+
+    .question {
+      margin-bottom: 25px;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      background: rgba(255,255,255,0.95);
+      color: #000;
+      position: relative;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .question:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+    }
+
+    .options label {
+      display: block;
+      margin: 10px 0;
+      padding: 12px;
+      border-radius: 6px;
+      transition: background-color 0.2s;
+      cursor: pointer;
+      border: 1px solid transparent;
+    }
+    .options label:hover {
+      background-color: rgba(0,64,128,0.08);
+      border-color: rgba(0,64,128,0.2);
+    }
+
+    .options input[type="radio"] {
+      margin-right: 10px;
+      transform: scale(1.2);
+    }
+
+    .feedback {
+      margin-top: 15px;
+      font-weight: bold;
+      padding: 10px;
+      border-radius: 6px;
+    }
+
+    .correct { 
+      color: #28a745; 
+      background-color: rgba(40, 167, 69, 0.1);
+      border-left: 4px solid #28a745;
+    }
+    .incorrect { 
+      color: #dc3545; 
+      background-color: rgba(220, 53, 69, 0.1);
+      border-left: 4px solid #dc3545;
+    }
+
+    .comment {
+      margin-top: 10px;
+      padding: 15px;
+      border-left: 4px solid #004080;
+      background: #eef5ff;
+      border-radius: 0 6px 6px 0;
+      display: none;
+      transition: all 0.3s ease-in-out;
+      opacity: 0;
+    }
+    .comment.show {
+      display: block;
+      opacity: 1;
+    }
+
+    button {
+      margin: 5px;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: 0.3s;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    .btn-confirmar { background-color: #28a745; color: #fff; }
+    .btn-corrigir-todas { background-color: #fd7e14; color: #fff; }
+    .btn-gabarito { background-color: #17a2b8; color: #fff; }
+    .btn-limpar { background-color: #dc3545; color: #fff; }
+    .btn-nav { background-color: #6c757d; color: #fff; }
+
+    #placarGlobal {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #004080;
+      color: white;
+      padding: 15px;
+      border-radius: 8px;
+      font-weight: bold;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      z-index: 1000;
+      max-width: 200px;
+      text-align: center;
+    }
+
+    .cert-filter {
+      background: rgba(255,255,255,0.95);
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 25px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    .cert-filter label {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: 600;
+      color: #004080;
+    }
+
+    .cert-filter select {
+      padding: 12px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+      width: 100%;
+      max-width: 400px;
+      background-color: white;
+    }
+
+    .cert-info {
+      margin-top: 20px;
+      padding: 15px;
+      background: rgba(238,245,255,0.95);
+      border-radius: 8px;
+      display: none;
+      border-left: 4px solid #004080;
+    }
+
+    .cert-info h3 {
+      margin-top: 0;
+      color: #004080;
+      border-bottom: 1px solid #004080;
+      padding-bottom: 8px;
+    }
+
+    .loading {
+      text-align: center;
+      padding: 30px;
+      font-size: 18px;
+      color: white;
+    }
+
+    /* Controles de navegação responsivos */
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 20px;
       justify-content: center;
     }
-    
-    .controls {
-      flex-direction: column;
-    }
-    
-    .controls button {
-      width: 100%;
-      margin: 5px 0;
-    }
-    
+
     .page-navigation {
-      flex-direction: column;
+      display: flex;
+      justify-content: space-between;
+      margin-top: 25px;
+      flex-wrap: wrap;
+      gap: 10px;
     }
-    
-    .page-navigation button {
-      width: 100%;
-      margin: 5px 0;
-    }
-    
-    button {
-      padding: 12px 15px;
-      font-size: 16px; /* Melhor para toque em dispositivos móveis */
-    }
-    
-    .options label {
-      padding: 12px;
-      margin: 10px 0;
-    }
-    
-    .question {
-      padding: 12px;
-    }
-  }
 
-  @media (max-width: 480px) {
-    h1 {
-      font-size: 1.3rem;
+    .progress-container {
+      background: rgba(255,255,255,0.9);
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     }
-    
-    h2 {
-      font-size: 1.1rem;
-    }
-    
-    .cert-filter select {
-      font-size: 14px;
-    }
-    
-    button {
-      padding: 14px 15px; /* Botões maiores para facilitar toque */
-    }
-    
-    .plusOne {
-      font-size: 1em;
-      right: 10px;
-      top: 10px;
-    }
-  }
 
-  /* Melhorias para imagens em telas pequenas */
-  img {
-    max-width: 100%;
-    height: auto;
-  }
-</style>
+    .progress-bar {
+      height: 10px;
+      background-color: #e9ecef;
+      border-radius: 5px;
+      overflow: hidden;
+      margin-top: 8px;
+    }
+    
+    .progress {
+      height: 100%;
+      background-color: #004080;
+      transition: width 0.5s ease;
+    }
+
+    /* Media Queries para responsividade */
+    @media (max-width: 768px) {
+      .container {
+        padding: 0 10px;
+      }
+      
+      #placarGlobal {
+        position: relative;
+        top: auto;
+        right: auto;
+        margin: 10px auto;
+        max-width: 100%;
+        text-align: center;
+      }
+      
+      h1 {
+        font-size: 1.5rem;
+        text-align: center;
+      }
+      
+      h2 {
+        font-size: 1.3rem;
+      }
+      
+      .question-header {
+        flex-direction: column;
+      }
+      
+      .question-actions {
+        width: 100%;
+        justify-content: center;
+      }
+      
+      .controls {
+        flex-direction: column;
+      }
+      
+      .controls button {
+        width: 100%;
+        margin: 5px 0;
+      }
+      
+      .page-navigation {
+        flex-direction: column;
+      }
+      
+      .page-navigation button {
+        width: 100%;
+        margin: 5px 0;
+      }
+      
+      button {
+        padding: 12px 15px;
+        font-size: 16px;
+      }
+      
+      .options label {
+        padding: 12px;
+        margin: 10px 0;
+      }
+      
+      .question {
+        padding: 15px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 1.3rem;
+      }
+      
+      h2 {
+        font-size: 1.1rem;
+      }
+      
+      .cert-filter select {
+        font-size: 14px;
+      }
+      
+      button {
+        padding: 14px 15px;
+      }
+      
+      .plusOne {
+        font-size: 1em;
+        right: 10px;
+        top: 10px;
+      }
+    }
+
+    /* Melhorias para imagens em telas pequenas */
+    img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 6px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    /* Indicador de questão respondida */
+    .answered-indicator {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background-color: #28a745;
+      margin-right: 8px;
+    }
+
+    /* Animações suaves */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .fade-in {
+      animation: fadeIn 0.5s ease-out;
+    }
+  </style>
 </head>
 <body>
   <div class="container">
     <div id="placarGlobal">Placar Total: 0/80</div>
 
-    <h1>Simulado de Certificações - Para CiberSegurança</h1>
+    <h1>Simulador de Certificações - Cibersegurança</h1>
     
     <!-- Filtro de certificações -->
     <div class="cert-filter">
       <label for="certSelect"><strong>Selecione a certificação:</strong></label>
-      <select id="certSelect" onchange="loadCertification()">
+      <select id="certSelect">
         <option value="">-- Escolha uma certificação --</option>
         <option value="azure">Microsoft Azure DP-900</option>
         <option value="fortinet">Fortinet Cibersegurança</option>
@@ -341,13 +435,20 @@
 
     <!-- Conteúdo do simulado -->
     <div id="simuladoContent" style="display:none;">
-      <p style="color: white;">
+      <div class="progress-container">
+        <div id="progressText">Progresso: 0/80 questões respondidas</div>
+        <div class="progress-bar">
+          <div id="progressFill" class="progress" style="width: 0%"></div>
+        </div>
+      </div>
+
+      <p style="color: white; text-align: center; margin-bottom: 20px;">
         Responda as questões. Use "Confirmar Resposta" para verificar individualmente ou "Corrigir Todas" para ver todas as respostas de uma vez.
       </p>
 
       <!-- PÁGINA 1 -->
-      <div id="page1">
-        <h2 style="color: white;">Parte 1 - Questões 1 a 30</h2>
+      <div id="page1" class="fade-in">
+        <h2>Parte 1 - Questões 1 a 30</h2>
         <div class="controls">
           <button class="btn-corrigir-todas" onclick="checkAllAnswers('quiz', getCurrentQuestions(1))">Corrigir Todas (Página 1)</button>
           <button class="btn-gabarito" onclick="showAnswers('quiz', getCurrentQuestions(1))">Mostrar Gabarito</button>
@@ -356,13 +457,13 @@
         <div id="quiz"></div>
         <div id="result"></div>
         <div class="page-navigation">
-          <button class="btn-nav" onclick="showPage(2)">Próxima Página</button>
+          <button class="btn-nav" onclick="showPage(2)">Próxima Página →</button>
         </div>
       </div>
 
       <!-- PÁGINA 2 -->
       <div id="page2" style="display:none;">
-        <h2 style="color: white;">Parte 2 - Questões 31 a 60</h2>
+        <h2>Parte 2 - Questões 31 a 60</h2>
         <div class="controls">
           <button class="btn-corrigir-todas" onclick="checkAllAnswers('quiz2', getCurrentQuestions(2))">Corrigir Todas (Página 2)</button>
           <button class="btn-gabarito" onclick="showAnswers('quiz2', getCurrentQuestions(2))">Mostrar Gabarito</button>
@@ -371,14 +472,14 @@
         <div id="quiz2"></div>
         <div id="result2"></div>
         <div class="page-navigation">
-          <button class="btn-nav" onclick="showPage(1)">Página Anterior</button>
-          <button class="btn-nav" onclick="showPage(3)">Próxima Página</button>
+          <button class="btn-nav" onclick="showPage(1)">← Página Anterior</button>
+          <button class="btn-nav" onclick="showPage(3)">Próxima Página →</button>
         </div>
       </div>
 
       <!-- PÁGINA 3 -->
       <div id="page3" style="display:none;">
-        <h2 style="color: white;">Parte 3 - Questões 61 a 80</h2>
+        <h2>Parte 3 - Questões 61 a 80</h2>
         <div class="controls">
           <button class="btn-corrigir-todas" onclick="checkAllAnswers('quiz3', getCurrentQuestions(3))">Corrigir Todas (Página 3)</button>
           <button class="btn-gabarito" onclick="showAnswers('quiz3', getCurrentQuestions(3))">Mostrar Gabarito</button>
@@ -387,25 +488,24 @@
         <div id="quiz3"></div>
         <div id="result3"></div>
         <div class="page-navigation">
-          <button class="btn-nav" onclick="showPage(2)">Página Anterior</button>
+          <button class="btn-nav" onclick="showPage(2)">← Página Anterior</button>
         </div>
       </div>
 
       <!-- BOTÃO PARA CORRIGIR TODAS AS PÁGINAS -->
       <div style="text-align: center; margin-top: 30px;">
-        <button class="btn-corrigir-todas" onclick="checkAllPages()" style="background-color: #9C27B0; font-size: 1.1em; padding: 12px 20px;">
+        <button class="btn-corrigir-todas" onclick="checkAllPages()" style="background-color: #6f42c1; font-size: 1.1em; padding: 12px 20px;">
           Corrigir Todas as Questões (Páginas 1, 2 e 3)
         </button>
       </div>
     </div>
 
-    <div id="loadingMessage" class="loading" style="display: none; color: white;">
+    <div id="loadingMessage" class="loading" style="display: none;">
       Carregando questões...
     </div>
   </div>
 
   <script>
-    // O código JavaScript permanece exatamente o mesmo
     // Variáveis globais
     let placarTotal = parseInt(localStorage.getItem("placarTotal")) || 0;
     let currentCert = '';
@@ -414,7 +514,7 @@
     // Informações sobre as certificações
     const certInfo = {
       azure: {
-        name: "Microsoft Azure",
+        name: "Microsoft Azure DP-900",
         description: "Certificação focada em serviços de nuvem, segurança e governança da plataforma Azure.",
         focus: "Segurança de nuvem, identidade, governança, proteção de dados e gerenciamento de ameaças."
       },
@@ -449,6 +549,15 @@
         focus: "Firewalls Cisco, sistemas de detecção/prevenção de intrusões, segurança de endpoints e VPNs."
       }
     };
+
+    // Inicialização quando o DOM estiver carregado
+    document.addEventListener('DOMContentLoaded', function() {
+      updateGlobalPlacar();
+      updateProgress();
+      
+      // Adicionar evento de mudança ao select
+      document.getElementById('certSelect').addEventListener('change', loadCertification);
+    });
 
     // Função para carregar a certificação selecionada
     function loadCertification() {
@@ -485,6 +594,7 @@
         loadingMessage.style.display = 'none';
         simuladoContent.style.display = 'block';
         showPage(1);
+        updateProgress();
       }, 500);
     }
 
@@ -6773,11 +6883,28 @@ function generateCiscoSecurityQuestions() {
   ];
 }
 
-    // Funções existentes do seu código (mantidas inalteradas)
+    // Função para atualizar o placar global
     function updateGlobalPlacar() {
       document.getElementById("placarGlobal").innerText = `Placar Total: ${placarTotal}/80`;
     }
 
+    // Função para atualizar a barra de progresso
+    function updateProgress() {
+      let totalAnswered = 0;
+      const totalQuestions = 80;
+      
+      // Contar questões respondidas em todos os quizzes
+      ['quiz', 'quiz2', 'quiz3'].forEach(quizId => {
+        const saved = JSON.parse(localStorage.getItem(quizId)) || {};
+        totalAnswered += Object.keys(saved).length;
+      });
+      
+      const progressPercent = (totalAnswered / totalQuestions) * 100;
+      document.getElementById('progressFill').style.width = `${progressPercent}%`;
+      document.getElementById('progressText').innerText = `Progresso: ${totalAnswered}/${totalQuestions} questões respondidas`;
+    }
+
+    // Função para renderizar o quiz
     function renderQuiz(containerId, questions, storageKey, startNumber) {
       const quizContainer = document.getElementById(containerId);
       const saved = JSON.parse(localStorage.getItem(storageKey)) || {};
@@ -6794,10 +6921,14 @@ function generateCiscoSecurityQuestions() {
         const div = document.createElement("div");
         div.className = "question";
 
+        // Verificar se a questão foi respondida
+        const isAnswered = saved[i] !== undefined;
+        const answerIndicator = isAnswered ? '<span class="answered-indicator" title="Questão respondida"></span>' : '';
+        
         let html = `
           <div class="question-header">
             <div class="question-text">
-              <p><strong>Questão ${startNumber + i}</strong> - ${q.q}</p>
+              <p>${answerIndicator}<strong>Questão ${startNumber + i}</strong> - ${q.q}</p>
             </div>
             <div class="question-actions">
               <button class="btn-confirmar" onclick="checkSingleAnswer('${containerId}', ${i}, '${storageKey}')">Confirmar Resposta</button>
@@ -6840,14 +6971,18 @@ function generateCiscoSecurityQuestions() {
       });
 
       updateResult(containerId, questions);
+      updateProgress();
     }
 
+    // Função para salvar resposta
     function saveAnswer(storageKey, qIndex, optionIndex) {
       let answers = JSON.parse(localStorage.getItem(storageKey)) || {};
       answers[qIndex] = optionIndex;
       localStorage.setItem(storageKey, JSON.stringify(answers));
+      updateProgress();
     }
 
+    // Função para verificar resposta única
     function checkSingleAnswer(containerId, index, storageKey) {
       const questions = getQuestionsByContainer(containerId);
       const saved = JSON.parse(localStorage.getItem(storageKey)) || {};
@@ -6901,6 +7036,7 @@ function generateCiscoSecurityQuestions() {
       updateResult(containerId, questions);
     }
 
+    // Função para obter questões por container
     function getQuestionsByContainer(containerId) {
       switch(containerId) {
         case 'quiz': return currentQuestions.questions;
@@ -6910,6 +7046,7 @@ function generateCiscoSecurityQuestions() {
       }
     }
 
+    // Função para verificar todas as respostas
     function checkAllAnswers(containerId, questions) {
       const storageKey = containerId;
       const saved = JSON.parse(localStorage.getItem(storageKey)) || {};
@@ -6924,7 +7061,7 @@ function generateCiscoSecurityQuestions() {
         // Só processa se foi respondida e ainda não foi corrigida
         if (saved[i] !== undefined && !corrected[i]) {
           if (saved[i] == q.answer) {
-            feedback.innerHTML = " ? Resposta correta!";
+            feedback.innerHTML = "✔ Resposta correta!";
             feedback.className = "feedback correct";
             
             // Mostrar notificação +1
@@ -6935,7 +7072,7 @@ function generateCiscoSecurityQuestions() {
 
             newPoints++;
           } else {
-            feedback.innerHTML = "? Resposta incorreta!";
+            feedback.innerHTML = "✖ Resposta incorreta!";
             feedback.className = "feedback incorrect";
           }
 
@@ -6960,6 +7097,7 @@ function generateCiscoSecurityQuestions() {
       updateResult(containerId, questions);
     }
 
+    // Função para verificar todas as páginas
     function checkAllPages() {
       // Corrigir página 1
       showPage(1);
@@ -6986,6 +7124,7 @@ function generateCiscoSecurityQuestions() {
       }, 500);
     }
 
+    // Função para atualizar resultados
     function updateResult(containerId, questions) {
       const resultId = containerId === 'quiz' ? 'result' : containerId === 'quiz2' ? 'result2' : 'result3';
       const storageKey = containerId;
@@ -7009,6 +7148,7 @@ function generateCiscoSecurityQuestions() {
         `Acertos: ${correct}/${questions.length}`;
     }
 
+    // Função para mostrar respostas
     function showAnswers(containerId, questions) {
       const storageKey = containerId;
       const corrected = JSON.parse(localStorage.getItem(storageKey + '_corrected')) || {};
@@ -7032,41 +7172,52 @@ function generateCiscoSecurityQuestions() {
       updateResult(containerId, questions);
     }
 
+    // Função para resetar quiz
     function resetQuiz(containerId, resultId) {
-      localStorage.removeItem(containerId);
-      localStorage.removeItem(containerId + '_corrected');
-      
-      // Recalcular placar total
-      placarTotal = 0;
-      ['quiz', 'quiz2', 'quiz3'].forEach(quizId => {
-        if (quizId !== containerId) {
-          const saved = JSON.parse(localStorage.getItem(quizId)) || {};
-          const corrected = JSON.parse(localStorage.getItem(quizId + '_corrected')) || {};
-          const questions = getQuestionsByContainer(quizId);
-          
-          questions.forEach((q, i) => {
-            if (corrected[i] && saved[i] == q.answer) {
-              placarTotal++;
-            }
-          });
-        }
-      });
-      
-      localStorage.setItem("placarTotal", placarTotal);
-      updateGlobalPlacar();
-      
-      // Recriar o quiz com os números corretos
-      const startNumber = containerId === 'quiz' ? 1 : containerId === 'quiz2' ? 31 : 61;
-      const questions = getQuestionsByContainer(containerId);
-      renderQuiz(containerId, questions, containerId, startNumber);
-      document.getElementById(resultId).innerText = "";
+      if (confirm("Tem certeza que deseja limpar todas as respostas desta página?")) {
+        localStorage.removeItem(containerId);
+        localStorage.removeItem(containerId + '_corrected');
+        
+        // Recalcular placar total
+        placarTotal = 0;
+        ['quiz', 'quiz2', 'quiz3'].forEach(quizId => {
+          if (quizId !== containerId) {
+            const saved = JSON.parse(localStorage.getItem(quizId)) || {};
+            const corrected = JSON.parse(localStorage.getItem(quizId + '_corrected')) || {};
+            const questions = getQuestionsByContainer(quizId);
+            
+            questions.forEach((q, i) => {
+              if (corrected[i] && saved[i] == q.answer) {
+                placarTotal++;
+              }
+            });
+          }
+        });
+        
+        localStorage.setItem("placarTotal", placarTotal);
+        updateGlobalPlacar();
+        
+        // Recriar o quiz com os números corretos
+        const startNumber = containerId === 'quiz' ? 1 : containerId === 'quiz2' ? 31 : 61;
+        const questions = getQuestionsByContainer(containerId);
+        renderQuiz(containerId, questions, containerId, startNumber);
+        document.getElementById(resultId).innerText = "";
+        updateProgress();
+      }
     }
 
+    // Função para mostrar página
     function showPage(pageNum) {
-      document.querySelectorAll("div[id^='page']").forEach(div => div.style.display = "none");
-      document.getElementById("page" + pageNum).style.display = "block";
+      document.querySelectorAll("div[id^='page']").forEach(div => {
+        div.style.display = "none";
+        div.classList.remove("fade-in");
+      });
+      const pageElement = document.getElementById("page" + pageNum);
+      pageElement.style.display = "block";
+      setTimeout(() => {
+        pageElement.classList.add("fade-in");
+      }, 10);
     }
-
     // Inicializar
     updateGlobalPlacar();
 
