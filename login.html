@@ -6,6 +6,9 @@
   <title>Simulador de Certificações - Login</title>
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   
+  <!-- reCAPTCHA -->
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  
   <!-- Firebase SDK -->
   <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-auth-compat.js"></script>
@@ -283,6 +286,28 @@
       text-decoration: underline;
     }
 
+    /* Estilos para o reCAPTCHA */
+    .g-recaptcha {
+      display: flex;
+      justify-content: center;
+      margin: 15px 0;
+      transform: scale(0.95);
+      transform-origin: center;
+    }
+
+    .g-recaptcha > div {
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .recaptcha-error {
+      color: #ff5252;
+      font-size: 0.85rem;
+      text-align: center;
+      margin-top: 5px;
+      display: none;
+    }
+
     @media (max-width: 480px) {
       .container {
         padding: 15px;
@@ -298,6 +323,10 @@
       
       .tagline {
         font-size: 1rem;
+      }
+
+      .g-recaptcha {
+        transform: scale(0.85);
       }
     }
   </style>
@@ -325,6 +354,12 @@
         <div class="form-group">
           <label for="login-password">Senha</label>
           <input type="password" id="login-password" class="form-control" placeholder="Sua senha" required>
+        </div>
+        
+        <!-- reCAPTCHA Login -->
+        <div class="form-group">
+          <div class="g-recaptcha" id="login-recaptcha" data-sitekey="6Lf9fuUrAAAAAIU24RwrFfVyIR50BoB_dC8tOs2e"></div>
+          <div class="recaptcha-error" id="login-recaptcha-error">Por favor, complete o reCAPTCHA</div>
         </div>
         
         <button type="submit" class="btn">Entrar</button>
@@ -370,23 +405,23 @@
           </div>
           <div class="password-requirements" id="password-requirements">
             <div class="requirement invalid" id="req-length">
-              <span class="requirement-icon">❌</span>
+              <span class="requirement-icon">?</span>
               Pelo menos 8 caracteres
             </div>
             <div class="requirement invalid" id="req-uppercase">
-              <span class="requirement-icon">❌</span>
+              <span class="requirement-icon">?</span>
               Pelo menos uma letra maiúscula
             </div>
             <div class="requirement invalid" id="req-lowercase">
-              <span class="requirement-icon">❌</span>
+              <span class="requirement-icon">?</span>
               Pelo menos uma letra minúscula
             </div>
             <div class="requirement invalid" id="req-number">
-              <span class="requirement-icon">❌</span>
+              <span class="requirement-icon">?</span>
               Pelo menos um número
             </div>
             <div class="requirement invalid" id="req-special">
-              <span class="requirement-icon">❌</span>
+              <span class="requirement-icon">?</span>
               Pelo menos um caractere especial
             </div>
           </div>
@@ -397,10 +432,16 @@
           <input type="password" id="register-confirm-password" class="form-control" placeholder="Confirme sua senha" required>
           <div id="password-match" class="password-requirements" style="display: none;">
             <div class="requirement invalid">
-              <span class="requirement-icon">❌</span>
+              <span class="requirement-icon">?</span>
               As senhas não coincidem
             </div>
           </div>
+        </div>
+        
+        <!-- reCAPTCHA Cadastro -->
+        <div class="form-group">
+          <div class="g-recaptcha" id="register-recaptcha" data-sitekey="6Lf9fuUrAAAAAIU24RwrFfVyIR50BoB_dC8tOs2e"></div>
+          <div class="recaptcha-error" id="register-recaptcha-error">Por favor, complete o reCAPTCHA</div>
         </div>
         
         <button type="submit" class="btn">Cadastrar</button>
@@ -437,22 +478,20 @@
       </form>
       
       <div class="home-link">
-        <a href="login.html">← Voltar para a página inicial</a>
+        <a href="login.html">Voltar para a página inicial</a>
       </div>
     </div>
   </div>
 
   <script>
     // Configuração do Firebase
-    // IMPORTANTE: Substitua pela sua configuração do Firebase
     const firebaseConfig = {
       apiKey: "AIzaSyDFBV9NIVTdd7FLKt1F_3Mo6KDbRfTbsjI",
-  authDomain: "simulador-de-certificacoes.firebaseapp.com",
-  projectId: "simulador-de-certificacoes",
-  storageBucket: "simulador-de-certificacoes.firebasestorage.app",
-  messagingSenderId: "1079207323365",
-  appId: "1:1079207323365:web:a3a3095dd50fe256d3160c"
-
+      authDomain: "simulador-de-certificacoes.firebaseapp.com",
+      projectId: "simulador-de-certificacoes",
+      storageBucket: "simulador-de-certificacoes.firebasestorage.app",
+      messagingSenderId: "1079207323365",
+      appId: "1:1079207323365:web:a3a3095dd50fe256d3160c"
     };
 
     // Inicializar Firebase
@@ -478,13 +517,50 @@
     const passwordStrengthBar = document.getElementById('password-strength-bar');
     const passwordMatchDiv = document.getElementById('password-match');
     
+    // Elementos reCAPTCHA
+    const loginRecaptchaError = document.getElementById('login-recaptcha-error');
+    const registerRecaptchaError = document.getElementById('register-recaptcha-error');
+
     // Função para mostrar mensagens
     function showMessage(text, type) {
       messageDiv.textContent = text;
       messageDiv.className = `message ${type}`;
+      messageDiv.style.display = 'block';
       setTimeout(() => {
         messageDiv.style.display = 'none';
       }, 5000);
+    }
+
+    // Função para validar reCAPTCHA
+    function validateRecaptcha(formType) {
+      const recaptchaResponse = grecaptcha.getResponse();
+      if (!recaptchaResponse) {
+        if (formType === 'login') {
+          loginRecaptchaError.style.display = 'block';
+        } else {
+          registerRecaptchaError.style.display = 'block';
+        }
+        return false;
+      }
+      
+      // Esconder erro se estiver válido
+      if (formType === 'login') {
+        loginRecaptchaError.style.display = 'none';
+      } else {
+        registerRecaptchaError.style.display = 'none';
+      }
+      
+      return true;
+    }
+
+    // Função para resetar reCAPTCHA
+    function resetRecaptcha(formType) {
+      grecaptcha.reset();
+      if (formType === 'login') {
+        loginRecaptchaError.style.display = 'none';
+      } else {
+        registerRecaptchaError.style.display = 'none';
+      }
     }
     
     // Alternar entre abas de autenticação
@@ -499,6 +575,9 @@
         // Atualizar formulário ativo
         authForms.forEach(form => form.classList.remove('active'));
         document.getElementById(`${tabName}-form`).classList.add('active');
+        
+        // Resetar reCAPTCHA ao trocar de aba
+        resetRecaptcha(tabName);
         
         // Limpar mensagens
         messageDiv.style.display = 'none';
@@ -568,11 +647,11 @@
       if (isValid) {
         element.classList.remove('invalid');
         element.classList.add('valid');
-        element.querySelector('.requirement-icon').textContent = '✅';
+        element.querySelector('.requirement-icon').textContent = '?';
       } else {
         element.classList.remove('valid');
         element.classList.add('invalid');
-        element.querySelector('.requirement-icon').textContent = '❌';
+        element.querySelector('.requirement-icon').textContent = '?';
       }
     }
     
@@ -592,6 +671,12 @@
     registerForm.addEventListener('submit', async (e) => {
       e.preventDefault();
       
+      // Validar reCAPTCHA primeiro
+      if (!validateRecaptcha('register')) {
+        showMessage('Por favor, complete o reCAPTCHA.', 'error');
+        return;
+      }
+      
       const email = document.getElementById('register-email').value;
       const birthdate = document.getElementById('register-birthdate').value;
       const password = document.getElementById('register-password').value;
@@ -606,12 +691,14 @@
       
       if (!hasMinLength || !hasUpperCase || !hasLowerCase || !hasNumber || !hasSpecialChar) {
         showMessage('A senha não atende a todos os requisitos de segurança.', 'error');
+        resetRecaptcha('register');
         return;
       }
       
       // Verificar se as senhas coincidem
       if (password !== confirmPassword) {
         showMessage('As senhas não coincidem.', 'error');
+        resetRecaptcha('register');
         return;
       }
       
@@ -627,6 +714,7 @@
       
       if (age < 16) {
         showMessage('Você deve ter pelo menos 16 anos para se cadastrar.', 'error');
+        resetRecaptcha('register');
         return;
       }
       
@@ -645,13 +733,16 @@
         
         showMessage('Cadastro realizado com sucesso!', 'success');
         
+        // Reset reCAPTCHA
+        resetRecaptcha('register');
+        
         // Limpar formulário
         registerForm.reset();
         passwordStrengthBar.style.width = '0%';
         document.querySelectorAll('.requirement').forEach(req => {
           req.classList.remove('valid');
           req.classList.add('invalid');
-          req.querySelector('.requirement-icon').textContent = '❌';
+          req.querySelector('.requirement-icon').textContent = '?';
         });
         
         // Redirecionar para o simulador após um breve delay
@@ -661,6 +752,9 @@
         
       } catch (error) {
         console.error('Erro no cadastro:', error);
+        
+        // Reset reCAPTCHA em caso de erro
+        resetRecaptcha('register');
         
         // Tratamento de erros específicos do Firebase
         if (error.code === 'auth/email-already-in-use') {
@@ -679,6 +773,12 @@
     loginForm.addEventListener('submit', async (e) => {
       e.preventDefault();
       
+      // Validar reCAPTCHA primeiro
+      if (!validateRecaptcha('login')) {
+        showMessage('Por favor, complete o reCAPTCHA.', 'error');
+        return;
+      }
+      
       const email = document.getElementById('login-email').value;
       const password = document.getElementById('login-password').value;
       
@@ -694,6 +794,9 @@
         
         showMessage('Login realizado com sucesso!', 'success');
         
+        // Reset reCAPTCHA
+        resetRecaptcha('login');
+        
         // Redirecionar para o simulador após um breve delay
         setTimeout(() => {
           window.location.href = 'index.html';
@@ -701,6 +804,9 @@
         
       } catch (error) {
         console.error('Erro no login:', error);
+        
+        // Reset reCAPTCHA em caso de erro
+        resetRecaptcha('login');
         
         // Tratamento de erros específicos do Firebase
         if (error.code === 'auth/user-not-found' || error.code === 'auth/wrong-password') {
@@ -804,16 +910,3 @@
   </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
