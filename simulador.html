@@ -6222,427 +6222,417 @@ function generateCiscoSecurityQuestions() {
   // Página 1 - Questões 1-30 - Sequência variada: 2,0,3,1,0,2,1,3,2,1,0,3,1,2,3,0,2,1,3,0,1,2,0,3,2,1,0,3,1,2
   currentQuestions.questions = [
     {
-      q: "Qual tecnologia Cisco fornece segmentação de rede baseada em políticas?",
+      q: "Proteger o acesso físico ao equipamento de destino é a melhor defesa de uma empresa contra um ataque digital.” Isso é verdadeiro ou falso?",
       options: [
-        "Cisco ISE",
-        "Cisco TrustSec",
-        "Cisco SD-Access",
-        "Cisco ACI"
-      ],
-      answer: 2,
-      comment: "Cisco SD-Access fornece segmentação micro baseada em intenção."
-    },
-    {
-      q: "Qual componente do Cisco Firepower fornece NGFW?",
-      options: [
-        "Firepower Threat Defense",
-        "ASA with FirePOWER",
-        "Firepower Management Center",
-        "Todos os anteriores"
+        "Falso",
+        "Verdadeiro",
       ],
       answer: 0,
-      comment: "Firepower Threat Defense (FTD) é a plataforma NGFW unificada da Cisco."
+      comment: "<p>É falso, pois embora o controle de acesso físico seja importante, ele não é a melhor defesa contra ataques digitais.</p><p>A proteção cibernética requer múltiplas camadas de segurança, como firewalls, autenticação multifator, criptografia e monitoramento contínuo.</p><p>Essas medidas reduzem significativamente a superfície de ataque e fortalecem a defesa contra ameaças digitais.</p>"
     },
     {
-      q: "Qual tecnologia fornece visibilidade de ameaças na rede?",
+      q: "Qual nome é dado a um dispositivo que controla ou filtra o tráfego que entra ou sai da rede?",
       options: [
-        "Cisco Stealthwatch",
-        "Cisco Umbrella",
-        "Cisco Talos",
-        "Cisco AMP"
-      ],
-      answer: 0,
-      comment: "Cisco Stealthwatch usa NetFlow para detecção de ameaças baseada em comportamento."
-    },
-    {
-      q: "Qual produto Cisco fornece segurança para email?",
-      options: [
-        "Cisco Email Security",
-        "Cisco Cloud Email Security",
-        "Cisco IronPort",
-        "Todos os anteriores"
-      ],
-      answer: 3,
-      comment: "A família Cisco Email Security (anteriormente IronPort) protege contra ameaças via email."
-    },
-    {
-      q: "Qual tecnologia fornece segurança DNS?",
-      options: [
-        "Cisco Umbrella",
-        "Cisco Firepower",
-        "Cisco ASA",
-        "Cisco ISE"
-      ],
-      answer: 0,
-      comment: "Cisco Umbrella fornece segurança DNS como serviço na nuvem."
-    },
-    {
-      q: "Qual componente do Cisco ISE fornece posture assessment?",
-      options: [
-        "Posture Service",
-        "Device Sensor",
-        "Profiling Service",
-        "AnyConnect Posture Module"
-      ],
-      answer: 0,
-      comment: "Posture Service no ISE valia conformidade de endpoints antes do acesso à rede."
-    },
-    {
-      q: "Qual tecnologia fornece segurança para endpoints?",
-      options: [
-        "Cisco AMP for Endpoints",
-        "Cisco AnyConnect",
-        "Cisco ISE",
-        "Cisco Firepower"
-      ],
-      answer: 0,
-      comment: "Cisco AMP (Advanced Malware Protection) fornece segurança avançada para endpoints."
-    },
-    {
-      q: "Qual protocolo é usado pelo Cisco AnyConnect?",
-      options: [
-        "SSL VPN",
-        "IPsec VPN",
-        "DTLS",
-        "Todos os anteriores"
-      ],
-      answer: 3,
-      comment: "AnyConnect usa SSL, IPsec e DTLS para conectividade VPN flexível."
-    },
-    {
-      q: "Qual produto Cisco fornece segurança web?",
-      options: [
-        "Cisco Web Security Appliance",
-        "Cisco Umbrella",
-        "Cisco Firepower",
-        "Todos os anteriores"
-      ],
-      answer: 3,
-      comment: "WSA, Umbrella e Firepower fornecem segurança web em diferentes camadas."
-    },
-    {
-      q: "Qual tecnologia fornece microsegmentação?",
-      options: [
-        "Cisco ACI",
-        "Cisco SD-Access",
-        "Cisco TrustSec",
-        "Todos os anteriores"
-      ],
-      answer: 3,
-      comment: "ACI, SD-Access e TrustSec fornecem microsegmentação em diferentes ambientes."
-    },
-    {
-      q: "Qual componente do Cisco Firepower fornece IPS?",
-      options: [
-        "Snort",
-        "FirePOWER Services",
-        "NGIPS",
-        "Todos os anteriores"
-      ],
-      answer: 3,
-      comment: "Snort é o motor de detecção, FirePOWER fornece serviços e NGIPS é a solução completa."
-    },
-    {
-      q: "Qual tecnologia fornece segurança para cloud?",
-      options: [
-        "Cisco Cloudlock",
-        "Cisco Umbrella",
-        "Cisco Tetration",
-        "Todos os anteriores"
-      ],
-      answer: 3,
-      comment: "Cloudlock, Umbrella e Tetration fornecem segurança para ambientes cloud."
-    },
-    {
-      q: "Qual produto Cisco fornece firewall tradicional?",
-      options: [
-        "Cisco ASA",
-        "Cisco FTD",
-        "Cisco PIX",
-        "Cisco IOS Firewall"
-      ],
-      answer: 0,
-      comment: "Cisco ASA (Adaptive Security Appliance) é a plataforma firewall stateful tradicional."
-    },
-    {
-      q: "Qual tecnologia fornece NAC (Network Access Control)?",
-      options: [
-        "Cisco ISE",
-        "Cisco TrustSec",
-        "802.1X",
-        "Todos os anteriores"
-      ],
-      answer: 3,
-      comment: "ISE é a plataforma, TrustSec fornece enforcement e 802.1X é o protocolo."
-    },
-    {
-      q: "Qual componente do Cisco ISE fornece profiling?",
-      options: [
-        "Profiling Service",
-        "Device Sensor",
-        "Network Scan",
-        "Todos os anteriores"
-      ],
-      answer: 3,
-      comment: "Profiling Service usa múltiplas técnicas para identificar tipos de dispositivos."
-    },
-    {
-      q: "Qual tecnologia fornece segurança para data center?",
-      options: [
-        "Cisco ACI",
-        "Cisco Tetration",
-        "Cisco Firepower",
-        "Todos os anteriores"
-      ],
-      answer: 3,
-      comment: "ACI, Tetration e Firepower fornecem segurança abrangente para data centers."
-    },
-    {
-      q: "Qual produto Cisco fornece sandboxing?",
-      options: [
-        "Cisco Threat Grid",
-        "Cisco AMP",
-        "Cisco Firepower",
-        "Todos os anteriores"
-      ],
-      answer: 3,
-      comment: "Threat Grid fornece sandboxing, AMP usa análise e Firepower integra ambas."
-    },
-    {
-      q: "Qual tecnologia fornece segurança para IoT?",
-      options: [
-        "Cisco Cyber Vision",
-        "Cisco ISE",
-        "Cisco DNA Center",
-        "Todos os anteriores"
-      ],
-      answer: 3,
-      comment: "Cyber Vision, ISE e DNA Center trabalham juntos para segurança IoT."
-    },
-    {
-      q: "Qual componente do Cisco Umbrella fornece inteligência?",
-      options: [
-        "Cisco Talos",
-        "Umbrella Investigate",
-        "Umbrella Insights",
-        "Todos os anteriores"
-      ],
-      answer: 3,
-      comment: "Talos fornece inteligência, Investigate análise e Insights visibilidade."
-    },
-    {
-      q: "Qual tecnologia fornece segurança para aplicações web?",
-      options: [
-        "Cisco WSA",
-        "Cisco Firepower",
-        "Cisco Cloudlock",
-        "Todos os anteriores"
-      ],
-      answer: 3,
-      comment: "WSA, Firepower e Cloudlock protegem aplicações web em diferentes ambientes."
-    },
-    {
-      q: "Qual produto Cisco fornece segurança para mobile?",
-      options: [
-        "Cisco AnyConnect",
-        "Cisco ISE",
-        "Cisco Meraki",
-        "Todos os anteriores"
-      ],
-      answer: 3,
-      comment: "AnyConnect para VPN, ISE para acesso e Meraki para gestão mobile."
-    },
-    {
-      q: "Qual tecnologia fornece detecção de ameaças internas?",
-      options: [
-        "Cisco Stealthwatch",
-        "Cisco ISE",
-        "Cisco Tetration",
-        "Todos os anteriores"
-      ],
-      answer: 3,
-      comment: "Stealthwatch, ISE e Tetration detectam ameaças internas através de análise comportamental."
-    },
-    {
-      q: "Qual componente do Cisco Firepower gerencia políticas?",
-      options: [
-        "Firepower Management Center",
-        "Cisco Defense Orchestrator",
-        "Cisco Security Manager",
-        "Todos os anteriores"
-      ],
-      answer: 3,
-      comment: "FMC, CDO e CSM são plataformas de gerenciamento para produtos de segurança Cisco."
-    },
-    {
-      q: "Qual tecnologia fornece segurança para DNS?",
-      options: [
-        "Cisco Umbrella",
-        "Cisco Firepower DNS Policy",
-        "Cisco Stealthwatch DNS Analysis",
-        "Todos os anteriores"
-      ],
-      answer: 3,
-      comment: "Umbrella, Firepower e Stealthwatch fornecem segurança DNS em diferentes camadas."
-    },
-    {
-      q: "Qual produto Cisco fornece segurança para cloud apps?",
-      options: [
-        "Cisco Cloudlock",
-        "Cisco Umbrella",
-        "Cisco AnyConnect",
-        "Todos os anteriores"
-      ],
-      answer: 0,
-      comment: "Cisco Cloudlock é CASB (Cloud Access Security Broker) para aplicações SaaS."
-    },
-    {
-      q: "Qual tecnologia fornece segurança para containers?",
-      options: [
-        "Cisco Tetration",
-        "Cisco ACI",
-        "Cisco Cloudlock",
-        "Todos os anteriores"
-      ],
-      answer: 3,
-      comment: "Tetration, ACI e Cloudlock fornecem segurança para ambientes de containers."
-    },
-    {
-      q: "Qual componente do Cisco ISE fornece guest access?",
-      options: [
-        "Guest Portal",
-        "Sponsor Portal",
-        "Self-Registration",
-        "Todos os anteriores"
-      ],
-      answer: 3,
-      comment: "ISE fornece portais completos para acesso de convidados com diferentes fluxos."
-    },
-    {
-      q: "Qual tecnologia fornece segurança para APIs?",
-      options: [
-        "Cisco API Security",
-        "Cisco Cloudlock",
-        "Cisco Firepower",
-        "Cisco Umbrella"
+        "Roteador",
+        "Firewall",
+        "VPN",
+        "IPS"
       ],
       answer: 1,
-      comment: "Cisco Cloudlock inclui proteção para APIs de aplicações cloud."
+      comment: "<p>O dispositivo responsável por controlar e filtrar o tráfego de rede é o <strong>Firewall</strong>.</p><p>Ele atua como uma barreira entre a rede interna e redes externas, bloqueando acessos não autorizados e permitindo apenas o tráfego legítimo.</p><p>Firewalls modernos, como o Cisco Firepower Threat Defense (FTD), oferecem recursos avançados de inspeção e detecção de ameaças.</p>"
+    },
+
+    {
+      q: "Um funcionário de um consultório médico envia e-mails aos pacientes sobre as consultas mais recentes. <br>Qual informação colocaria a privacidade dos pacientes em risco, se estiver incluída no e-mail?",
+      options: [
+        "Fichas de pacientes",
+        "Primeiro e ultimo nome",
+        "Informação de contato",
+        "Próxima Consulta"
+      ],
+      answer: 0,
+      comment: "<p>A inclusão de <strong>fichas de pacientes</strong> em e-mails representa um grave risco à privacidade, pois contém dados médicos e informações pessoais sensíveis.</p><p>Esses dados são protegidos por leis de privacidade, como a LGPD, e devem ser tratados com confidencialidade.</p><p>Ferramentas como o Cisco Stealthwatch ajudam a detectar comportamentos suspeitos e proteger informações sigilosas contra vazamentos.</p>"
     },
     {
-      q: "Qual produto Cisco fornece segurança para industrial?",
+      q: "Complete a frase: <br>............ é o uso de tecnologia para penetrar e atacar sistemas e redes de computadores de outra nação, com objetivo de causar danos ou interromper serviços, como desligar uma rede elétrica.",
       options: [
-        "Cisco Cyber Vision",
-        "Cisco ISA 3000",
-        "Cisco Industrial Ethernet",
-        "Todos os anteriores"
+        "Guerra cibernética",
+        "Ciberterrorismo",
+        "Um ataque cibernético",
+        "Uma campanha digital"
       ],
-      answer: 3,
-      comment: "Cyber Vision, ISA 3000 e Industrial Ethernet são para ambientes OT/industrial."
+      answer: 0,
+      comment: "<p>O termo correto é <strong>Guerra cibernética</strong>, que se refere ao uso de ataques digitais entre nações para causar danos a infraestruturas críticas, como redes elétricas ou sistemas de defesa.</p><p>Esses ataques visam desestabilizar governos e comprometer a segurança nacional.</p><p>A Cisco Email Security (antiga IronPort) ajuda a proteger organizações contra ameaças veiculadas por e-mail, reduzindo riscos em cenários de ciberconflito.</p>"
+    },
+{
+  q: "Qual um motivo pelo qual as ameaças à segurança interna podem causar mais danos a uma empresa que as ameaças de segurança externas?",
+  options: [
+    "Usuários internos têm melhor habilidade de hacking.",
+    "Usuários internos têm acesso direto aos dispositivos de infraestrutura.",
+    "Usuários internos podem acessar os dados corporativos sem autenticação.",
+    "Usuários internos podem acessar os dispositivos de infraestrutura pela Internet."
+  ],
+  answer: 1,
+  comment: "Usuários internos possuem acesso privilegiado e direto aos sistemas críticos, permitindo que causem danos significativos sem precisar contornar controles de segurança perimetral."
+},
+   {
+  q: "Qual das seguintes certificações atende aos requisitos da Diretriz 8570.01-M do Departamento de Defesa dos EUA, que é importante para quem deseja trabalhar em segurança de TI para o governo federal?",
+  options: [
+    "Microsoft Technology Associate Security Fundamentals",
+    "Palo Alto Networks Certified Cybersecurity Associate", 
+    "ISACA CSX Cybersecurity Fundamentals",
+    "CompTIA Security+",
+	"Hacker Ético Certificado pelo EC-Council (CEH-Certified Ethical Hacker)",
+	"ICS2 Certified Information Systems Security Professional"
+  ],
+  answer: 3,
+  comment: "A certificação CompTIA Security+ está explicitamente listada na Diretriz 8570.01-M do DoD como atendendo aos requisitos para posições de segurança da informação de nível básico."
+    },
+      {
+  q: "Que vulnerabilidade ocorre quando a saída de um evento depende de saídas ordenadas ou cronometradas?",
+  options: [
+    "Estouro de buffer",
+    "Entrada não validada",
+    "Condição de corrida",
+    "Fragilidade nas práticas de segurança",
+    "Problemas de controle de acesso"
+  ],
+  answer: 2,
+  comment: "Condição de corrida é uma vulnerabilidade que ocorre quando o resultado de um processo depende da sequência ou timing de eventos não controlados, onde a saída incorreta acontece quando operações são executadas em ordem não esperada."
+},
+    {
+  q: "Qual configuração em um roteador wireless não é considerada segurança adequada para uma rede sem fio?",
+  options: [
+    "Impedindo broadcast de um SSID",
+    "Modificando o SSID e senha padrões de um roteador sem fio",
+    "Ativando a segurança sem fio", 
+    "Implementando a criptografia WPA2"
+  ],
+  answer: 0,
+  comment: "Ocultar o SSID (impedindo broadcast) não é considerado uma medida de segurança adequada, pois o SSID ainda pode ser descoberto através de análise de pacotes e não protege contra acessos não autorizados."
+},
+     {
+  q: "A análise baseada em comportamento envolve o uso de informações básicas para detectar o quê?",
+  options: [
+    "Anomalias",
+    "Vulnerabilidades", 
+    "Backdoors",
+    "Risco"
+  ],
+  answer: 0,
+  comment: "A análise baseada em comportamento estabelece uma linha de base do comportamento normal do sistema/usuário e detecta desvios dessa linha de base, identificando assim anomalias que podem indicar ameaças de segurança."
+},
+    {
+  q: "'As criptomoedas são tratadas em uma troca centralizada.' Esta afirmação é verdadeira ou falsa?",
+  options: [
+    "Verdadeiro",
+    "Falso"
+  ],
+  answer: 1,
+  comment: "A afirmação é falsa. Criptomoedas como Bitcoin operam em redes descentralizadas usando blockchain, não dependendo de uma autoridade central. Embora existam exchanges centralizadas para negociação, a natureza fundamental das criptomoedas é a descentralização."
+},
+    {
+      q: "Qual é a única maneira de garantir que os arquivos excluídos no seu computador sejam irrecuperáveis?",
+      options: [
+          "Usar um programa de software como o SDelete ou o Secure Empty Trash",
+          "Esvaziar a lixeira do computador",
+          "Destruir fisicamente o disco rígido do computador"
+        ],
+       answer: 2,
+       comment: "A destruição física do disco rígido é o único método que garante a irrecoverabilidade completa dos dados. Métodos de sobrescrita podem deixar resquícios em setores realocados, e esvaziar a lixeira apenas remove referências, mantendo os dados recuperáveis."
+     }
+    {
+      q: "Para que servem as habilidades desenvolvidas pelos profissionais de cibersegurança?",
+options: [
+"Os profissionais de cibersegurança desenvolvem muitas habilidades que podem ser usadas para o bem",
+"Os profissionais de cibersegurança desenvolvem muitas habilidades que podem ser usadas para o bem ou para o mal",
+"Os profissionais de cibersegurança desenvolvem muitas habilidades que podem ser usadas para o mal",
+"Os profissionais de cibersegurança desenvolvem muitas habilidades que não podem ser usadas para o mal"
+],
+answer: 1,
+comment: "As habilidades em cibersegurança são neutras - podem ser usadas para proteger sistemas (bem) ou para explorar vulnerabilidades (mal), dependendo da ética e intenções do profissional."
     },
     {
-      q: "Qual tecnologia fornece segurança zero trust?",
-      options: [
-        "Cisco Zero Trust",
-        "Cisco SecureX",
-        "Cisco Duo",
-        "Todos os anteriores"
-      ],
-      answer: 3,
-      comment: "Zero Trust architecture, SecureX platform e Duo access compõem a abordagem zero trust da Cisco."
+      q: "O que é um manual de segurança?",
+options: [
+"Uma coleção de consultas ou relatórios que descrevem um processo padronizado para detecção e resposta a incidentes",
+"Uma coleção de alertas de segurança, logs e dados históricos da rede",
+"Um guia passo a passo sobre como realizar procedimentos relacionados à TI"
+],
+answer: 2,
+comment: "Um manual de segurança é um documento operacional que fornece instruções detalhadas e procedimentos padronizados para executar tarefas específicas de segurança de TI de forma consistente e segura."
+    {
+      q: "Se os desenvolvedores tentarem criar seus próprios algoritmos de segurança, que tipo de vulnerabilidade provavelmente introduzirá?",
+options: [
+"Estouro de buffer",
+"Entrada não validada",
+"Condição de corrida",
+"Fragilidade nas práticas de segurança",
+"Problemas de controle de acesso"
+],
+answer: 3,
+comment: "Criar algoritmos de segurança personalizados geralmente resulta em fragilidades, pois os desenvolvedores podem não ter expertise em criptografia robusta, levando a implementações com falhas que especialistas poderiam explorar."
+    },
+    {
+      q: "O malware Stuxnet foi projetado para qual finalidade principal?",
+options: [
+"Para invadir e assumir o controle de computadores de destino",
+"Causar danos físicos a equipamentos controlados por computadores",
+"Causar danos graves aos funcionários de uma usina de enriquecimento de energia nuclear"
+],
+answer: 1,
+comment: "O Stuxnet foi especificamente desenvolvido para atacar sistemas SCADA da Siemens, visando causar danos físicos às centrifugas de enriquecimento de urânio no programa nuclear iraniano, alterando sua velocidade operacional."
+    },
+    {
+      q: "Qual é o propósito principal da guerra cibernética?",
+options: [
+"Simular cenários possíveis de guerra entre as nações",
+"Proteger os centros de dados baseados em nuvem",
+"Desenvolver dispositivos de rede avançados",
+"Ganhar vantagem sobre os adversários"
+],
+answer: 3,
+comment: "O propósito principal da guerra cibernética é obter vantagem estratégica sobre adversários através de operações digitais que podem incluir espionagem, sabotagem ou desinformação."
+    },
+    {
+      q: "“As transações de criptomoeda são digitais.” Esta afirmação é verdadeira ou falsa?",
+options: [
+"Falso",
+"Verdadeiro"
+],
+answer: 1,
+comment: "A afirmação é verdadeira. Criptomoedas são ativos puramente digitais que existem apenas em formato eletrônico, e todas as suas transações ocorrem através de redes digitais/blockchain, sem forma física equivalente."
+    },
+    {
+      q: "Qual é a melhor abordagem para evitar que um dispositivo IoT comprometido acesse dados e dispositivos de forma mal-intencionada em uma rede local?",
+options: [
+"Defina as configurações de segurança dos navegadores da Web da estação de trabalho para um nível superior.",
+"Instale um software de firewall em cada dispositivo de rede.",
+"Coloque em uma rede isolada todos os dispositivos de IoT com acesso à Internet.",
+"Desconecte todos os dispositivos de IoT da Internet."
+],
+answer: 2,
+comment: "Isolar dispositivos IoT em uma rede separada (segmentação) é a melhor prática, pois contém possíveis comprometimentos, impedindo que dispositivos vulneráveis acessem outros recursos da rede local caso sejam infectados."
+    },
+    {
+      q: "Qual tecnologia cria um token de segurança que permite que um usuário faça logon em um aplicativo da Web desejado usando as credenciais de um site de redes sociais?",
+options: [
+"Autorização aberta ou open authorization",
+"Modo de navegação privado",
+"Serviço VPN",
+"Gerenciador de senha"
+],
+answer: 0,
+comment: "OAuth (Open Authorization) é um protocolo padrão que permite que aplicativos terceiros acessem informações do usuário em outros serviços (como redes sociais) através de tokens de segurança, sem compartilhar credenciais de login."
+    },
+    {
+      q: "Uma varredura de porta retorna uma resposta 'fechada'. O que quer dizer isso?",
+options: [
+"Não houve resposta do host",
+"As conexões com a porta serão negadas",
+"Um serviço está escutando na porta"
+],
+answer: 1,
+comment: "Porta fechada significa que o host respondeu ativamente recusando a conexão. Isso indica que a porta está ativa e monitorada por um firewall ou pelo sistema operacional, mas nenhum serviço está aceitando conexões nela."
+    },
+    {
+      q: "Qual dos seguintes firewalls filtra portas e chamadas de serviço do sistema em um único sistema operacional de computador?",
+options: [
+"Network address translation (NAT) firewall",
+"Firewall baseado em host",
+"Firewall de camada de rede",
+"Firewall da camada de transporte",
+"Firewall da camada de aplicação"
+],
+answer: 1,
+comment: "Firewall baseado em host opera no próprio sistema operacional, filtrando tráfego de entrada e saída específico para aquele computador, incluindo portas e chamadas de serviço do sistema."
+    },
+    {
+     q: "Qual dos seguintes firewalls filtra solicitações de conteúdo da web, como URLs e nomes de domínio?",
+options: [
+"Firewall de camada de rede",
+"Firewall da camada de aplicação",
+"Servidor proxy reverso",
+"Servidor proxy",
+"Network address translation (NAT) firewall"
+],
+answer: 1,
+comment: "Firewall da camada de aplicação opera na camada 7 do modelo OSI, podendo inspecionar e filtrar conteúdo específico como URLs, nomes de domínio e tipos de conteúdo web, diferentemente de firewalls de camadas inferiores."
+    },
+    {
+      q: "Um funcionário faz algo como representante da organização com o conhecimento dessa organização e esta ação é considerada ilegal. A empresa é legalmente responsável por essa ação. Esta afirmação é verdadeira ou falsa?",
+options: [
+"Verdadeiro",
+"Falso"
+],
+answer: 0,
+comment: "Verdadeiro. Pelo princípio da responsabilidade legal corporativa (respondeat superior), empresas podem ser responsabilizadas por ações ilegais de funcionários realizadas no âmbito de suas funções e com conhecimento ou autorização da organização."
+    },
+    {
+      q: "Qual das seguintes opções é uma certificação básica para iniciantes que estão se preparando para iniciar sua carreira em segurança digital?",
+options: [
+"Microsoft Technology Associate Security Fundamentals",
+"CompTIA Security+",
+"ISC2 Certified Information Systems Security Professional",
+"Palo Alto Networks Certified Cybersecurity Associate",
+"Hacker Ético Certificado pelo EC-Council (CEH-Certified Ethical Hacker)",
+"ISACA CSX Cybersecurity Fundamentals"
+],
+answer: 5,
+comment: "A certificação ISACA CSX Cybersecurity Fundamentals é especificamente projetada para iniciantes, cobrindo conceitos básicos de segurança cibernética sem requisitos de experiência prévia, sendo ideal para quem está começando na área."
+    },
+    {
+      q: "Qual é a diferença entre um hacker e um profissional de cibersegurança?",
+options: [
+"Profissionais de cibersegurança não devem ter as mesmas habilidades dos hackers.",
+"Os hackers têm habilidades especiais que os profissionais de cibersegurança não têm",
+"Os hackers operam apenas dentro dos limites legais",
+"Os profissionais de cibersegurança devem trabalhar dentro dos limites legais"
+],
+answer: 3,
+comment: "A principal diferença está na legalidade e autorização. Profissionais de cibersegurança operam dentro de limites legais e com autorização, enquanto hackers podem atuar ilegalmente. Ambos podem possuir habilidades técnicas similares."
+    },
+    {
+      q: "Um perfil de usuário individual em um site de rede social é um exemplo de uma identidade .........",
+options: [
+"conectada",
+"desligada"
+],
+answer: 0,
+comment: "Uma identidade conectada é aquela vinculada a serviços online e redes sociais, onde o perfil do usuário está ativo e interage com outros usuários e sistemas na internet."
+    },
+    {
+      q: "Seu vizinho diz que não tem uma identidade online. Eles não têm contas de mídia social e usam apenas a Internet para navegar. Seu vizinho está certo?",
+options: [
+"Não",
+"Sim"
+],
+answer: 0,
+comment: "Não. Mesmo sem redes sociais, ao navegar na internet o vizinho cria rastros digitais como endereço IP, cookies, histórico de busca e outros dados que formam uma identidade online passiva."
+    },
+    {
+      q: "Qual um motivo pelo qual as ameaças à segurança interna podem causar mais danos a uma empresa que as ameaças de segurança externas?",
+options: [
+"Usuários internos têm acesso direto aos dispositivos de infraestrutura.",
+"Usuários internos têm melhor habilidade de hacking.",
+"Usuários internos podem acessar os dispositivos de infraestrutura pela Internet.",
+"Usuários internos podem acessar os dados corporativos sem autenticação."
+],
+answer: 0,
+comment: "Usuários internos possuem acesso privilegiado e direto aos sistemas críticos da infraestrutura, permitindo que causem danos significativos sem precisar contornar controles de segurança perimetral como firewalls."
+    },
+    {
+      q: "Qual é a motivação de um invasor white hat?",
+options: [
+"ajustar com precisão os dispositivos de rede para melhorar o desempenho e eficiência",
+"estudo dos sistemas operacionais de várias plataformas para desenvolver um novo sistema",
+"aproveitar-se de qualquer vulnerabilidade para ganho pessoal ilegal",
+"descoberta dos pontos fracos de redes e sistemas para melhorar o nível de segurança destes sistemas"
+],
+answer: 3,
+comment: "White hats são hackers éticos que identificam vulnerabilidades com autorização para fortalecer a segurança dos sistemas, diferentemente de black hats que exploram falhas para ganho ilegal."
+    },
+    {
+      q: "Qual afirmação descreve a guerra cibernética?",
+options: [
+"Guerra Cibernética é um conflito baseado na Internet que envolve a penetração das redes e sistemas de computador de outras nações.",
+"Guerra Cibernética é a software de simulação para pilotos da Força Aérea, permitindo o treinamento em um cenário de guerra simulada.",
+"Guerra cibernética é um ataque realizado por um grupo dos hackers inexperientes (script kiddies).",
+"Guerra Cibernética é uma série de equipamentos de proteção individual, desenvolvida para os soldados envolvidos em guerra nuclear."
+],
+answer: 0,
+comment: "Guerra cibernética envolve ações entre nações para penetrar redes e sistemas de computadores de adversários com objetivos de espionagem, sabotagem ou desestabilização, representando conflitos no espaço digital."
     }
   ];
 
   // Página 2 - Questões 31-60 - Sequência variada: 1,3,0,2,3,1,2,0,3,2,1,0,2,3,0,1,2,0,3,1,0,2,3,1,2,0,1,3,0,2
   currentQuestions.questions2 = [
     {
-      q: "Qual componente do Cisco Duo fornece MFA?",
-      options: [
-        "Duo Mobile",
-        "Duo Push",
-        "Duo Phone",
-        "Todos os anteriores"
-      ],
-      answer: 3,
-      comment: "Duo Mobile app, Push notifications e Phone calls são métodos de autenticação."
+      q: "Qual dos exemplos a seguir ilustra como o malware pode ser ocultado?",
+options: [
+"Um e-mail é enviado para os funcionários de uma empresa com um anexo que se parece com uma atualização de antivírus, mas na verdade consiste em um spyware.",
+"Um ataque é iniciado contra o site público de um varejista on-line, com o objetivo de bloquear a resposta dele aos visitantes.",
+"Um botnet de zumbis carrega informações pessoais para o hacker.",
+"Um hacker utiliza técnicas para melhorar a classificação de um site para que os usuários sejam redirecionados para um site mal-intencionado."
+],
+answer: 1,
+comment: "O exemplo do e-mail com anexo disfarçado de atualização de antivírus ilustra a ocultação de malware através de engenharia social, onde software malicioso é camuflado como algo legítimo para enganar usuários e evitar detecção."
     },
     {
-      q: "Qual tecnologia fornece orquestração de segurança?",
-      options: [
-        "Cisco SecureX",
-        "Cisco Defense Orchestrator",
-        "Cisco Security Manager",
-        "Todos os anteriores"
-      ],
-      answer: 3,
-      comment: "SecureX, CDO e CSM fornecem orquestração em diferentes níveis."
+      q: "Para enganar alguém para instalar malware ou divulgar informações pessoais",
+options: [
+"criar um botnet de zumbis",
+"Para aumentar o tráfego da web para sites maliciosos",
+"Para sobrecarregar um dispositivo de rede com pacotes formados de forma maliciosa"
+],
+answer: 1,
+comment: "Criar um botnet de zumbis envolve infectar dispositivos com malware sem o conhecimento dos usuários, permitindo que o hacker controle esses dispositivos remotamente para atividades maliciosas."
     },
     {
-      q: "Qual produto Cisco fornece segurança para wireless?",
-      options: [
-        "Cisco Wireless LAN Controller",
-        "Cisco ISE",
-        "Cisco Meraki",
-        "Todos os anteriores"
-      ],
-      answer: 3,
-      comment: "WLC, ISE e Meraki fornecem segurança integrada para redes wireless."
+      q: "Qual é o objetivo principal de um ataque DoS?",
+options: [
+"para obter todos os endereços no catálogo de endereços dentro do servidor",
+"Para evitar que o servidor de destino seja capaz de lidar com solicitações adicionais",
+"para verificar os dados no servidor de destino",
+"facilitar o acesso a redes externas"
+],
+answer: 1,
+comment: "O objetivo principal de um ataque de Negação de Serviço (DoS) é sobrecarregar o servidor ou recurso de rede com tráfego excessivo, tornando-o incapaz de responder a solicitações legítimas e interrompendo a disponibilidade do serviço."
     },
     {
-      q: "Qual tecnologia fornece análise de comportamento?",
-      options: [
-        "Cisco Stealthwatch",
-        "Cisco Tetration",
-        "Cisco Cognitive Intelligence",
-        "Todos os anteriores"
-      ],
-      answer: 3,
-      comment: "Stealthwatch, Tetration e Cognitive Intelligence usam análise comportamental."
+      q: "Um conjunto de alterações feitas em qualquer programa ou aplicativo com o objetivo de atualizá-lo, corrigi-lo ou melhorá-lo é frequentemente chamado de quê?",
+options: [
+"Uma solução",
+"Uma invasão",
+"Uma correção (Um pacote de correção)",
+"Uma instalação"
+],
+answer: 2,
+comment: "Um pacote de correção (patch) é um conjunto de alterações de software destinado a atualizar, corrigir ou melhorar um programa, incluindo a resolução de vulnerabilidades de segurança."
     },
     {
-      q: "Qual componente do Cisco Firepower fornece URL filtering?",
-      options: [
-        "URL Filtering",
-        "Talos Intelligence",
-        "Access Control Policy",
-        "Todos os anteriores"
-      ],
-      answer: 3,
-      comment: "URL Filtering usa Talos intelligence e é configurado via Access Control Policy."
+      q: "Como você chama um programa escrito para tirar proveito de uma vulnerabilidade de segurança conhecida?",
+options: [
+"Antivírus",
+"um firewall",
+"um exploit",
+"Atualização de software"
+],
+answer: 2,
+comment: "Um exploit é um código ou programa específico projetado para aproveitar uma vulnerabilidade conhecida em um software ou sistema, permitindo ao atacante executar ações não autorizadas."
     },
     {
-      q: "Qual tecnologia fornece segurança para DevOps?",
-      options: [
-        "Cisco Cloudlock",
-        "Cisco Tetration",
-        "Cisco SecureX",
-        "Todos os anteriores"
-      ],
-      answer: 3,
-      comment: "Cloudlock, Tetration e SecureX integram segurança em pipelines DevOps."
+      q: "'Proteger o acesso físico ao equipamento de destino é a melhor defesa de uma empresa contra um ataque digital.' Isso é verdadeiro ou falso?",
+options: [
+"Falso",
+"Verdadeiro"
+],
+answer: 0,
+comment: "Falso. A proteção física é importante, mas não é a melhor defesa contra ataques digitais, que geralmente ocorrem remotamente através de redes. A melhor defesa envolve uma abordagem em camadas incluindo firewalls, atualizações de segurança, autenticação forte e conscientização do usuário."
     },
     {
-      q: "Qual produto Cisco fornece segurança para email phishing?",
-      options: [
-        "Cisco Email Security",
-        "Cisco Phishail",
-        "Cisco IronPort",
-        "Cisco Cloud Email Security"
-      ],
-      answer: 0,
-      comment: "Cisco Email Security usa múltiplas técnicas para detectar e bloquear phishing."
+      q: "O que é um minerador?",
+options: [
+"Um computador que processa e verifica uma transação de blockchain",
+"Uma pessoa que resolve quebra-cabeças matemáticos complexos para verificar uma transação",
+"Um tipo de blockchain",
+"Um algoritmo que prevê o próximo bloco de uma cadeia"
+],
+answer: 0,
+comment: "Um minerador é um computador (ou rede de computadores) que realiza processamento computacional para validar transações em blockchains através da resolução de problemas matemáticos complexos, sendo recompensado com criptomoedas por este trabalho."
     },
     {
-      q: "Qual tecnologia fornece visibilidade de ameaças?",
-      options: [
-        "Cisco Threat Response",
-        "Cisco SecureX",
-        "Cisco Talos",
-        "Todos os anteriores"
-      ],
-      answer: 3,
-      comment: "Threat Response, SecureX e Talos fornecem visibilidade unificada de ameaças."
+      q: "Onde as criptomoedas são armazenadas?",
+options: [
+"Conta bancária",
+"No exchange",
+"Em uma carteira",
+"No blockchain"
+],
+answer: 2,
+comment: "As criptomoedas são armazenadas em carteiras digitais (wallets), que podem ser físicas ou virtuais. Essas carteiras guardam as chaves privadas necessárias para acessar e movimentar os ativos registrados na blockchain."
     },
+	//Parei de editar as questões aqui
     {
       q: "Qual componente do Cisco ISE fornece reporting?",
       options: [
@@ -13725,3 +13715,4 @@ function generateCiscoSecurityQuestions() {
   </script>
 </body>
 </html>
+
